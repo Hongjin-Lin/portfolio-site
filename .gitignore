@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# Local design review artifacts
+AGENTS.md
+design-qa.md
+audit-*.png
+implementation-*.png
+design-qa-comparison*.png
+
