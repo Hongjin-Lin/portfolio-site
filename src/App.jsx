@@ -84,19 +84,19 @@ const projects = [
 ];
 
 function Project({ project, language, labels }) {
+  const links = <div className="project__links">
+    <a href="#project-details">{labels.viewProject}</a>
+    <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+  </div>;
   return (
     <article className="project">
       <div className="project__number" aria-hidden="true">{project.number}</div>
       <div className="project__copy">
         <p className="eyebrow"><span />{project.category[language]}</p>
         <h3>{project.title[language]}</h3>
-        <p>{project.description[language]}</p>
-        <p className="project__result">{project.result[language]}</p>
-        <div className="project__links">
-          <a href="#project-details">{labels.viewProject}</a>
-          <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-        </div>
-        <p className="project__stack">{project.stack}</p>
+          <p>{project.description[language]}</p>
+          <p className="project__result">{project.result[language]}</p>
+          {links}<p className="project__stack">{project.stack}</p>
       </div>
       <a className="project__media" href="#project-details" aria-label={`${labels.viewProject}: ${project.title[language]}`}>
         <img src={project.image} alt={project.alt[language]} />
@@ -107,6 +107,7 @@ function Project({ project, language, labels }) {
 
 export function App() {
   const [language, setLanguage] = useState("en");
+  const shellRef = useRef(null);
   const glowRef = useRef(null);
   const text = content[language];
 
@@ -115,15 +116,78 @@ export function App() {
   }, [language]);
 
   useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (preference.matches || !("IntersectionObserver" in window)) return undefined;
+    const animations = new Set();
+    const activeGroups = new Map();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (!isIntersecting) {
+          activeGroups.get(target)?.forEach((animation) => {
+            animation.cancel();
+            animations.delete(animation);
+          });
+          activeGroups.delete(target);
+          return;
+        }
+        if (activeGroups.has(target)) return;
+        const groupAnimations = new Set();
+        activeGroups.set(target, groupAnimations);
+        // Observe stationary containers so animated transforms cannot retrigger entry.
+        const selector = target.matches(".about")
+          ? "h1, .about__copy > div, .availability"
+          : target.matches(".project")
+            ? ".project__number, .project__copy, .project__media"
+            : ":scope > h2";
+        target.querySelectorAll(selector).forEach((element) => {
+        const isMedia = element.classList.contains("project__media");
+        const isHeading = element.matches("h1, h2");
+        const delay = isMedia ? 150 : element.matches(".about__copy > div:nth-child(2)") ? 120 : 0;
+        const animation = element.animate([
+          {
+            opacity: 0,
+            transform: `translateY(${isHeading ? 64 : 80}px) scale(${isMedia ? .94 : .98})`,
+            filter: "blur(5px)",
+          },
+          { opacity: 1, transform: "translateY(0) scale(1)", filter: "blur(0px)" },
+        ], { duration: 950, delay, fill: "backwards", easing: "cubic-bezier(.16, 1, .3, 1)" });
+        animations.add(animation);
+        groupAnimations.add(animation);
+        animation.onfinish = () => {
+          animations.delete(animation);
+          groupAnimations.delete(animation);
+        };
+        });
+      });
+    }, { threshold: 0 });
+    shellRef.current.querySelectorAll(".about, .projects, .project").forEach((element) => observer.observe(element));
+    const stop = () => {
+      if (!preference.matches) return;
+      observer.disconnect();
+      animations.forEach((animation) => animation.cancel());
+      animations.clear();
+      activeGroups.clear();
+    };
+    preference.addEventListener("change", stop);
+    return () => {
+      observer.disconnect();
+      animations.forEach((animation) => animation.cancel());
+      activeGroups.clear();
+      preference.removeEventListener("change", stop);
+    };
+  }, []);
+
+  useEffect(() => {
     const glow = glowRef.current;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (!glow || reducedMotion.matches) return undefined;
 
     let frame = 0;
     const moveGlow = (event) => {
+      if (event.pointerType === "touch" || reducedMotion.matches) return;
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        glow.style.transform = `translate3d(${event.clientX - 380}px, ${event.clientY - 380}px, 0)`;
+        glow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
         glow.dataset.active = "true";
       });
     };
@@ -139,7 +203,7 @@ export function App() {
   }, []);
 
   return (
-    <div className={`site-shell language-${language}`}>
+    <div ref={shellRef} className={`site-shell language-${language}`}>
       <div className="side-rail" aria-hidden="true"><i /><i /><i /></div>
       <img className="tech-field" src="/assets/tech-field.png" alt="" aria-hidden="true" />
       <img ref={glowRef} className="cursor-glow" src="/assets/cursor-glow.png" alt="" aria-hidden="true" />
