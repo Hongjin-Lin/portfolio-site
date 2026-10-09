@@ -1,0 +1,13 @@
+{
+  "startDate": null,
+  "durationDays": 60,
+  "calorieTarget": 2000,
+  "proteinMin": 120,
+  "proteinMax": 140,
+  "repo": {
+    "owner": "Hongjin-Lin",
+    "name": "portfolio-site",
+    "dataPath": "src/data/fitness/entries.json",
+    "photoDir": "public/fitness"
+  }
+}

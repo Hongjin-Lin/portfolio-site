@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const content = {
   en: {
-    nav: { about: "About", projects: "Projects", resume: "Résumé" },
+    nav: { about: "About", projects: "Projects", fitness: "Fitness", resume: "Résumé" },
     headline: <>Building the foundations for <em>intelligent</em> products.</>,
     about: [
       [
@@ -21,7 +21,7 @@ const content = {
     footer: "Designed & built by Alex Chen",
   },
   zh: {
-    nav: { about: "关于我", projects: "项目", resume: "简历" },
+    nav: { about: "关于我", projects: "项目", fitness: "健身打卡", resume: "简历" },
     headline: <>为智能产品，构建<em>可靠基石</em>。</>,
     about: [
       [
@@ -213,6 +213,7 @@ export function App() {
         <nav aria-label={language === "zh" ? "主导航" : "Primary navigation"}>
           <a href="#about">{text.nav.about}</a>
           <a href="#projects">{text.nav.projects}</a>
+          <a href="/fitness-tracker/">{text.nav.fitness}</a>
           <a href="#resume">{text.nav.resume}</a>
           <a className="github-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
           <div className="language-toggle" aria-label={language === "zh" ? "语言选择" : "Language selector"}>
