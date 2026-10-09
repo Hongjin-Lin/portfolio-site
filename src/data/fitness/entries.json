@@ -1,50 +1,80 @@
 [
   {
     "date": "2026-10-01",
-    "demo": true,
-    "weightKg": 78.4,
+    "weightKg": 82.7,
     "workouts": [
       {
-        "title": "胸 + 三头肌",
-        "detail": "杠铃卧推 5×5（60kg）· 绳索下压 4×12 · 平板支撑 3×60s",
-        "durationMin": 75
+        "title": "健身",
+        "detail": "高位下拉 50kg 8/7/7 ×3组；器械划船 30.0 kg 9 / 7 / 7（3 组）；跑步机有氧 15 min",
+        "durationMin": null
+      }
+    ],
+    "meals": [
+      {
+        "type": "lunch",
+        "items": "螺蛳粉",
+        "kcal": 560,
+        "protein": 20,
+        "photos": []
       },
       {
-        "title": "晚间快走",
-        "detail": "小区环线 40 分钟 · 平均心率 118",
-        "durationMin": 40
+        "type": "dinner",
+        "items": "大米先生深圳前进天虹店 招牌菜套餐：肉末金刚茄子煲+风吹肉炖豆腐+芙蓉炖蛋+小份杂粮饭180g（备注少油）¥25.9",
+        "kcal": null,
+        "protein": null,
+        "photos": []
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "date": "2026-10-02",
+    "weightKg": 82.3,
+    "workouts": [
+      {
+        "title": "健身",
+        "detail": "卧推 40.0 kg 8 / 8 / 7 / 6（4 组）；有氧（跑步机） 18min @ 4.3km/h ≈ 1.3km",
+        "durationMin": null
       }
     ],
     "meals": [
       {
         "type": "breakfast",
-        "items": "燕麦 60g · 水煮蛋 2 个 · 无糖豆浆 300ml",
-        "kcal": 480,
-        "protein": 34,
-        "photos": ["/fitness/demo/breakfast.svg"]
+        "items": "瑞幸卓业星光广场店 瑰夏白冷萃（大杯/冰/不另加糖）+ 抹茶乳酪贝果",
+        "kcal": 380,
+        "protein": 10,
+        "photos": []
       },
       {
         "type": "lunch",
-        "items": "鸡胸肉 150g · 糙米饭 150g · 清炒西兰花",
-        "kcal": 720,
-        "protein": 58,
-        "photos": ["/fitness/demo/lunch.svg"]
+        "items": "老乡鸡工作日套餐：小炒肉 + 白菜炖豆腐 + 卤鸡腿 + 小份杂粮饭",
+        "kcal": 780,
+        "protein": 45,
+        "photos": []
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "date": "2026-10-03",
+    "weightKg": null,
+    "workouts": [],
+    "meals": [
+      {
+        "type": "lunch",
+        "items": "披萨",
+        "kcal": null,
+        "protein": null,
+        "photos": []
       },
       {
         "type": "dinner",
-        "items": "香煎三文鱼 120g · 藜麦牛油果沙拉",
-        "kcal": 620,
-        "protein": 40,
-        "photos": ["/fitness/demo/dinner.svg"]
-      },
-      {
-        "type": "snack",
-        "items": "香蕉 1 根 · 无糖酸奶 100g",
-        "kcal": 180,
-        "protein": 9,
-        "photos": ["/fitness/demo/snack.svg"]
+        "items": "陶陶居（粤菜，菜品未报，营养未估）",
+        "kcal": null,
+        "protein": null,
+        "photos": []
       }
     ],
-    "notes": "这是一条示例记录，用于展示每天打卡的完整样子；提交第一条真实打卡后会自动隐藏。"
+    "notes": ""
   }
 ]
