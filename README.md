@@ -46,3 +46,18 @@ The site is built with React and Vite. It includes English and Chinese content, 
 - 说明：网页编辑器删除照片只从记录中移除，仓库中的旧图片文件会保留（不影响页面）。
 
 本地开发：`npm run dev` 后访问 `http://localhost:5173/fitness-tracker/`。
+
+### 自动同步（来自 LifeLog）
+
+页面的饮食 / 训练 / 体重默认由 LifeLog 自动同步，不需要手工填：
+
+```bash
+python D:\lifelogitness_sync.py --all --dry-run    # 预览
+python D:\lifelogitness_sync.py --days 3 --push     # 同步最近 3 天并推送
+```
+
+- 数据源：`D:\lifelog\lifelog.db`（meals / training / body_metrics）。
+- 写入：`src/data/fitness/entries.json`，然后 `git commit` + `git push`，Vercel 自动部署。
+- 计划任务：`LifeLog-Fitness-Sync`，每天 13:00 / 19:30 / 23:00 各跑一次（无变化则不提交）。
+- 合并规则：LifeLog 覆盖 `items / kcal / protein / workouts / weightKg`；网站端的 `photos` 与 `notes` 保留；`demo` 条目在真实数据出现后自动被替换。
+- 注意：`/fitness-tracker/` 是公开页面，同步上去的内容任何人可见。
