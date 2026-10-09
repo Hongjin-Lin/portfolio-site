@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import config from "../data/fitness/config.json";
 import rawEntries from "../data/fitness/entries.json";
 import * as lib from "./data.js";
@@ -10,7 +10,7 @@ const T = {
   zh: {
     eyebrow: "Fitness Tracker",
     title: "60 天饮食与训练打卡",
-    subtitle: (c) => `每日三餐（照片 · 卡路里 · 蛋白质）、体重与训练记录。目标：每天 ${c.calorieTarget} kcal，蛋白质 ${c.proteinMin}–${c.proteinMax} g。`,
+    subtitle: (c) => `每日三餐与加餐（照片 · 卡路里 · 蛋白质）、体重与训练记录。目标：每天 ${c.calorieTarget} kcal，蛋白质 ${c.proteinMin}–${c.proteinMax} g。`,
     backHome: "返回首页",
     calendarTitle: "打卡日历",
     timelineTitle: "每日记录",
@@ -19,10 +19,11 @@ const T = {
       weight: "最新体重", kcal7: "近 7 日均卡路里", protein7: "近 7 日均蛋白质",
     },
     legend: { full: "完整打卡", partial: "部分记录", missed: "未打卡", future: "未来" },
+    clickHint: "点击日期查看当日记录；空白日期点击直接补录",
     dayN: (n) => `Day ${n}`,
     workout: "训练", min: "分钟", weightLabel: "体重", today: "今天",
     emptyTitle: "等待第一条打卡",
-    emptyBody: "点击页面底部「打卡 / 编辑」上传今天的饮食与训练；下面的示例卡片展示了每天记录的完整样子。",
+    emptyBody: "点击左侧日历上的任意日期，或页面底部的「打卡 / 编辑」，上传当天的饮食与训练；下面的示例卡片展示了每天记录的完整样子。",
     demoBadge: "示例", edit: "打卡 / 编辑",
     deployNote: "数据提交至 GitHub，由 Vercel 自动部署",
     noWeight: "未记录", lightboxClose: "关闭大图",
@@ -30,7 +31,7 @@ const T = {
   en: {
     eyebrow: "Fitness Tracker",
     title: "60 Days of Diet & Training",
-    subtitle: (c) => `Daily meals (photos · calories · protein), weight, and workouts. Target: ${c.calorieTarget} kcal and ${c.proteinMin}–${c.proteinMax} g protein per day.`,
+    subtitle: (c) => `Daily meals & snacks (photos · calories · protein), weight, and workouts. Target: ${c.calorieTarget} kcal and ${c.proteinMin}–${c.proteinMax} g protein per day.`,
     backHome: "Back home",
     calendarTitle: "Calendar",
     timelineTitle: "Daily log",
@@ -39,10 +40,11 @@ const T = {
       weight: "Latest weight", kcal7: "Avg calories (7d)", protein7: "Avg protein (7d)",
     },
     legend: { full: "Complete", partial: "Partial", missed: "Missed", future: "Upcoming" },
+    clickHint: "Click a date to view its log; click an empty day to fill it in",
     dayN: (n) => `Day ${n}`,
     workout: "Workout", min: "min", weightLabel: "Weight", today: "Today",
     emptyTitle: "Waiting for the first check-in",
-    emptyBody: "Use “Check-in / Edit” at the bottom to log today's meals and workout. The demo card below shows what a logged day looks like.",
+    emptyBody: "Click any date in the calendar, or “Check-in / Edit” at the bottom, to log a day. The demo card below shows what a logged day looks like.",
     demoBadge: "Demo", edit: "Check-in / Edit",
     deployNote: "Committed via GitHub · auto-deployed by Vercel",
     noWeight: "—", lightboxClose: "Close",
@@ -70,7 +72,7 @@ const DOW = {
   en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
 };
 
-function Calendar({ all, start, keys, lang, t }) {
+function Calendar({ all, start, keys, lang, t, onSelect }) {
   const map = useMemo(() => new Map(lib.realEntries(all).map((e) => [e.date, e])), [all]);
   const today = lib.todayKey();
   const weeks = [];
@@ -78,6 +80,7 @@ function Calendar({ all, start, keys, lang, t }) {
   let lastMonth = "";
   return (
     <div className="ft-calendar">
+      <p className="ft-cal-hint">{t.clickHint}</p>
       <div className="ft-cal-grid ft-cal-grid--head">
         {DOW[lang].map((d) => <span key={d} className="ft-cal-dow">{d}</span>)}
       </div>
@@ -96,21 +99,26 @@ function Calendar({ all, start, keys, lang, t }) {
                 const entry = map.get(k);
                 const isFuture = k > today;
                 const complete = entry && lib.dayComplete(entry);
+                const actionable = Boolean(entry) || !isFuture;
                 const cls = [
                   "ft-cell",
                   entry ? (complete ? "is-full" : "is-partial") : isFuture ? "is-future" : "is-missed",
                   k === today ? "is-today" : "",
+                  actionable ? "is-selectable" : "",
                 ].filter(Boolean).join(" ");
                 const totals = entry ? lib.dayTotals(entry) : null;
+                const title = entry
+                  ? `${k} · ${totals.kcal} kcal · ${totals.protein}g`
+                  : isFuture
+                    ? k
+                    : `${k} · ${lang === "zh" ? "点击补录" : "click to log"}`;
                 return (
                   <button
                     key={k}
                     type="button"
                     className={cls}
-                    title={entry ? `${k} · ${totals.kcal} kcal · ${totals.protein}g` : k}
-                    onClick={() =>
-                      document.getElementById(`ft-day-${k}`)?.scrollIntoView({ behavior: "smooth", block: "start" })
-                    }
+                    title={title}
+                    onClick={() => actionable && onSelect(k, entry)}
                   >
                     {lib.parseKey(k).getDate()}
                   </button>
@@ -129,7 +137,7 @@ function Calendar({ all, start, keys, lang, t }) {
   );
 }
 
-function DayCard({ entry, start, lang, t, onZoom, hideDayNumber = false }) {
+function DayCard({ entry, start, lang, t, onZoom, selected = false, hideDayNumber = false }) {
   const totals = lib.dayTotals(entry);
   const n = lib.dayNumber(entry.date, start);
   const d = lib.parseKey(entry.date);
@@ -141,9 +149,11 @@ function DayCard({ entry, start, lang, t, onZoom, hideDayNumber = false }) {
   const kcalPct = Math.min(100, (totals.kcal / config.calorieTarget) * 100);
   const proteinPct = Math.min(100, (totals.protein / config.proteinMax) * 100);
   const bandLeft = (config.proteinMin / config.proteinMax) * 100;
+  const meals = lib.getMeals(entry);
+  const workouts = lib.getWorkouts(entry);
 
   return (
-    <article className="ft-day" id={`ft-day-${entry.date}`}>
+    <article className={`ft-day${selected ? " is-selected" : ""}`} id={`ft-day-${entry.date}`}>
       <header className="ft-day-head">
         <div className="ft-day-date">
           <strong>{dateLabel}</strong>
@@ -160,45 +170,48 @@ function DayCard({ entry, start, lang, t, onZoom, hideDayNumber = false }) {
       </header>
 
       <div className="ft-day-body">
-        <section className="ft-workout">
-          <h3>{t.workout}</h3>
-          {entry.workout?.title ? (
-            <>
-              <p className="ft-workout-title">
-                {entry.workout.title}
-                {entry.workout?.durationMin ? <em> · {entry.workout.durationMin} {t.min}</em> : null}
-              </p>
-              {entry.workout?.detail && <p className="ft-workout-detail">{entry.workout.detail}</p>}
-            </>
-          ) : (
-            <p className="ft-muted">—</p>
+        <aside className="ft-workouts">
+          {workouts.length ? workouts.map((w, i) => (
+            <section className="ft-workout" key={`${w.title}-${i}`}>
+              <h3>{t.workout}{workouts.length > 1 ? ` ${i + 1}` : ""}</h3>
+              {w.title && (
+                <p className="ft-workout-title">
+                  {w.title}
+                  {w.durationMin ? <em> · {w.durationMin} {t.min}</em> : null}
+                </p>
+              )}
+              {w.detail && <p className="ft-workout-detail">{w.detail}</p>}
+              {!w.title && !w.detail && <p className="ft-muted">—</p>}
+            </section>
+          )) : (
+            <section className="ft-workout">
+              <h3>{t.workout}</h3>
+              <p className="ft-muted">—</p>
+            </section>
           )}
-        </section>
+        </aside>
 
         <div className="ft-meals">
-          {lib.MEALS.map((m) => {
-            const meal = entry.meals?.[m] || {};
-            return (
-              <section className="ft-meal" key={m}>
-                <h4>{lib.MEAL_INFO[m].icon} {lib.MEAL_INFO[m][lang]}</h4>
-                {meal.items && <p className="ft-meal-items">{meal.items}</p>}
-                <p className="ft-meal-numbers">
-                  <strong>{meal.kcal != null ? meal.kcal : "—"}</strong> kcal
-                  <i aria-hidden="true" />
-                  <strong>{meal.protein != null ? meal.protein : "—"}</strong> g {zh ? "蛋白质" : "protein"}
-                </p>
-                {meal.photos?.length > 0 && (
-                  <div className="ft-thumbs">
-                    {meal.photos.map((src) => (
-                      <button key={src} type="button" className="ft-thumb" onClick={() => onZoom(src)}>
-                        <img src={src} alt={`${lib.MEAL_INFO[m][lang]} · ${entry.date}`} loading="lazy" />
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </section>
-            );
-          })}
+          {meals.map((m, i) => (
+            <section className={`ft-meal ft-meal--${m.type}`} key={`${m.type}-${i}`}>
+              <h4>{lib.MEAL_INFO[m.type]?.icon} {lib.MEAL_INFO[m.type]?.[lang] || m.type}</h4>
+              {m.items && <p className="ft-meal-items">{m.items}</p>}
+              <p className="ft-meal-numbers">
+                <strong>{m.kcal != null ? m.kcal : "—"}</strong> kcal
+                <i aria-hidden="true" />
+                <strong>{m.protein != null ? m.protein : "—"}</strong> g {zh ? "蛋白质" : "protein"}
+              </p>
+              {m.photos?.length > 0 && (
+                <div className="ft-thumbs">
+                  {m.photos.map((src) => (
+                    <button key={src} type="button" className="ft-thumb" onClick={() => onZoom(src)}>
+                      <img src={src} alt={`${lib.MEAL_INFO[m.type]?.[lang] || m.type} · ${entry.date}`} loading="lazy" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </section>
+          ))}
         </div>
       </div>
 
@@ -227,7 +240,7 @@ function StatsRow({ stats, start, config, t }) {
   const s = t.stats;
   const dayNum = Math.min(Math.max(lib.dayNumber(lib.todayKey(), start), 0), config.durationDays);
   const cards = [
-    { label: s.day, value: `Day ${dayNum}`, sub: `${s.logged} ${stats.logged}`, unit: config.durationDays },
+    { label: s.day, value: `Day ${dayNum}`, unit: `${config.durationDays}`, sub: `${s.logged} ${stats.logged}` },
     { label: s.streak, value: stats.streak, unit: t.min === "分钟" ? "天" : "days" },
     {
       label: s.weight,
@@ -257,7 +270,11 @@ function StatsRow({ stats, start, config, t }) {
 export function App() {
   const [lang, setLang] = useState(() => localStorage.getItem(LANG_KEY) || "zh");
   const [editorOpen, setEditorOpen] = useState(() => new URLSearchParams(window.location.search).get("edit") === "1");
+  const [editorDate, setEditorDate] = useState(lib.todayKey());
+  const [selected, setSelected] = useState(null);
   const [zoom, setZoom] = useState(null);
+  const glowRef = useRef(null);
+  const selectTimer = useRef(null);
   const t = T[lang];
 
   useEffect(() => {
@@ -265,13 +282,58 @@ export function App() {
     localStorage.setItem(LANG_KEY, lang);
   }, [lang]);
 
+  useEffect(() => () => clearTimeout(selectTimer.current), []);
+
+  useEffect(() => {
+    const glow = glowRef.current;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!glow || reduced.matches) return undefined;
+    let frame = 0;
+    const move = (event) => {
+      if (event.pointerType === "touch") return;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        glow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+        glow.dataset.active = "true";
+      });
+    };
+    const dim = () => { glow.dataset.active = "false"; };
+    window.addEventListener("pointermove", move, { passive: true });
+    document.documentElement.addEventListener("mouseleave", dim);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("pointermove", move);
+      document.documentElement.removeEventListener("mouseleave", dim);
+    };
+  }, []);
+
   const { start, keys } = useMemo(() => lib.buildRange(rawEntries, config), []);
   const real = useMemo(() => lib.sortByDate(lib.realEntries(rawEntries), "desc"), []);
   const stats = useMemo(() => lib.computeStats(rawEntries, config), []);
   const demoEntries = real.length === 0 ? lib.sortByDate(rawEntries.filter((e) => e.demo), "desc") : [];
 
+  const openEditorAt = (key) => {
+    setEditorDate(key);
+    setEditorOpen(true);
+  };
+
+  const handleSelect = (key, entry) => {
+    if (entry) {
+      document.getElementById(`ft-day-${key}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      setSelected(key);
+      clearTimeout(selectTimer.current);
+      selectTimer.current = setTimeout(() => setSelected(null), 2400);
+    } else {
+      openEditorAt(key);
+    }
+  };
+
   return (
     <div className={`ft-shell language-${lang}`}>
+      <div className="side-rail" aria-hidden="true"><i /><i /><i /></div>
+      <img className="tech-field" src="/assets/tech-field.png" alt="" aria-hidden="true" />
+      <img ref={glowRef} className="cursor-glow" src="/assets/cursor-glow.png" alt="" aria-hidden="true" />
+
       <header className="ft-header">
         <a className="ft-wordmark" href="/">hongjinlin.com</a>
         <div className="ft-nav">
@@ -293,39 +355,60 @@ export function App() {
 
         <StatsRow stats={stats} start={start} config={config} t={t} />
 
-        <section className="ft-section">
-          <h2>{t.calendarTitle}</h2>
-          <Calendar all={rawEntries} start={start} keys={keys} lang={lang} t={t} />
-        </section>
-
-        <section className="ft-section">
-          <h2>{t.timelineTitle}</h2>
-          {real.length === 0 && (
-            <div className="ft-empty">
-              <h3>{t.emptyTitle}</h3>
-              <p>{t.emptyBody}</p>
-            </div>
-          )}
-          <div className="ft-days">
-            {real.map((entry) => (
-              <DayCard key={entry.date} entry={entry} start={start} lang={lang} t={t} onZoom={setZoom} />
-            ))}
-            {demoEntries.map((entry) => (
-              <div key={entry.date} className="ft-demo-wrap">
-                <span className="ft-chip ft-chip--demo">{t.demoBadge}</span>
-                <DayCard entry={entry} start={entry.date} lang={lang} t={t} onZoom={setZoom} hideDayNumber />
-              </div>
-            ))}
+        <div className="ft-columns">
+          <div className="ft-col ft-col--cal">
+            <section className="ft-section">
+              <h2>{t.calendarTitle}</h2>
+              <Calendar all={rawEntries} start={start} keys={keys} lang={lang} t={t} onSelect={handleSelect} />
+            </section>
           </div>
-        </section>
+
+          <div className="ft-col ft-col--records">
+            <section className="ft-section">
+              <h2>{t.timelineTitle}</h2>
+              {real.length === 0 && (
+                <div className="ft-empty">
+                  <h3>{t.emptyTitle}</h3>
+                  <p>{t.emptyBody}</p>
+                </div>
+              )}
+              <div className="ft-days">
+                {real.map((entry) => (
+                  <DayCard
+                    key={entry.date}
+                    entry={entry}
+                    start={start}
+                    lang={lang}
+                    t={t}
+                    onZoom={setZoom}
+                    selected={selected === entry.date}
+                  />
+                ))}
+                {demoEntries.map((entry) => (
+                  <div key={entry.date} className="ft-demo-wrap">
+                    <span className="ft-chip ft-chip--demo">{t.demoBadge}</span>
+                    <DayCard entry={entry} start={entry.date} lang={lang} t={t} onZoom={setZoom} hideDayNumber />
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+        </div>
       </main>
 
       <footer className="ft-footer">
         <p>{t.deployNote}</p>
-        <button type="button" className="ft-btn ft-btn--primary" onClick={() => setEditorOpen(true)}>✎ {t.edit}</button>
+        <button type="button" className="ft-btn ft-btn--primary" onClick={() => openEditorAt(lib.todayKey())}>✎ {t.edit}</button>
       </footer>
 
-      <Editor open={editorOpen} onClose={() => setEditorOpen(false)} entries={rawEntries} lang={lang} />
+      <Editor
+        open={editorOpen}
+        onClose={() => setEditorOpen(false)}
+        entries={rawEntries}
+        lang={lang}
+        date={editorDate}
+        onDateChange={setEditorDate}
+      />
 
       {zoom && (
         <div className="ft-lightbox" role="dialog" aria-modal="true" aria-label={t.lightboxClose} onClick={() => setZoom(null)}>

@@ -4,6 +4,7 @@ export const MEAL_INFO = {
   breakfast: { zh: "早餐", en: "Breakfast", icon: "☀" },
   lunch: { zh: "午餐", en: "Lunch", icon: "◐" },
   dinner: { zh: "晚餐", en: "Dinner", icon: "☾" },
+  snack: { zh: "加餐", en: "Snack", icon: "✚" },
 };
 
 export function dateKey(d) {
@@ -38,6 +39,39 @@ export function realEntries(all) {
   return (all || []).filter((e) => e && !e.demo && e.date);
 }
 
+/** Meals as a normalized array (supports legacy object format + unlimited snacks). */
+export function getMeals(entry) {
+  const m = entry?.meals;
+  if (Array.isArray(m)) {
+    return m.filter(Boolean).map((x) => ({
+      type: MEAL_INFO[x?.type] ? x.type : "snack",
+      items: x?.items || "",
+      kcal: x?.kcal ?? null,
+      protein: x?.protein ?? null,
+      photos: x?.photos || [],
+    }));
+  }
+  if (m && typeof m === "object") {
+    return MEALS.filter((k) => m[k]).map((k) => ({
+      type: k,
+      items: m[k].items || "",
+      kcal: m[k].kcal ?? null,
+      protein: m[k].protein ?? null,
+      photos: m[k].photos || [],
+    }));
+  }
+  return [];
+}
+
+/** Workouts as a normalized array (legacy single object supported). */
+export function getWorkouts(entry) {
+  const list = entry?.workouts;
+  if (Array.isArray(list)) return list.filter((w) => w && (w.title || w.detail || w.durationMin != null));
+  const single = entry?.workout;
+  if (single && (single.title || single.detail || single.durationMin != null)) return [single];
+  return [];
+}
+
 export function mealHasData(meal) {
   if (!meal) return false;
   return Boolean(meal.items || meal.kcal != null || (meal.photos?.length ?? 0) > 0);
@@ -48,19 +82,21 @@ export function mealComplete(meal) {
 }
 
 export function dayTotals(entry) {
-  let kcal = 0, protein = 0, complete = 0, photos = 0;
-  for (const m of MEALS) {
-    const meal = entry?.meals?.[m];
-    if (mealComplete(meal)) complete += 1;
-    if (meal?.kcal != null) kcal += Number(meal.kcal) || 0;
-    if (meal?.protein != null) protein += Number(meal.protein) || 0;
-    photos += meal?.photos?.length || 0;
+  let kcal = 0, protein = 0, standardComplete = 0, photos = 0;
+  const meals = getMeals(entry);
+  for (const meal of meals) {
+    if (mealComplete(meal) && MEALS.includes(meal.type)) standardComplete += 1;
+    if (meal.kcal != null) kcal += Number(meal.kcal) || 0;
+    if (meal.protein != null) protein += Number(meal.protein) || 0;
+    photos += meal.photos.length;
   }
-  return { kcal, protein, complete, photos };
+  return { kcal, protein, complete: standardComplete, photos, meals: meals.length };
 }
 
 export function dayComplete(entry) {
-  return dayTotals(entry).complete === 3 && entry?.weightKg != null;
+  if (entry?.weightKg == null) return false;
+  const meals = getMeals(entry);
+  return MEALS.every((type) => mealComplete(meals.find((m) => m.type === type)));
 }
 
 export function sortByDate(entries, dir = "asc") {

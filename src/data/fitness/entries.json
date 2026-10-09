@@ -3,31 +3,48 @@
     "date": "2026-10-01",
     "demo": true,
     "weightKg": 78.4,
-    "workout": {
-      "title": "胸 + 三头肌",
-      "detail": "杠铃卧推 5×5（60kg）· 绳索下压 4×12 · 平板支撑 3×60s",
-      "durationMin": 75
-    },
-    "meals": {
-      "breakfast": {
+    "workouts": [
+      {
+        "title": "胸 + 三头肌",
+        "detail": "杠铃卧推 5×5（60kg）· 绳索下压 4×12 · 平板支撑 3×60s",
+        "durationMin": 75
+      },
+      {
+        "title": "晚间快走",
+        "detail": "小区环线 40 分钟 · 平均心率 118",
+        "durationMin": 40
+      }
+    ],
+    "meals": [
+      {
+        "type": "breakfast",
         "items": "燕麦 60g · 水煮蛋 2 个 · 无糖豆浆 300ml",
         "kcal": 480,
         "protein": 34,
         "photos": ["/fitness/demo/breakfast.svg"]
       },
-      "lunch": {
+      {
+        "type": "lunch",
         "items": "鸡胸肉 150g · 糙米饭 150g · 清炒西兰花",
         "kcal": 720,
         "protein": 58,
         "photos": ["/fitness/demo/lunch.svg"]
       },
-      "dinner": {
+      {
+        "type": "dinner",
         "items": "香煎三文鱼 120g · 藜麦牛油果沙拉",
         "kcal": 620,
         "protein": 40,
         "photos": ["/fitness/demo/dinner.svg"]
+      },
+      {
+        "type": "snack",
+        "items": "香蕉 1 根 · 无糖酸奶 100g",
+        "kcal": 180,
+        "protein": 9,
+        "photos": ["/fitness/demo/snack.svg"]
       }
-    },
+    ],
     "notes": "这是一条示例记录，用于展示每天打卡的完整样子；提交第一条真实打卡后会自动隐藏。"
   }
 ]
