@@ -287,6 +287,11 @@ export function Editor({ open, onClose, entries, lang, date, onDateChange }) {
             </label>
           </div>
           {byDate.has(date) && <p className="ft-hint">{labels.replaceHint}</p>}
+          {byDate.get(date)?.demo && (
+            <p className="ft-hint ft-hint--demo">
+              {zh ? "正在编辑示例记录：保存后它将转换为正式打卡（示例标记移除）。" : "Editing the demo entry: saving turns it into a real check-in."}
+            </p>
+          )}
 
           <fieldset className="ft-fieldset">
             <legend>{labels.workout}</legend>

@@ -116,6 +116,8 @@ span.ft-cell { height: 14px; width: 14px; border-radius: 5px; display: inline-bl
 .ft-chip--day { background: rgba(35, 107, 112, 0.1); border-color: rgba(35, 107, 112, 0.4); color: var(--green); }
 .ft-chip--today { background: var(--coral); border-color: var(--coral); color: #fff; }
 .ft-chip--weight { color: var(--ink); }
+.ft-edit-btn { margin-left: auto; padding: 8px 16px; border: 1px solid rgba(35, 107, 112, 0.45); border-radius: 999px; background: rgba(35, 107, 112, 0.07); color: var(--green); font: 600 12.5px/1 "Manrope", sans-serif; cursor: pointer; transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease; }
+.ft-edit-btn:hover, .ft-edit-btn:focus-visible { background: var(--green); color: #f3f5f3; transform: translateY(-1px); }
 
 .ft-day-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
 .ft-day-date { display: flex; align-items: baseline; gap: 11px; margin-right: 6px; }
@@ -210,6 +212,7 @@ span.ft-cell { height: 14px; width: 14px; border-radius: 5px; display: inline-bl
 .ft-token-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
 .ft-token-row input { padding: 11px 13px; border: 1px solid var(--line); border-radius: 9px; font: 400 13px/1.4 "IBM Plex Mono", monospace; }
 .ft-hint { margin: 0; color: var(--sage); font-size: 12.5px; }
+.ft-hint--demo { color: var(--coral); }
 
 .ft-status { margin: 14px 28px 0; padding: 13px 17px; border-radius: 9px; font-size: 13.5px; line-height: 1.65; }
 .ft-status--busy { background: rgba(35, 107, 112, 0.1); color: var(--green); }

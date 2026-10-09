@@ -24,7 +24,7 @@ const T = {
     workout: "训练", min: "分钟", weightLabel: "体重", today: "今天",
     emptyTitle: "等待第一条打卡",
     emptyBody: "点击左侧日历上的任意日期，或页面底部的「打卡 / 编辑」，上传当天的饮食与训练；下面的示例卡片展示了每天记录的完整样子。",
-    demoBadge: "示例", edit: "打卡 / 编辑",
+    demoBadge: "示例", edit: "打卡 / 编辑", editDay: "编辑",
     deployNote: "数据提交至 GitHub，由 Vercel 自动部署",
     noWeight: "未记录", lightboxClose: "关闭大图",
   },
@@ -45,7 +45,7 @@ const T = {
     workout: "Workout", min: "min", weightLabel: "Weight", today: "Today",
     emptyTitle: "Waiting for the first check-in",
     emptyBody: "Click any date in the calendar, or “Check-in / Edit” at the bottom, to log a day. The demo card below shows what a logged day looks like.",
-    demoBadge: "Demo", edit: "Check-in / Edit",
+    demoBadge: "Demo", edit: "Check-in / Edit", editDay: "Edit",
     deployNote: "Committed via GitHub · auto-deployed by Vercel",
     noWeight: "—", lightboxClose: "Close",
   },
@@ -137,7 +137,7 @@ function Calendar({ all, start, keys, lang, t, onSelect }) {
   );
 }
 
-function DayCard({ entry, start, lang, t, onZoom, selected = false, hideDayNumber = false }) {
+function DayCard({ entry, start, lang, t, onZoom, onEdit, selected = false, hideDayNumber = false }) {
   const totals = lib.dayTotals(entry);
   const n = lib.dayNumber(entry.date, start);
   const d = lib.parseKey(entry.date);
@@ -167,6 +167,11 @@ function DayCard({ entry, start, lang, t, onZoom, selected = false, hideDayNumbe
         <span className="ft-chip">
           {totals.kcal || "—"} kcal · {totals.protein || "—"}g {zh ? "蛋白质" : "protein"}
         </span>
+        {onEdit && (
+          <button type="button" className="ft-edit-btn" onClick={() => onEdit(entry.date)}>
+            ✎ {t.editDay}
+          </button>
+        )}
       </header>
 
       <div className="ft-day-body">
@@ -381,13 +386,14 @@ export function App() {
                     lang={lang}
                     t={t}
                     onZoom={setZoom}
+                    onEdit={openEditorAt}
                     selected={selected === entry.date}
                   />
                 ))}
                 {demoEntries.map((entry) => (
                   <div key={entry.date} className="ft-demo-wrap">
                     <span className="ft-chip ft-chip--demo">{t.demoBadge}</span>
-                    <DayCard entry={entry} start={entry.date} lang={lang} t={t} onZoom={setZoom} hideDayNumber />
+                    <DayCard entry={entry} start={entry.date} lang={lang} t={t} onZoom={setZoom} onEdit={openEditorAt} hideDayNumber />
                   </div>
                 ))}
               </div>
