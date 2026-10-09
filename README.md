@@ -52,8 +52,8 @@ The site is built with React and Vite. It includes English and Chinese content, 
 页面的饮食 / 训练 / 体重默认由 LifeLog 自动同步，不需要手工填：
 
 ```bash
-python D:\lifelogitness_sync.py --all --dry-run    # 预览
-python D:\lifelogitness_sync.py --days 3 --push     # 同步最近 3 天并推送
+python D:\lifelog\fitness_sync.py --all --dry-run    # 预览
+python D:\lifelog\fitness_sync.py --days 3 --push     # 同步最近 3 天并推送
 ```
 
 - 数据源：`D:\lifelog\lifelog.db`（meals / training / body_metrics）。
