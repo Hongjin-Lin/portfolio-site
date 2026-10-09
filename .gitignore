@@ -12,3 +12,7 @@ implementation-*.png
 design-qa-comparison*.png
 
 .env*
+
+# Local browser/screenshot artifacts
+.playwright-cli/
+.shots/
