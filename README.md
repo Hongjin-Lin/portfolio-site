@@ -21,7 +21,7 @@ The site is built with React and Vite. It includes English and Chinese content, 
 
 ## Fitness Tracker（60 天饮食训练打卡）
 
-在线页面：[`/fitness-tracker/`](https://linhongjin.com/fitness-tracker/)。记录每日三餐（照片 · 卡路里 · 蛋白质）、体重与训练内容，目标 2000 kcal / 蛋白质 120–140 g，周期 60 天。
+在线页面：[`/fitness-tracker/`](https://hongjinlin.com/fitness-tracker/)。记录每日三餐（照片 · 卡路里 · 蛋白质）、体重与训练内容，目标 2000 kcal / 蛋白质 120–140 g，周期 60 天。
 
 ### 每日打卡的三种方式
 

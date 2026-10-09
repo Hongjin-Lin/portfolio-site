@@ -273,7 +273,7 @@ export function App() {
   return (
     <div className={`ft-shell language-${lang}`}>
       <header className="ft-header">
-        <a className="ft-wordmark" href="/">linhongjin.com</a>
+        <a className="ft-wordmark" href="/">hongjinlin.com</a>
         <div className="ft-nav">
           <a href="/">← {t.backHome}</a>
           <div className="ft-lang" aria-label="Language">

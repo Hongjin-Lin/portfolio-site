@@ -1,0 +1,199 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - link "linhongjin.com" [ref=e5] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e6]:
+      - link "← 返回首页" [ref=e7] [cursor=pointer]:
+        - /url: /
+      - generic "Language" [ref=e8]:
+        - button "EN" [ref=e9] [cursor=pointer]
+        - generic [aria-hidden] [ref=e10]: /
+        - button "中文" [pressed] [ref=e11] [cursor=pointer]
+  - main [ref=e12]:
+    - generic [ref=e13]:
+      - paragraph [ref=e14]: Fitness Tracker
+      - heading "60 天饮食与训练打卡" [level=1] [ref=e16]
+      - paragraph [ref=e17]: 每日三餐（照片 · 卡路里 · 蛋白质）、体重与训练记录。目标：每天 2000 kcal，蛋白质 120–140 g。
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - paragraph [ref=e20]: 打卡进度
+        - paragraph [ref=e21]:
+          - text: Day 5
+          - generic [ref=e22]: "60"
+        - paragraph [ref=e23]: 已记录 0
+      - generic [ref=e24]:
+        - paragraph [ref=e25]: 连续打卡
+        - paragraph [ref=e26]:
+          - text: "0"
+          - generic [ref=e27]: 天
+      - generic [ref=e28]:
+        - paragraph [ref=e29]: 最新体重
+        - paragraph [ref=e30]: —
+      - generic [ref=e31]:
+        - paragraph [ref=e32]: 近 7 日均卡路里
+        - paragraph [ref=e33]:
+          - text: —
+          - generic [ref=e34]: / 2000 kcal
+      - generic [ref=e35]:
+        - paragraph [ref=e36]: 近 7 日均蛋白质
+        - paragraph [ref=e37]:
+          - text: —
+          - generic [ref=e38]: / 120–140 g
+    - generic [ref=e39]:
+      - heading "打卡日历" [level=2] [ref=e40]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: 一
+          - generic [ref=e44]: 二
+          - generic [ref=e45]: 三
+          - generic [ref=e46]: 四
+          - generic [ref=e47]: 五
+          - generic [ref=e48]: 六
+          - generic [ref=e49]: 日
+        - generic [ref=e50]:
+          - generic [ref=e51]: 10 月
+          - generic [ref=e52]:
+            - button "5" [ref=e53] [cursor=pointer]
+            - button "6" [ref=e54] [cursor=pointer]
+            - button "7" [ref=e55] [cursor=pointer]
+            - button "8" [ref=e56] [cursor=pointer]
+            - button "9" [ref=e57] [cursor=pointer]
+            - button "10" [ref=e58]
+            - button "11" [ref=e59]
+        - generic [ref=e61]:
+          - button "12" [ref=e62]
+          - button "13" [ref=e63]
+          - button "14" [ref=e64]
+          - button "15" [ref=e65]
+          - button "16" [ref=e66]
+          - button "17" [ref=e67]
+          - button "18" [ref=e68]
+        - generic [ref=e70]:
+          - button "19" [ref=e71]
+          - button "20" [ref=e72]
+          - button "21" [ref=e73]
+          - button "22" [ref=e74]
+          - button "23" [ref=e75]
+          - button "24" [ref=e76]
+          - button "25" [ref=e77]
+        - generic [ref=e79]:
+          - button "26" [ref=e80]
+          - button "27" [ref=e81]
+          - button "28" [ref=e82]
+          - button "29" [ref=e83]
+          - button "30" [ref=e84]
+          - button "31" [ref=e85]
+          - button "1" [ref=e86]
+        - generic [ref=e87]:
+          - generic [ref=e88]: 11 月
+          - generic [ref=e89]:
+            - button "2" [ref=e90]
+            - button "3" [ref=e91]
+            - button "4" [ref=e92]
+            - button "5" [ref=e93]
+            - button "6" [ref=e94]
+            - button "7" [ref=e95]
+            - button "8" [ref=e96]
+        - generic [ref=e98]:
+          - button "9" [ref=e99]
+          - button "10" [ref=e100]
+          - button "11" [ref=e101]
+          - button "12" [ref=e102]
+          - button "13" [ref=e103]
+          - button "14" [ref=e104]
+          - button "15" [ref=e105]
+        - generic [ref=e107]:
+          - button "16" [ref=e108]
+          - button "17" [ref=e109]
+          - button "18" [ref=e110]
+          - button "19" [ref=e111]
+          - button "20" [ref=e112]
+          - button "21" [ref=e113]
+          - button "22" [ref=e114]
+        - generic [ref=e116]:
+          - button "23" [ref=e117]
+          - button "24" [ref=e118]
+          - button "25" [ref=e119]
+          - button "26" [ref=e120]
+          - button "27" [ref=e121]
+          - button "28" [ref=e122]
+          - button "29" [ref=e123]
+        - generic [ref=e125]:
+          - button "30" [ref=e126]
+          - button "1" [ref=e127]
+          - button "2" [ref=e128]
+          - button "3" [ref=e129]
+        - generic [ref=e130]:
+          - generic [ref=e131]:
+            - generic [aria-hidden] [ref=e132] [cursor=pointer]
+            - text: 完整打卡
+          - generic [ref=e133]:
+            - generic [aria-hidden] [ref=e134] [cursor=pointer]
+            - text: 部分记录
+          - generic [ref=e135]:
+            - generic [aria-hidden] [ref=e136] [cursor=pointer]
+            - text: 未打卡
+          - generic [ref=e137]: 未来
+    - generic [ref=e139]:
+      - heading "每日记录" [level=2] [ref=e140]
+      - generic [ref=e141]:
+        - heading "等待第一条打卡" [level=3] [ref=e142]
+        - paragraph [ref=e143]: 点击页面底部「打卡 / 编辑」上传今天的饮食与训练；下面的示例卡片展示了每天记录的完整样子。
+      - generic [ref=e145]:
+        - generic [ref=e146]: 示例
+        - article [ref=e147]:
+          - generic [ref=e148]:
+            - generic [ref=e149]:
+              - strong [ref=e150]: 10 月 1 日
+              - generic [ref=e151]: 星期四
+            - generic [ref=e152]: 体重 78.4 kg
+            - generic [ref=e153]: 1820 kcal · 132g 蛋白质
+          - generic [ref=e154]:
+            - generic [ref=e155]:
+              - heading "训练" [level=3] [ref=e156]
+              - paragraph [ref=e157]:
+                - text: 胸 + 三头肌
+                - emphasis [ref=e158]: · 75 分钟
+              - paragraph [ref=e159]: 杠铃卧推 5×5（60kg）· 绳索下压 4×12 · 平板支撑 3×60s
+            - generic [ref=e160]:
+              - generic [ref=e161]:
+                - heading "☀ 早餐" [level=4] [ref=e162]
+                - paragraph [ref=e163]: 燕麦 60g · 水煮蛋 2 个 · 无糖豆浆 300ml
+                - paragraph [ref=e164]:
+                  - strong [ref=e165]: "480"
+                  - text: kcal
+                  - strong [ref=e167]: "34"
+                  - text: g 蛋白质
+                - button [ref=e169]:
+                  - img "早餐 · 2026-10-01" [ref=e170]
+              - generic [ref=e171]:
+                - heading "◐ 午餐" [level=4] [ref=e172]
+                - paragraph [ref=e173]: 鸡胸肉 150g · 糙米饭 150g · 清炒西兰花
+                - paragraph [ref=e174]:
+                  - strong [ref=e175]: "720"
+                  - text: kcal
+                  - strong [ref=e177]: "58"
+                  - text: g 蛋白质
+                - button [ref=e179]:
+                  - img "午餐 · 2026-10-01" [ref=e180]
+              - generic [ref=e181]:
+                - heading "☾ 晚餐" [level=4] [ref=e182]
+                - paragraph [ref=e183]: 香煎三文鱼 120g · 藜麦牛油果沙拉
+                - paragraph [ref=e184]:
+                  - strong [ref=e185]: "620"
+                  - text: kcal
+                  - strong [ref=e187]: "40"
+                  - text: g 蛋白质
+                - button [ref=e189]:
+                  - img "晚餐 · 2026-10-01" [ref=e190]
+          - generic [ref=e191]:
+            - generic [ref=e192]:
+              - generic [ref=e193]: kcal
+              - generic [ref=e196]: 1820 / 2000
+            - generic [ref=e197]:
+              - generic [ref=e198]: 蛋白质
+              - generic [ref=e202]: 132 / 120–140 g
+          - paragraph [ref=e203]: 这是一条示例记录，用于展示每天打卡的完整样子；提交第一条真实打卡后会自动隐藏。
+  - contentinfo [ref=e204]:
+    - paragraph [ref=e205]: 数据提交至 GitHub，由 Vercel 自动部署
+    - button "✎ 打卡 / 编辑" [ref=e206] [cursor=pointer]
