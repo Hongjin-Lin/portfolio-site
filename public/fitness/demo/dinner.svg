@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#173c40"/><stop offset="1" stop-color="#236b70"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g)"/>
+  <circle cx="620" cy="140" r="85" fill="rgba(243,245,243,.12)"/>
+  <circle cx="170" cy="370" r="110" fill="rgba(243,245,243,.09)"/>
+  <text x="400" y="242" text-anchor="middle" font-family="Georgia, serif" font-size="46" fill="rgba(243,245,243,.92)">晚餐 · 示例照片</text>
+  <text x="400" y="292" text-anchor="middle" font-family="sans-serif" font-size="18" fill="rgba(243,245,243,.68)">dinner · 620 kcal · 40g protein</text>
+</svg>
