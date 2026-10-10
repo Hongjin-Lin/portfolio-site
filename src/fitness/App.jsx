@@ -25,7 +25,7 @@ const T = {
     workout: "训练", min: "分钟", weightLabel: "体重", stepsLabel: "步数", today: "今天",
     emptyTitle: "等待第一条打卡",
     emptyBody: "点击左侧日历上的任意日期，或页面底部的「打卡 / 编辑」，上传当天的饮食与训练；下面的示例卡片展示了每天记录的完整样子。",
-    demoBadge: "示例", edit: "打卡 / 编辑", editDay: "编辑",
+    demoBadge: "示例", edit: "打卡 / 编辑", editDay: "编辑", comments: "评论",
     deployNote: "数据提交至 GitHub，由 Vercel 自动部署",
     noWeight: "未记录", lightboxClose: "关闭大图",
   },
@@ -47,7 +47,7 @@ const T = {
     workout: "Workout", min: "min", weightLabel: "Weight", stepsLabel: "Steps", today: "Today",
     emptyTitle: "Waiting for the first check-in",
     emptyBody: "Click any date in the calendar, or “Check-in / Edit” at the bottom, to log a day. The demo card below shows what a logged day looks like.",
-    demoBadge: "Demo", edit: "Check-in / Edit", editDay: "Edit",
+    demoBadge: "Demo", edit: "Check-in / Edit", editDay: "Edit", comments: "Comments",
     deployNote: "Committed via GitHub · auto-deployed by Vercel",
     noWeight: "—", lightboxClose: "Close",
   },
@@ -139,7 +139,41 @@ function Calendar({ all, start, keys, lang, t, onSelect }) {
   );
 }
 
+function Comments({ date, lang }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || el.childElementCount > 0) return undefined;
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    const attrs = {
+      "data-repo": config.giscus.repo,
+      "data-repo-id": config.giscus.repoId,
+      "data-category": config.giscus.category,
+      "data-category-id": config.giscus.categoryId,
+      "data-mapping": "specific",
+      "data-term": `fitness-${date}`,
+      "data-strict": "1",
+      "data-reactions-enabled": "1",
+      "data-emit-metadata": "0",
+      "data-input-position": "top",
+      "data-theme": "light",
+      "data-lang": lang === "zh" ? "zh-CN" : "en",
+      "data-loading": "lazy",
+    };
+    Object.entries(attrs).forEach(([k, v]) => script.setAttribute(k, v));
+    el.appendChild(script);
+    return () => {
+      el.textContent = "";
+    };
+  }, [date, lang]);
+  return <div className="ft-comments" ref={ref} />;
+}
+
 function DayCard({ entry, start, lang, t, onZoom, onEdit, selected = false, hideDayNumber = false }) {
+  const [showComments, setShowComments] = useState(false);
   const totals = lib.dayTotals(entry);
   const n = lib.dayNumber(entry.date, start);
   const d = lib.parseKey(entry.date);
@@ -244,6 +278,13 @@ function DayCard({ entry, start, lang, t, onZoom, onEdit, selected = false, hide
       </div>
 
       {entry.notes && <p className="ft-notes">{entry.notes}</p>}
+
+      <div className="ft-day-actions">
+        <button type="button" className="ft-comments-toggle" onClick={() => setShowComments((v) => !v)}>
+          💬 {t.comments}{showComments ? " ▲" : " ▼"}
+        </button>
+      </div>
+      {showComments && <Comments date={entry.date} lang={lang} />}
     </article>
   );
 }

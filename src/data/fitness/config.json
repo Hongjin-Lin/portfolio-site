@@ -9,5 +9,11 @@
     "name": "portfolio-site",
     "dataPath": "src/data/fitness/entries.json",
     "photoDir": "public/fitness"
+  },
+  "giscus": {
+    "repo": "Hongjin-Lin/portfolio-site",
+    "repoId": "R_kgDOUOcFxA",
+    "category": "Announcements",
+    "categoryId": "DIC_kwDOUOcFxM4DHeP3"
   }
 }
