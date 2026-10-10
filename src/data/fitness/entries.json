@@ -91,6 +91,13 @@
         "photos": [
           "/fitness/2026-10-10/breakfast-1.jpg"
         ]
+      },
+      {
+        "type": "snack",
+        "items": "瑞幸瑰夏白冷萃（大杯 450ml/冰/不另外加糖）",
+        "kcal": 120,
+        "protein": 3,
+        "photos": []
       }
     ],
     "notes": ""
