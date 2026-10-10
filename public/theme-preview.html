@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>配色方案预览 · 手绘温暖风</title>
+<style>
+@font-face { font-family: Caveat; src: url(/fonts/caveat-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: Caveat; src: url(/fonts/caveat-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+
+:root { --wobble: 16px 22px 14px 20px / 20px 14px 22px 16px; }
+* { box-sizing: border-box; margin: 0; }
+
+/* ============ THEME TOKENS ============ */
+body[data-theme="matcha"] {
+  --paper: #f5f2e3; --panel: #ede8d3; --ink: #3a3324; --muted: #8a8168;
+  --primary: #6f8353; --deep: #55673f; --accent: #cf6b35; --soft: #e3b4bc;
+  --frame: #55673f; --gingham: rgba(111, 131, 83, .12);
+}
+body[data-theme="terracotta"] {
+  --paper: #f4e9da; --panel: #ecdcc7; --ink: #40312a; --muted: #97806e;
+  --primary: #b96a4b; --deep: #8f4f37; --accent: #5f7d54; --soft: #d9a86c;
+  --frame: #6e4433; --gingham: rgba(185, 106, 75, .10);
+}
+body[data-theme="jam"] {
+  --paper: #f8f2d8; --panel: #f1ead0; --ink: #3e4a30; --muted: #8b8a6a;
+  --primary: #cd5f4e; --deep: #55734f; --accent: #e0912f; --soft: #a8bf8a;
+  --frame: #55734f; --gingham: rgba(224, 145, 47, .10);
+}
+body[data-theme="sakura"] {
+  --paper: #f9f1ec; --panel: #f3e6e0; --ink: #463a3d; --muted: #9a878a;
+  --primary: #c97f92; --deep: #8f7fae; --accent: #8ba06b; --soft: #a8bf8a;
+  --frame: #b98a97; --gingham: rgba(201, 127, 146, .10);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--paper); color: var(--ink); min-height: 100vh; padding: 26px;
+  transition: background .4s ease;
+}
+/* 颗粒纹理 */
+body::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
+/* 格纹 */
+body::after { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .35;
+  background-image: repeating-linear-gradient(0deg, var(--gingham) 0 1px, transparent 1px 22px), repeating-linear-gradient(90deg, var(--gingham) 0 1px, transparent 1px 22px); }
+/* 手绘粗框 */
+.frame { position: fixed; inset: 12px; z-index: 1; pointer-events: none; border: 3px solid var(--frame); border-radius: 18px 9px 16px 10px / 10px 16px 9px 18px; opacity: .85; }
+
+.shell { position: relative; z-index: 2; display: flex; gap: 34px; max-width: 1180px; margin: 26px auto 0; }
+
+/* ============ 侧边栏 ============ */
+.side { flex: 0 0 270px; background: var(--panel); border: 2px solid var(--ink); border-radius: var(--wobble); padding: 26px 22px; display: flex; flex-direction: column; gap: 20px; box-shadow: 4px 5px 0 rgba(58, 51, 36, .12); }
+.wordmark { font: 700 24px/1 "Outfit Variable", -apple-system, sans-serif; letter-spacing: -.01em; }
+.side .intro { font-size: 13px; line-height: 1.8; color: var(--ink); opacity: .85; }
+.side .intro p { margin-bottom: 12px; }
+.hand { font-family: Caveat, "Segoe Script", cursive; font-size: 20px; font-weight: 700; color: var(--accent); }
+.badge { display: flex; align-items: center; gap: 9px; font-size: 12px; }
+.badge i { width: 10px; height: 10px; border-radius: 50% 45% 55% 48%; background: var(--primary); border: 1.5px solid var(--ink); }
+.side nav { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.side nav a { text-decoration: none; color: var(--ink); font-size: 13.5px; padding: 7px 2px; border-bottom: 2px dashed color-mix(in srgb, var(--ink) 18%, transparent); }
+.side nav a span { font-family: Caveat, cursive; color: var(--accent); font-size: 16px; margin-right: 8px; }
+.langs { margin-top: auto; display: flex; gap: 10px; font-size: 12px; opacity: .75; }
+.langs b { font-family: Caveat, cursive; font-size: 18px; color: var(--accent); }
+
+/* ============ 主区 ============ */
+.main { flex: 1; min-width: 0; }
+h1.hero { font: 700 clamp(38px, 4.6vw, 62px)/1.15 "Outfit Variable", sans-serif; letter-spacing: -.015em; max-width: 620px; }
+.hero-row { display: flex; gap: 24px; align-items: flex-start; }
+.vertical { writing-mode: vertical-rl; font-size: 15px; letter-spacing: .35em; color: var(--deep); border: 2px solid var(--deep); border-radius: 12px 6px 10px 8px / 8px 10px 6px 12px; padding: 16px 7px; opacity: .8; font-weight: 600; }
+.sec { margin-top: 40px; }
+.sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
+.sec-head h2 { font: 700 34px/1 "Outfit Variable", sans-serif; letter-spacing: -.01em; }
+.sec-head .hand { font-size: 22px; }
+.rows { border: 2px solid var(--ink); border-radius: var(--wobble); overflow: hidden; background: color-mix(in srgb, var(--paper) 82%, #fff); box-shadow: 4px 5px 0 rgba(58, 51, 36, .12); }
+.row { display: flex; align-items: center; gap: 18px; padding: 20px 22px; border-bottom: 2px dashed color-mix(in srgb, var(--ink) 25%, transparent); cursor: pointer; transition: background .25s ease, transform .25s ease; }
+.row:last-child { border-bottom: 0; }
+.row:hover { background: color-mix(in srgb, var(--primary) 16%, var(--paper)); transform: translateX(5px); }
+.row .no { font-family: Caveat, cursive; font-size: 24px; color: var(--accent); }
+.row .t { font: 600 21px/1.2 "Outfit Variable", sans-serif; flex: 1; }
+.row .tag { font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border: 1.5px solid var(--muted); border-radius: 999px 12px 999px 14px / 14px 999px 12px 999px; padding: 4px 10px; }
+.row .arr { font-size: 18px; color: var(--primary); }
+.chips { display: flex; gap: 10px; margin-top: 16px; }
+.chip { font-size: 11px; border: 1.5px solid var(--ink); border-radius: 999px 14px 999px 12px / 12px 999px 14px 999px; padding: 5px 12px; background: color-mix(in srgb, var(--paper) 70%, #fff); }
+.chip.hot { background: var(--soft); }
+
+/* ============ 切换器 ============ */
+.switcher { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 5; display: flex; gap: 10px; padding: 10px 12px; background: #fff; border: 2px solid var(--ink); border-radius: var(--wobble); box-shadow: 4px 5px 0 rgba(58,51,36,.15); }
+.switcher button { border: 2px solid transparent; background: transparent; padding: 7px 14px; border-radius: 12px 7px 10px 8px / 8px 10px 7px 12px; font: 600 13px/1 inherit; color: var(--ink); cursor: pointer; }
+.switcher button.on { border-color: var(--ink); background: color-mix(in srgb, var(--primary) 20%, #fff); }
+.switcher .sw { width: 14px; height: 14px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: -1px; border: 1.5px solid var(--ink); }
+@media (max-width: 900px) { .shell { flex-direction: column; } .side { flex-basis: auto; } }
+</style>
+</head>
+<body data-theme="matcha">
+  <div class="frame" aria-hidden="true"></div>
+
+  <div class="shell">
+    <aside class="side">
+      <div class="wordmark">Hongjin Lin</div>
+      <div class="intro">
+        <p>Backend &amp; ML engineer, turning ideas into systems people can rely on.</p>
+        <p>现在的主页换了手绘温暖风：<span class="hand">cozy &amp; hand-drawn</span></p>
+      </div>
+      <div class="badge"><i></i><span><b>AVAILABLE</b> · Open to work</span></div>
+      <nav>
+        <a href="#"><span>01</span>About</a>
+        <a href="#"><span>02</span>Projects</a>
+        <a href="#"><span>03</span>Fitness</a>
+        <a href="#"><span>04</span>Résumé</a>
+      </nav>
+      <div class="langs"><b>Languages</b><span>EN / 中文</span></div>
+    </aside>
+
+    <main class="main">
+      <div class="hero-row">
+        <h1 class="hero">Building the foundations for <em>intelligent</em> products.</h1>
+        <div class="vertical" id="vtext">抹茶拿铁</div>
+      </div>
+
+      <div class="chips">
+        <span class="chip hot">✎ hand-drawn</span>
+        <span class="chip">warm &amp; minimal</span>
+        <span class="chip">paper grain</span>
+        <span class="chip">wobbly borders</span>
+      </div>
+
+      <section class="sec">
+        <div class="sec-head"><h2>Projects</h2><span class="hand">selected work ~</span></div>
+        <div class="rows">
+          <div class="row"><span class="no">01</span><span class="t">RAG Knowledge Assistant</span><span class="tag">LLM Systems</span><span class="arr">→</span></div>
+          <div class="row"><span class="no">02</span><span class="t">Real-time Recommendation API</span><span class="tag">API · ML</span><span class="arr">→</span></div>
+          <div class="row"><span class="no">03</span><span class="t">Distributed Task Queue</span><span class="tag">Infrastructure</span><span class="arr">→</span></div>
+          <div class="row"><span class="no">🍵</span><span class="t">60 天饮食训练打卡</span><span class="tag">Fitness</span><span class="arr">→</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="switcher" id="sw">
+    <button data-t="matcha" class="on"><span class="sw" style="background:#6f8353"></span>抹茶拿铁</button>
+    <button data-t="terracotta"><span class="sw" style="background:#b96a4b"></span>陶土茶屋</button>
+    <button data-t="jam"><span class="sw" style="background:#cd5f4e"></span>野菜果酱</button>
+    <button data-t="sakura"><span class="sw" style="background:#c97f92"></span>樱花芋泥</button>
+  </div>
+
+<script>
+const names = { matcha: "抹茶拿铁", terracotta: "陶土茶屋", jam: "野菜果酱", sakura: "樱花芋泥" };
+document.getElementById("sw").addEventListener("click", (e) => {
+  const btn = e.target.closest("button"); if (!btn) return;
+  document.body.dataset.theme = btn.dataset.t;
+  document.getElementById("vtext").textContent = names[btn.dataset.t];
+  document.querySelectorAll("#sw button").forEach(b => b.classList.toggle("on", b === btn));
+});
+</script>
+</body>
+</html>
