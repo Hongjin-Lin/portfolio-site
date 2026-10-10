@@ -134,6 +134,7 @@ export function computeStats(all, config) {
     }
   }
   const weights = real.filter((e) => e.weightKg != null);
+  const stepsList = real.filter((e) => e.steps != null);
   const weightFirst = weights[0]?.weightKg ?? null;
   const weightLast = weights.at(-1)?.weightKg ?? null;
   const delta =
@@ -151,6 +152,8 @@ export function computeStats(all, config) {
     delta,
     kcal7: avg(last7, (e) => dayTotals(e).kcal) || null,
     protein7: avg(last7, (e) => dayTotals(e).protein) || null,
+    steps7: avg(last7.filter((e) => e.steps != null), (e) => e.steps) || null,
+    stepsLast: stepsList.length ? stepsList.at(-1).steps : null,
     onTarget: real.filter((e) => {
       const t = dayTotals(e);
       return (

@@ -75,6 +75,22 @@
         "photos": []
       }
     ],
+    "notes": "",
+    "steps": 9000
+  },
+  {
+    "date": "2026-10-10",
+    "weightKg": 83.2,
+    "workouts": [],
+    "meals": [
+      {
+        "type": "breakfast",
+        "items": "香蕉 1 根 + 瑞幸瑰夏白冷萃（大杯/不另加糖）",
+        "kcal": 100,
+        "protein": 1,
+        "photos": []
+      }
+    ],
     "notes": ""
   }
 ]

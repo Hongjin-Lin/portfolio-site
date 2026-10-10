@@ -53,13 +53,14 @@ function formFromEntry(entry) {
     if (!MEALS.includes(m.type)) meals.push(m);
   }
   const workouts = storedWorkouts(entry);
-  return { weight: entry?.weightKg ?? "", workouts: workouts.length ? workouts : [emptyWorkout()], meals, notes: entry?.notes || "" };
+  return { weight: entry?.weightKg ?? "", steps: entry?.steps ?? "", workouts: workouts.length ? workouts : [emptyWorkout()], meals, notes: entry?.notes || "" };
 }
 
 function buildEntry(date, form, photoUrls) {
   return {
     date,
     weightKg: toNum(form.weight),
+    steps: toNum(form.steps),
     workouts: form.workouts
       .map((w) => ({ title: w.title.trim(), detail: w.detail.trim(), durationMin: toNum(w.durationMin) }))
       .filter((w) => w.title || w.detail || w.durationMin != null),
@@ -143,7 +144,7 @@ export function Editor({ open, onClose, entries, lang, date, onDateChange }) {
   };
 
   const hasAnyData = () => {
-    if (form.weight !== "" || form.notes) return true;
+    if (form.weight !== "" || form.steps !== "" || form.notes) return true;
     if (form.workouts.some((w) => w.title || w.detail || w.durationMin !== "")) return true;
     return form.meals.some((m) => m.items || m.kcal !== "" || m.protein !== "" || m.photos.length);
   };
@@ -209,6 +210,7 @@ export function Editor({ open, onClose, entries, lang, date, onDateChange }) {
     title: zh ? "每日打卡" : "Daily check-in",
     date: zh ? "日期" : "Date",
     weight: zh ? "体重（kg）" : "Weight (kg)",
+    steps: zh ? "步数" : "Steps",
     workout: zh ? "训练" : "Workout",
     workoutTitle: zh ? "训练名称" : "Workout name",
     workoutDetail: zh ? "细节（组数 × 次数 × 重量…）" : "Details (sets × reps × load…)",
@@ -276,7 +278,7 @@ export function Editor({ open, onClose, entries, lang, date, onDateChange }) {
         </header>
 
         <div className="ft-modal-body">
-          <div className="ft-form-row">
+          <div className="ft-form-row ft-form-row--3">
             <label>
               <span>{labels.date}</span>
               <input type="date" value={date} max={todayKey()} onChange={(e) => onDateChange(e.target.value || todayKey())} />
@@ -284,6 +286,10 @@ export function Editor({ open, onClose, entries, lang, date, onDateChange }) {
             <label>
               <span>{labels.weight}</span>
               <input type="number" step="0.1" inputMode="decimal" value={form.weight} onChange={(e) => setForm((prev) => ({ ...prev, weight: e.target.value }))} placeholder="78.4" />
+            </label>
+            <label>
+              <span>{labels.steps}</span>
+              <input type="number" inputMode="numeric" value={form.steps} onChange={(e) => setForm((prev) => ({ ...prev, steps: e.target.value }))} placeholder="9000" />
             </label>
           </div>
           {byDate.has(date) && <p className="ft-hint">{labels.replaceHint}</p>}

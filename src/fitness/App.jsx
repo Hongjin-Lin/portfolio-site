@@ -17,11 +17,12 @@ const T = {
     stats: {
       day: "打卡进度", logged: "已记录", streak: "连续打卡",
       weight: "最新体重", kcal7: "近 7 日均卡路里", protein7: "近 7 日均蛋白质",
+      steps7: "近 7 日均步数", stepsUnit: "步",
     },
     legend: { full: "完整打卡", partial: "部分记录", missed: "未打卡", future: "未来" },
     clickHint: "点击日期查看当日记录；空白日期点击直接补录",
     dayN: (n) => `Day ${n}`,
-    workout: "训练", min: "分钟", weightLabel: "体重", today: "今天",
+    workout: "训练", min: "分钟", weightLabel: "体重", stepsLabel: "步数", today: "今天",
     emptyTitle: "等待第一条打卡",
     emptyBody: "点击左侧日历上的任意日期，或页面底部的「打卡 / 编辑」，上传当天的饮食与训练；下面的示例卡片展示了每天记录的完整样子。",
     demoBadge: "示例", edit: "打卡 / 编辑", editDay: "编辑",
@@ -38,11 +39,12 @@ const T = {
     stats: {
       day: "Progress", logged: "logged", streak: "Streak",
       weight: "Latest weight", kcal7: "Avg calories (7d)", protein7: "Avg protein (7d)",
+      steps7: "Avg steps (7d)", stepsUnit: "steps",
     },
     legend: { full: "Complete", partial: "Partial", missed: "Missed", future: "Upcoming" },
     clickHint: "Click a date to view its log; click an empty day to fill it in",
     dayN: (n) => `Day ${n}`,
-    workout: "Workout", min: "min", weightLabel: "Weight", today: "Today",
+    workout: "Workout", min: "min", weightLabel: "Weight", stepsLabel: "Steps", today: "Today",
     emptyTitle: "Waiting for the first check-in",
     emptyBody: "Click any date in the calendar, or “Check-in / Edit” at the bottom, to log a day. The demo card below shows what a logged day looks like.",
     demoBadge: "Demo", edit: "Check-in / Edit", editDay: "Edit",
@@ -164,6 +166,11 @@ function DayCard({ entry, start, lang, t, onZoom, onEdit, selected = false, hide
         <span className="ft-chip ft-chip--weight">
           {t.weightLabel} {entry.weightKg != null ? `${entry.weightKg} kg` : t.noWeight}
         </span>
+        {entry.steps != null && (
+          <span className="ft-chip ft-chip--steps">
+            {t.stepsLabel} {Number(entry.steps).toLocaleString(zh ? "zh-CN" : "en-US")}
+          </span>
+        )}
         <span className="ft-chip">
           {totals.kcal || "—"} kcal · {totals.protein || "—"}g {zh ? "蛋白质" : "protein"}
         </span>
@@ -241,7 +248,7 @@ function DayCard({ entry, start, lang, t, onZoom, onEdit, selected = false, hide
   );
 }
 
-function StatsRow({ stats, start, config, t }) {
+function StatsRow({ stats, start, config, t, lang }) {
   const s = t.stats;
   const dayNum = Math.min(Math.max(lib.dayNumber(lib.todayKey(), start), 0), config.durationDays);
   const cards = [
@@ -255,6 +262,13 @@ function StatsRow({ stats, start, config, t }) {
     },
     { label: s.kcal7, value: stats.kcal7 ?? "—", unit: `/ ${config.calorieTarget} kcal` },
     { label: s.protein7, value: stats.protein7 ?? "—", unit: `/ ${config.proteinMin}–${config.proteinMax} g` },
+    {
+      label: s.steps7,
+      value: stats.steps7 != null ? Number(stats.steps7).toLocaleString(lang === "zh" ? "zh-CN" : "en-US") : "—",
+      sub: stats.stepsLast != null
+        ? `${lang === "zh" ? "最新" : "latest"} ${Number(stats.stepsLast).toLocaleString(lang === "zh" ? "zh-CN" : "en-US")} ${s.stepsUnit}`
+        : undefined,
+    },
   ];
   return (
     <section className="ft-stats">
@@ -358,7 +372,7 @@ export function App() {
           <p className="ft-sub">{t.subtitle(config)}</p>
         </section>
 
-        <StatsRow stats={stats} start={start} config={config} t={t} />
+        <StatsRow stats={stats} start={start} config={config} t={t} lang={lang} />
 
         <div className="ft-columns">
           <div className="ft-col ft-col--cal">
