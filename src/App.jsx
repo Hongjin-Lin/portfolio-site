@@ -213,28 +213,29 @@ export function App() {
       <img className="tech-field" src="/assets/tech-field.png" alt="" aria-hidden="true" />
       <img ref={glowRef} className="cursor-glow" src="/assets/cursor-glow.png" alt="" aria-hidden="true" />
       <img className="path-line" src="/assets/path-line-transparent.png" alt="" aria-hidden="true" />
-      <header className="site-header">
+      <aside className="site-sidebar">
         <a className="wordmark" href="#about">Alex Chen</a>
-        <nav aria-label={language === "zh" ? "主导航" : "Primary navigation"}>
+        <div className="sidebar-intro">
+          {text.about.map((column) => column.map((paragraph) => <p key={paragraph}>{paragraph}</p>))}
+        </div>
+        <div className="availability"><span aria-hidden="true" /><strong>{text.available}</strong><small>{text.availability}</small></div>
+        <nav className="sidebar-nav" aria-label={language === "zh" ? "主导航" : "Primary navigation"}>
           <a href="#about">{text.nav.about}</a>
           <a href="#projects">{text.nav.projects}</a>
           <a href="/fitness-tracker/">{text.nav.fitness}</a>
           <a href="#resume">{text.nav.resume}</a>
-          <a className="github-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-          <div className="language-toggle" aria-label={language === "zh" ? "语言选择" : "Language selector"}>
-            <button type="button" className={language === "en" ? "active" : ""} onClick={() => setLanguage("en")} aria-pressed={language === "en"}>EN</button>
-            <span aria-hidden="true">/</span>
-            <button type="button" className={language === "zh" ? "active" : ""} onClick={() => setLanguage("zh")} aria-pressed={language === "zh"}>中文</button>
-          </div>
+          <a className="github-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a>
         </nav>
-      </header>
+        <div className="language-toggle" aria-label={language === "zh" ? "语言选择" : "Language selector"}>
+          <button type="button" className={language === "en" ? "active" : ""} onClick={() => setLanguage("en")} aria-pressed={language === "en"}>EN</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" className={language === "zh" ? "active" : ""} onClick={() => setLanguage("zh")} aria-pressed={language === "zh"}>中文</button>
+        </div>
+      </aside>
+      <div className="site-content">
       <main>
         <section className="about" id="about">
           <h1>{text.headline}</h1>
-          <div className="about__copy">
-            {text.about.map((column, index) => <div key={index}>{column.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>)}
-          </div>
-          <div className="availability"><span aria-hidden="true" /><strong>{text.available}</strong><small>{text.availability}</small></div>
         </section>
         <section className="projects" id="projects">
           <h2>{text.projectsTitle}</h2>
@@ -247,6 +248,7 @@ export function App() {
         </section>
       </main>
       <footer id="resume"><p>{text.footer}</p><a href="mailto:alex.chen@example.com">alex.chen@example.com</a></footer>
+      </div>
       <span id="project-details" className="anchor-target" aria-hidden="true" />
     </div>
   );
