@@ -85,19 +85,10 @@
     "meals": [
       {
         "type": "breakfast",
-        "items": "香蕉 1 根 + 瑞幸瑰夏白冷萃（大杯/不另加糖）",
-        "kcal": 100,
-        "protein": 1,
-        "photos": []
-      },
-      {
-        "type": "breakfast",
-        "items": "早餐②（自制）：燕麦 20g + 奇亚籽 5g + 蓝莓 30g + 牛奶 120ml（小象 5.0）+ 2 个煎蛋（生抽半勺调味）",
+        "items": "早餐（自制）：燕麦 20g + 奇亚籽 5g + 蓝莓 30g + 牛奶 120ml（小象 5.0）+ 2 个煎蛋（生抽半勺调味）",
         "kcal": 445,
         "protein": 23,
-        "photos": [
-          "/fitness/2026-10-10/breakfast-2.jpg"
-        ]
+        "photos": []
       }
     ],
     "notes": ""
