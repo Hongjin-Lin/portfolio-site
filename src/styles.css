@@ -1,14 +1,10 @@
-@import "@fontsource/cormorant-garamond/500.css";
-@import "@fontsource/cormorant-garamond/500-italic.css";
-@import "@fontsource/manrope/400.css";
-@import "@fontsource/manrope/500.css";
-@import "@fontsource/manrope/600.css";
-@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource-variable/outfit";
+@import "@fontsource-variable/google-sans-code";
 
 :root {
   color: #10233a;
   background: #f3f5f3;
-  font-family: "Manrope", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-synthesis: none;
   --paper: #f3f5f3;
   --ink: #173c40;
@@ -35,7 +31,7 @@ a { color: inherit; }
 .path-line { position: absolute; z-index: 1; top: 150px; right: clamp(-110px, -3vw, -32px); width: clamp(390px, 48vw, 620px); height: auto; opacity: .52; pointer-events: none; user-select: none; }
 .site-sidebar, .site-content { position: relative; z-index: 2; }
 .site-sidebar { position: sticky; top: 0; align-self: flex-start; z-index: 3; display: flex; flex-direction: column; gap: 26px; flex: 0 0 auto; width: clamp(264px, 23vw, 318px); min-height: 100vh; margin-left: 30px; padding: 38px 26px 28px; background: var(--paper); border-right: 1px solid var(--line); }
-.wordmark { font: 500 27px/1 "Cormorant Garamond", serif; text-decoration: none; }
+.wordmark { font: 600 22px/1 "Outfit Variable", sans-serif; letter-spacing: -.01em; text-decoration: none; }
 .sidebar-intro { color: #253746; font-size: 13px; line-height: 1.8; }
 .sidebar-intro p { margin: 0 0 14px; }
 .sidebar-intro p:last-child { margin-bottom: 0; }
@@ -43,7 +39,7 @@ a { color: inherit; }
 .sidebar-nav a { position: relative; padding: 8px 0; text-decoration: none; color: #253746; transition: color .2s ease, transform .25s ease; }
 .sidebar-nav a:hover, .sidebar-nav a:focus-visible { color: var(--coral); transform: translateX(6px); }
 .site-sidebar .language-toggle { margin-top: auto; }
-.language-toggle { display: flex; align-items: center; gap: 6px; padding-left: 4px; color: rgba(13, 33, 57, .42); font: 400 10px/1 "IBM Plex Mono", monospace; }
+.language-toggle { display: flex; align-items: center; gap: 6px; padding-left: 4px; color: rgba(13, 33, 57, .42); font: 400 10px/1 "Google Sans Code Variable", ui-monospace, "SF Mono", Consolas, monospace; }
 .language-toggle button { border: 0; padding: 7px 2px; color: rgba(13, 33, 57, .42); background: transparent; font: inherit; cursor: pointer; transition: color .2s ease; }
 .language-toggle button:hover, .language-toggle button:focus-visible, .language-toggle button.active { color: var(--green); }
 .language-toggle button.active { font-weight: 600; }
@@ -51,27 +47,28 @@ a { color: inherit; }
 .site-content main { flex: 1; }
 .about, .projects, footer { width: min(100%, 1080px); margin-inline: auto; }
 .about { padding: clamp(52px, 7vw, 104px) 0 64px; }
-h1, h2, h3 { margin: 0; font-family: "Cormorant Garamond", serif; font-weight: 500; color: var(--ink); }
-h1 { max-width: 720px; font-size: clamp(46px, 5.4vw, 80px); line-height: .96; letter-spacing: -.03em; }
+h1, h2, h3 { margin: 0; font-family: "Outfit Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 600; color: var(--ink); }
+h1 { font-weight: 700; }
+h1 { max-width: 720px; font-size: clamp(46px, 5.4vw, 80px); line-height: 1.04; letter-spacing: -.015em; }
 h1 em { font-weight: 500; }
-.language-zh h1, .language-zh h2, .language-zh h3 { font-family: "Cormorant Garamond", "Microsoft YaHei", "PingFang SC", sans-serif; }
-.language-zh h1 { max-width: 680px; font-size: clamp(44px, 5vw, 74px); line-height: 1.08; letter-spacing: -.04em; }
+.language-zh h1, .language-zh h2, .language-zh h3 { font-family: "Outfit Variable", "PingFang SC", "Microsoft YaHei", sans-serif; }
+.language-zh h1 { max-width: 680px; font-size: clamp(44px, 5vw, 74px); line-height: 1.14; letter-spacing: -.01em; }
 .language-zh h1 em { font-style: normal; color: var(--green); }
 .availability { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 8px 12px; font-size: 11.5px; color: var(--muted); }
 .availability > span { width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
 .availability strong { color: var(--green); text-transform: uppercase; letter-spacing: .08em; }
 .availability small { font-size: 11.5px; }
 .projects { border-top: 1px solid var(--line); padding: 46px 0 0; }
-h2 { margin-bottom: 14px; font-size: clamp(50px, 5vw, 70px); line-height: 1; }
+h2 { margin-bottom: 14px; font-size: clamp(44px, 4.4vw, 62px); line-height: 1.05; letter-spacing: -.01em; }
 .projects-intro { margin: 0 0 38px; color: var(--muted); font-size: 13.5px; line-height: 1.7; }
 
 .prow-head { position: relative; z-index: 1; isolation: isolate; display: flex; align-items: center; gap: clamp(14px, 2.6vw, 36px); width: 100%; padding: clamp(20px, 2.6vw, 32px) 6px; border-top: 1px solid rgba(13, 33, 57, .38); border-bottom: 1px solid rgba(13, 33, 57, .38); margin-top: -1px; background: var(--paper); color: inherit; text-align: left; cursor: pointer; }
 .prow-overlay { position: absolute; inset: 0; background: #fff; mix-blend-mode: difference; transform: scaleY(0); transform-origin: 50% 0; transition: transform .45s cubic-bezier(.16, 1, .3, 1); pointer-events: none; }
 .prow-head:hover .prow-overlay, .prow-head:focus-visible .prow-overlay, .prow.is-open .prow-overlay { transform: scaleY(1); }
-.prow-index { color: rgba(13, 33, 57, .45); font: 400 12px/1 "IBM Plex Mono", monospace; }
-.prow-title { font-family: "Cormorant Garamond", serif; font-weight: 500; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.05; color: var(--ink); transition: transform .45s cubic-bezier(.16, 1, .3, 1); }
+.prow-index { color: rgba(13, 33, 57, .45); font: 400 12px/1 "Google Sans Code Variable", ui-monospace, "SF Mono", Consolas, monospace; }
+.prow-title { font-family: "Outfit Variable", sans-serif; font-weight: 600; font-size: clamp(26px, 2.9vw, 40px); line-height: 1.12; color: var(--ink); transition: transform .45s cubic-bezier(.16, 1, .3, 1); }
 .prow-head:hover .prow-title, .prow-head:focus-visible .prow-title { transform: translateX(clamp(8px, 1.4vw, 22px)); }
-.prow-cat { margin-left: auto; color: var(--muted); font: 400 11px/1.5 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .08em; text-align: right; }
+.prow-cat { margin-left: auto; color: var(--muted); font: 400 11px/1.5 "Google Sans Code Variable", ui-monospace, "SF Mono", Consolas, monospace; text-transform: uppercase; letter-spacing: .08em; text-align: right; }
 .prow-arrow { color: var(--ink); font-size: clamp(18px, 2vw, 24px); line-height: 1; transition: transform .45s cubic-bezier(.16, 1, .3, 1); }
 .prow.is-open .prow-arrow { transform: rotate(90deg); }
 .prow-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s cubic-bezier(.16, 1, .3, 1); }
@@ -81,7 +78,7 @@ h2 { margin-bottom: 14px; font-size: clamp(50px, 5vw, 70px); line-height: 1; }
 .prow-desc { margin: 0; color: #253746; font-size: 14.5px; line-height: 1.78; max-width: 68ch; }
 .prow-result { position: relative; margin: 22px 0 0; padding-left: 21px; color: #253746; font-size: 12.5px; line-height: 1.6; }
 .prow-result::before { content: ""; position: absolute; left: 0; top: 9px; width: 9px; height: 2px; background: var(--coral); }
-.prow-stack { margin: 24px 0 0; color: #687176; font: 400 10px/1.6 "IBM Plex Mono", monospace; text-transform: uppercase; }
+.prow-stack { margin: 24px 0 0; color: #687176; font: 400 10px/1.6 "Google Sans Code Variable", ui-monospace, "SF Mono", Consolas, monospace; text-transform: uppercase; }
 .prow-media { display: block; width: min(100%, 560px); margin: 24px 0 0; border-radius: 10px; background: #07182a; aspect-ratio: 16/9.8; object-fit: cover; box-shadow: 0 12px 35px rgba(13, 33, 57, .08); }
 footer { padding: 34px 0 50px; display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; }
 footer p { margin: 0; }
@@ -117,7 +114,7 @@ footer a { text-underline-offset: 4px; }
   .projects { padding-top: 38px; }
   h2 { font-size: 52px; margin-bottom: 14px; }
   .prow-head { flex-wrap: wrap; row-gap: 7px; gap: 12px; }
-  .prow-title { order: 2; flex-basis: calc(100% - 46px); font-size: 30px; }
+  .prow-title { order: 2; flex-basis: calc(100% - 46px); font-size: 27px; }
   .prow-index { order: 1; }
   .prow-cat { order: 3; margin-left: 0; text-align: left; flex-basis: 100%; }
   .prow-arrow { order: 2; margin-left: auto; }
