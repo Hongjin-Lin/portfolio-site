@@ -17,6 +17,7 @@ const content = {
     available: "Available",
     availability: "Open to full-time Backend, AI, and ML engineering roles.",
     projectsTitle: "Projects",
+    projectsIntro: "Selected projects across backend, AI, and ML engineering.",
     viewProject: "View project",
     footer: "Designed & built by Alex Chen",
   },
@@ -36,6 +37,7 @@ const content = {
     available: "求职中",
     availability: "正在寻找后端、AI 或机器学习工程师的全职机会。",
     projectsTitle: "项目",
+    projectsIntro: "精选的后端与机器学习项目。",
     viewProject: "查看项目",
     footer: "由 Alex Chen 设计并开发",
   },
@@ -83,30 +85,35 @@ const projects = [
   },
 ];
 
-function Project({ project, language, labels }) {
-  const links = <div className="project__links">
-    <a href="#project-details">{labels.viewProject}</a>
-    <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-  </div>;
+function ProjectRow({ project, language, open, onToggle }) {
   return (
-    <article className="project">
-      <div className="project__number" aria-hidden="true">{project.number}</div>
-      <div className="project__copy">
-        <p className="eyebrow"><span />{project.category[language]}</p>
-        <h3>{project.title[language]}</h3>
-          <p>{project.description[language]}</p>
-          <p className="project__result">{project.result[language]}</p>
-          {links}<p className="project__stack">{project.stack}</p>
+    <article className={`prow${open ? " is-open" : ""}`}>
+      <button type="button" className="prow-head" aria-expanded={open} onClick={onToggle}>
+        <span className="prow-index" aria-hidden="true">{project.number}</span>
+        <span className="prow-title">{project.title[language]}</span>
+        <span className="prow-cat">{project.category[language]}</span>
+        <span className="prow-arrow" aria-hidden="true">→</span>
+        <span className="prow-overlay" aria-hidden="true" />
+      </button>
+      <div className="prow-body">
+        <div className="prow-body-inner">
+          <div className="prow-grid">
+            <div className="prow-copy">
+              <p className="prow-desc">{project.description[language]}</p>
+              <p className="prow-result">{project.result[language]}</p>
+              <p className="prow-stack">{project.stack}</p>
+            </div>
+            <img className="prow-media" src={project.image} alt={project.alt[language]} loading="lazy" />
+          </div>
+        </div>
       </div>
-      <a className="project__media" href="#project-details" aria-label={`${labels.viewProject}: ${project.title[language]}`}>
-        <img src={project.image} alt={project.alt[language]} />
-      </a>
     </article>
   );
 }
 
 export function App() {
   const [language, setLanguage] = useState("en");
+  const [openProject, setOpenProject] = useState(null);
   const shellRef = useRef(null);
   const glowRef = useRef(null);
   const text = content[language];
@@ -160,7 +167,7 @@ export function App() {
         });
       });
     }, { threshold: 0 });
-    shellRef.current.querySelectorAll(".about, .projects, .project").forEach((element) => observer.observe(element));
+    shellRef.current.querySelectorAll(".about, .projects, .prow").forEach((element) => observer.observe(element));
     const stop = () => {
       if (!preference.matches) return;
       observer.disconnect();
@@ -233,7 +240,12 @@ export function App() {
         </section>
         <section className="projects" id="projects">
           <h2>{text.projectsTitle}</h2>
-          <div className="project-list">{projects.map((project) => <Project key={project.number} project={project} language={language} labels={text} />)}</div>
+          <p className="projects-intro">{text.projectsIntro}</p>
+          <div className="project-rows">
+            {projects.map((project, i) => (
+              <ProjectRow key={project.number} project={project} language={language} open={openProject === i} onToggle={() => setOpenProject((v) => (v === i ? null : i))} />
+            ))}
+          </div>
         </section>
       </main>
       <footer id="resume"><p>{text.footer}</p><a href="mailto:alex.chen@example.com">alex.chen@example.com</a></footer>
