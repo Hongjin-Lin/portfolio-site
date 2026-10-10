@@ -76,12 +76,12 @@ h2 { margin-bottom: 14px; font-size: clamp(50px, 5vw, 70px); line-height: 1; }
 .prow-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s cubic-bezier(.16, 1, .3, 1); }
 .prow.is-open .prow-body { grid-template-rows: 1fr; }
 .prow-body-inner { overflow: hidden; min-height: 0; }
-.prow-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 1.02fr); gap: clamp(20px, 3vw, 46px); align-items: start; padding: 8px 6px clamp(28px, 3.2vw, 42px) clamp(30px, 4.6vw, 62px); }
-.prow-desc { margin: 0; color: #253746; font-size: 14.5px; line-height: 1.78; max-width: 62ch; }
-.prow-result { position: relative; margin: 20px 0 0; padding-left: 21px; color: #253746; font-size: 12.5px; line-height: 1.6; }
+.prow-detail { padding: 8px 6px clamp(28px, 3.2vw, 42px) clamp(30px, 4.6vw, 62px); max-width: 900px; }
+.prow-desc { margin: 0; color: #253746; font-size: 14.5px; line-height: 1.78; max-width: 68ch; }
+.prow-result { position: relative; margin: 22px 0 0; padding-left: 21px; color: #253746; font-size: 12.5px; line-height: 1.6; }
 .prow-result::before { content: ""; position: absolute; left: 0; top: 9px; width: 9px; height: 2px; background: var(--coral); }
 .prow-stack { margin: 24px 0 0; color: #687176; font: 400 10px/1.6 "IBM Plex Mono", monospace; text-transform: uppercase; }
-.prow-media { width: 100%; display: block; overflow: hidden; border-radius: 8px; background: #07182a; aspect-ratio: 16/9.8; object-fit: cover; box-shadow: 0 12px 35px rgba(13, 33, 57, .08); }
+.prow-media { display: block; width: min(100%, 560px); margin: 24px 0 0; border-radius: 10px; background: #07182a; aspect-ratio: 16/9.8; object-fit: cover; box-shadow: 0 12px 35px rgba(13, 33, 57, .08); }
 footer { padding: 34px 0 50px; display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; }
 footer p { margin: 0; }
 footer a { text-underline-offset: 4px; }
@@ -91,8 +91,7 @@ footer a { text-underline-offset: 4px; }
 @media (max-width: 980px) {
   .path-line { right: -170px; opacity: .38; }
   .about, .projects, footer { width: min(100% - 56px, 820px); }
-  .prow-grid { grid-template-columns: 1fr; gap: 20px; padding-left: clamp(8px, 3vw, 34px); }
-  .prow-media { order: -1; }
+  .prow-detail { padding-left: clamp(8px, 3vw, 34px); }
 }
 
 @media (max-width: 680px) {
@@ -122,7 +121,8 @@ footer a { text-underline-offset: 4px; }
   .prow-index { order: 1; }
   .prow-cat { order: 3; margin-left: 0; text-align: left; flex-basis: 100%; }
   .prow-arrow { order: 2; margin-left: auto; }
-  .prow-grid { padding: 6px 2px 30px; }
+  .prow-detail { padding: 6px 2px 30px; }
+  .prow-media { width: 100%; }
   footer { padding-bottom: 32px; gap: 20px; }
 }
 

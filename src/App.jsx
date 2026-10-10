@@ -97,13 +97,11 @@ function ProjectRow({ project, language, open, onToggle }) {
       </button>
       <div className="prow-body">
         <div className="prow-body-inner">
-          <div className="prow-grid">
-            <div className="prow-copy">
-              <p className="prow-desc">{project.description[language]}</p>
-              <p className="prow-result">{project.result[language]}</p>
-              <p className="prow-stack">{project.stack}</p>
-            </div>
+          <div className="prow-detail">
+            <p className="prow-desc">{project.description[language]}</p>
             <img className="prow-media" src={project.image} alt={project.alt[language]} loading="lazy" />
+            <p className="prow-result">{project.result[language]}</p>
+            <p className="prow-stack">{project.stack}</p>
           </div>
         </div>
       </div>
