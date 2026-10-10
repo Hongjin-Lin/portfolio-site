@@ -102,6 +102,15 @@
         ]
       },
       {
+        "type": "dinner",
+        "items": "自制：手撕鸡（带皮）+ 蒜蓉生菜 + 沃集鲜杂粮米饭 180g",
+        "kcal": 680,
+        "protein": 40,
+        "photos": [
+          "/fitness/2026-10-10/dinner-1.jpg"
+        ]
+      },
+      {
         "type": "snack",
         "items": "瑞幸瑰夏白冷萃（大杯 450ml/冰/不另外加糖）",
         "kcal": 120,
