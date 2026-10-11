@@ -3,9 +3,64 @@ import { useEffect, useState } from "react";
 const ACCENTS = ["#b12d6c", "#2456c8", "#2e7d46", "#c26a1f", "#7a4fc9", "#1f7a78"];
 const ACCENT_NAMES = ["Rose", "Blue", "Green", "Amber", "Violet", "Teal"];
 
+const PROJECTS = [
+  {
+    title: "RAG Knowledge Assistant",
+    meta: "2026 · LLM Systems",
+    image: "/assets/rag-evaluation.png",
+    brief: "A retrieval-augmented assistant answering over private documents with citations.",
+    note: "* MODULAR INGESTION · HYBRID RETRIEVAL",
+    detail: "Modular ingestion pipeline, hybrid retrieval (BM25 + vector), and an evaluation harness with citation-level scoring.",
+    result: "Reduced hallucinations by 38% on a curated evaluation set.",
+    stack: "Python · FastAPI · PostgreSQL · pgvector · LangChain · Docker",
+  },
+  {
+    title: "Real-time Recommendation API",
+    meta: "2025 · API · ML",
+    image: "/assets/recommendation-api.png",
+    brief: "Low-latency recommendations with collaborative filtering and content signals.",
+    note: "* STREAMING UPDATES · BUILT-IN EXPERIMENTS",
+    detail: "Typed API with streaming updates and built-in experiment tooling for online learning loops.",
+    result: "Kept P99 latency at 128ms while serving 2.5k requests per second.",
+    stack: "Python · gRPC · Redis · ClickHouse · Prometheus · Kubernetes",
+  },
+  {
+    title: "Distributed Task Queue",
+    meta: "2025 · Infrastructure",
+    image: "/assets/task-queue.png",
+    brief: "Fault-tolerant queueing with delayed scheduling, retries and rate limiting.",
+    note: "* HORIZONTAL SCALE · OBSERVABLE BY DEFAULT",
+    detail: "Designed for horizontal scale — delayed scheduling, automatic retries, and rate limiting.",
+    result: "Achieved 99.95% successful completion across a three-node cluster.",
+    stack: "Go · NATS · PostgreSQL · Redis · Docker · Kubernetes",
+  },
+];
+
+function ProjectRow({ project, index, open, onToggle }) {
+  return (
+    <article className={`tn-proj${open ? " open" : ""}`}>
+      <span className="no">{String(index + 1).padStart(2, "0")}</span>
+      <div className="thumb"><img src={project.image} alt="" loading="lazy" /></div>
+      <div className="body">
+        <div className="meta">{project.meta}</div>
+        <h3>{project.title}</h3>
+        <p className="brief">{project.brief}</p>
+        <p className="note">{project.note}</p>
+      </div>
+      <button className="toggle" onClick={onToggle} aria-expanded={open}>{open ? "CLOSE ↑" : "DETAILS ↓"}</button>
+      <div className="detail"><div className="inner"><div className="pad">
+        <p>{project.detail}</p>
+        <p className="res">{project.result}</p>
+        <div className="stack">{project.stack}</div>
+      </div></div></div>
+    </article>
+  );
+}
+
 export function App() {
   const [accent, setAccent] = useState(() => localStorage.getItem("tn-accent") || ACCENTS[0]);
   const [dark, setDark] = useState(() => localStorage.getItem("tn-dark") === "1");
+  const [openProject, setOpenProject] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("tn-accent", accent);
@@ -74,6 +129,12 @@ export function App() {
             </li>
           </ul>
           <p className="tn-also"><a href="#">Also</a>: city explorer, weight-lifter, brick-clicker, tea drinker, webmaster.</p>
+          <section id="projects" className="tn-projects">
+            <h2>Projects</h2>
+            {PROJECTS.map((p, i) => (
+              <ProjectRow key={p.title} project={p} index={i} open={openProject === i} onToggle={() => setOpenProject((v) => (v === i ? null : i))} />
+            ))}
+          </section>
         </div>
       </main>
     </div>
