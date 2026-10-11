@@ -138,6 +138,7 @@ function LanguageSwitch({ lang, onChange, mobile = false, inline = false }) {
 }
 
 function SidebarNavIcon({ type }) {
+  if (type === "about") return <img className="tn-nav-icon tn-nav-icon--nalong" src="/icons/nalong-thinking.svg" alt="" aria-hidden="true" decoding="async" />;
   const common = { className: "tn-nav-icon", viewBox: "0 0 28 28", "aria-hidden": true, focusable: false, fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round" };
   if (type === "projects") return <svg {...common}>
     <path d="M4.1 4.3q0-1.1 1.2-1.1h17.4q1.2 0 1.2 1.2v18.8q0 1.1-1.2 1.1H5.3q-1.2 0-1.2-1.2z" fill="#e8e4f2" />
@@ -154,15 +155,6 @@ function SidebarNavIcon({ type }) {
     <path d="M8.5 13.2q4.6-.8 11.1 0v2.5q-6.3.9-11.1 0z" fill="#f3d57b" />
     <path d="M5.1 10.1q1.1-.7 2.3-.1l1.1.8v6.4l-1.2.8q-1.2.6-2.2-.2zM19.5 10.6 20.7 10q1.2-.6 2.2.2v7.7q-1.1.7-2.3.1l-1.1-.8zM8.5 13.2q4.6-.8 11.1 0v2.5q-6.3.9-11.1 0z" />
     <path d="M4.1 11.3v5.4m19.7-5.4v5.4" />
-  </svg>;
-  if (type === "about") return <svg {...common}>
-    <path d="M4.2 14.3q-.2-5.9 5-9.1 5.9-3.4 11.3.7 4.2 3.3 3.1 9.8-.9 6.9-8.2 8.4-7.6 1.1-10.6-4.6-1.1-2.1-.6-5.2Z" fill="#f2cd68" />
-    <path d="M7 10.2q.5-3.2 3-3.3 2.4.1 2.7 3-.3 2.3-2.7 2.4-2.5-.1-3-2.1Zm8-2.1q.4-3 2.8-3.1 2.4.1 2.7 3-.3 2.3-2.7 2.4-2.5-.1-2.8-2.3Z" fill="#9ccca1" stroke="#5a5149" strokeWidth="1.1" />
-    <ellipse cx="10.3" cy="9.8" rx=".85" ry="1.15" fill="#29272b" stroke="none" />
-    <ellipse cx="18" cy="7.6" rx=".85" ry="1.15" fill="#29272b" stroke="none" />
-    <path d="M10.5 15.2q2.6-.8 5.3-1.6" stroke="#75574c" strokeWidth="1.2" />
-    <path d="M5.2 17.2q2-.7 3.6.7l1.7 2.5q.7 1 .2 1.8-.8 1.1-1.8.2l-2.1-2.1q-2-.7-2.2-3.1Zm3.4.2q1.5-1 2.4.2l1.2 1.5q.6 1-.3 1.7-.8.5-1.6-.2" fill="#f2cd68" />
-    <path d="M21.4 15.7q1.6-.8 2.8.1m.2-3.5q1.4-.2 2.1.8" stroke="#8eaa86" strokeWidth="1.2" />
   </svg>;
   return <svg {...common}>
     <path d="M7 3.8h9.2l5.1 5.1v14.3q0 1.1-1.2 1.1H7q-1.1 0-1.1-1.2V5q0-1.2 1.1-1.2Z" fill="#f6e6b8" />
