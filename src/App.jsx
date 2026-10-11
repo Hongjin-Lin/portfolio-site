@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-import { EnvelopeSimpleIcon as EnvelopeSimple } from "@phosphor-icons/react/dist/csr/EnvelopeSimple";
-import { GithubLogoIcon as GithubLogo } from "@phosphor-icons/react/dist/csr/GithubLogo";
-import { LinkedinLogoIcon as LinkedinLogo } from "@phosphor-icons/react/dist/csr/LinkedinLogo";
 import { MoonIcon as Moon } from "@phosphor-icons/react/dist/csr/Moon";
 import { SunIcon as Sun } from "@phosphor-icons/react/dist/csr/Sun";
 
@@ -137,6 +134,14 @@ function LanguageSwitch({ lang, onChange, mobile = false, inline = false }) {
   );
 }
 
+function DoodleIcon({ type }) {
+  const common = { viewBox: "0 0 28 28", "aria-hidden": true, focusable: false };
+  if (type === "github") return <svg {...common} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="m7.1 11.4-.8-5.2 5.1 2.2a9.6 9.6 0 0 1 5.4-.1l4.8-2.4-.7 5.4c1.1 1.1 1.7 2.6 1.7 4.4 0 4-3.2 6.4-7.8 6.4s-7.7-2.3-7.7-6.4c0-1.7.6-3.2 1.6-4.3Z"/><path d="M10.3 20.8c-.1 1.7-1.2 2.8-3 3.1M17.8 21c.2 1.2 1.1 2.2 2.7 2.8M8 15.1c-.8-.6-1.3-1.5-1.4-2.6M20.2 15.1c.8-.6 1.3-1.5 1.4-2.6"/></svg>;
+  if (type === "linkedin") return <svg {...common} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5.1 7.7c.1-.9.8-1.5 1.7-1.5.8 0 1.5.6 1.5 1.5s-.7 1.5-1.6 1.5-1.6-.6-1.6-1.5ZM5.4 12v9.5M11 21.5v-9.4m.1 2.2c.8-1.6 2.2-2.5 4.1-2.5 2.8 0 4.2 1.8 4.2 4.8v4.9M11 16.4c0-1.4 1.6-4.6 5-4.6 2.2 0 4.4 1.3 4.4 4.9"/></svg>;
+  if (type === "email") return <svg {...common} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4.1 7.4c0-.8.7-1.4 1.5-1.4h16.7c.9 0 1.5.6 1.5 1.5v13c0 .9-.6 1.5-1.5 1.5H5.6c-.9 0-1.5-.6-1.5-1.5V7.4Z"/><path d="m4.6 8 9.2 7 9.5-7.2M4.6 20.8l6.1-5M23.2 20.8l-6-5"/></svg>;
+  return null;
+}
+
 export function App() {
   const [accent, setAccent] = useState(() => localStorage.getItem("tn-accent") || ACCENTS[0]);
   const [dark, setDark] = useState(() => localStorage.getItem("tn-dark") === "1");
@@ -205,9 +210,9 @@ export function App() {
         <section className="tn-sec tn-sec--foot">
           <div className="tn-footer-actions">
             <div className="tn-socials" aria-label="Social links">
-              <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer" aria-label="GitHub"><GithubLogo size={26} weight="regular" /></a>
-              <a href="#" aria-label="LinkedIn"><LinkedinLogo size={25} weight="regular" /></a>
-              <a href="#" aria-label="Email"><EnvelopeSimple size={25} weight="regular" /></a>
+              <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer" aria-label="GitHub"><DoodleIcon type="github" /></a>
+              <a href="#" aria-label="LinkedIn"><DoodleIcon type="linkedin" /></a>
+              <a href="#" aria-label="Email"><DoodleIcon type="email" /></a>
             </div>
             <LanguageSwitch lang={lang} onChange={setLang} inline />
           </div>
