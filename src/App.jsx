@@ -1,255 +1,81 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-const content = {
-  en: {
-    nav: { about: "About", projects: "Projects", fitness: "Fitness", resume: "Résumé" },
-    headline: <>Building the foundations for <em>intelligent</em> products.</>,
-    about: [
-      [
-        "I’m a backend developer and machine learning engineer who enjoys turning ideas into systems people can rely on.",
-        "I care about clear design, testable code, and shipping features that make a real impact.",
-      ],
-      [
-        "I recently graduated with a B.S. in Computer Science, where I focused on distributed systems and applied machine learning.",
-        "I’m looking for a team where I can contribute, keep learning, and help build products that scale.",
-      ],
-    ],
-    available: "Available",
-    availability: "Open to full-time Backend, AI, and ML engineering roles.",
-    projectsTitle: "Projects",
-    projectsIntro: "Selected projects across backend, AI, and ML engineering.",
-    viewProject: "View project",
-    footer: "Designed & built by Alex Chen",
-  },
-  zh: {
-    nav: { about: "关于我", projects: "项目", fitness: "健身打卡", resume: "简历" },
-    headline: <>为智能产品，构建<em>可靠基石</em>。</>,
-    about: [
-      [
-        "我是一名后端开发与机器学习工程师，喜欢把想法变成真正可靠、可以持续运行的系统。",
-        "我重视清晰的设计、可测试的代码，以及能够带来真实价值的产品体验。",
-      ],
-      [
-        "我刚刚取得计算机科学学士学位，主要关注分布式系统与机器学习的实际应用。",
-        "我希望加入一个能够贡献所长、持续学习，并一起打造可规模化产品的团队。",
-      ],
-    ],
-    available: "求职中",
-    availability: "正在寻找后端、AI 或机器学习工程师的全职机会。",
-    projectsTitle: "项目",
-    projectsIntro: "精选的后端与机器学习项目。",
-    viewProject: "查看项目",
-    footer: "由 Alex Chen 设计并开发",
-  },
-};
-
-const projects = [
-  {
-    number: "01",
-    category: { en: "LLM Systems", zh: "大语言模型系统" },
-    title: { en: "RAG Knowledge Assistant", zh: "RAG 知识助手" },
-    description: {
-      en: "A retrieval-augmented assistant that answers questions over private documents with citations. Built with a modular ingestion pipeline, hybrid retrieval, and evaluation tooling.",
-      zh: "一个面向私有文档、能够提供引用来源的检索增强助手，包含模块化数据管线、混合检索和评估工具。",
-    },
-    result: { en: "Reduced hallucinations by 38% on a curated evaluation set.", zh: "在自建评估集上将模型幻觉率降低了 38%。" },
-    stack: "Python · FastAPI · PostgreSQL · pgvector · LangChain · Docker",
-    image: "/assets/rag-evaluation.png",
-    alt: { en: "RAG evaluation dashboard showing answer quality scores and evaluation history", zh: "展示回答质量评分与历史记录的 RAG 评估面板" },
-  },
-  {
-    number: "02",
-    category: { en: "API & Recommendation", zh: "API 与推荐系统" },
-    title: { en: "Real-time Recommendation API", zh: "实时推荐 API" },
-    description: {
-      en: "A low-latency recommendation service using collaborative filtering and content signals, exposed through a typed API with streaming updates and built-in experiments.",
-      zh: "结合协同过滤与内容信号的低延迟推荐服务，通过类型安全的 API 提供流式更新和内置实验能力。",
-    },
-    result: { en: "Kept P99 latency at 128ms while serving 2.5k requests per second.", zh: "在每秒处理 2,500 次请求时，将 P99 延迟保持在 128ms。" },
-    stack: "Python · gRPC · Redis · ClickHouse · Prometheus · Kubernetes",
-    image: "/assets/recommendation-api.png",
-    alt: { en: "Recommendation API observability dashboard showing latency, requests, and error rate", zh: "展示延迟、请求量和错误率的推荐 API 可观测面板" },
-  },
-  {
-    number: "03",
-    category: { en: "Infrastructure", zh: "基础设施" },
-    title: { en: "Distributed Task Queue", zh: "分布式任务队列" },
-    description: {
-      en: "A fault-tolerant task queue with delayed scheduling, retries, and rate limiting. Designed for horizontal scale and observable by default.",
-      zh: "支持延迟调度、自动重试和速率限制的容错任务队列，为水平扩展而设计，并默认具备可观测性。",
-    },
-    result: { en: "Achieved 99.95% successful completion across a three-node cluster.", zh: "在三节点集群中实现了 99.95% 的任务成功完成率。" },
-    stack: "Go · NATS · PostgreSQL · Redis · Docker · Kubernetes",
-    image: "/assets/task-queue.png",
-    alt: { en: "Distributed task queue dashboard showing worker topology, throughput, and queue depth", zh: "展示工作节点拓扑、吞吐量和队列深度的分布式任务面板" },
-  },
-];
-
-function ProjectRow({ project, language, open, onToggle }) {
-  return (
-    <article className={`prow${open ? " is-open" : ""}`}>
-      <button type="button" className="prow-head" aria-expanded={open} onClick={onToggle}>
-        <span className="prow-index" aria-hidden="true">{project.number}</span>
-        <span className="prow-title">{project.title[language]}</span>
-        <span className="prow-cat">{project.category[language]}</span>
-        <span className="prow-arrow" aria-hidden="true">→</span>
-        <span className="prow-overlay" aria-hidden="true" />
-      </button>
-      <div className="prow-body">
-        <div className="prow-body-inner">
-          <div className="prow-detail">
-            <p className="prow-desc">{project.description[language]}</p>
-            <img className="prow-media" src={project.image} alt={project.alt[language]} loading="lazy" />
-            <p className="prow-result">{project.result[language]}</p>
-            <p className="prow-stack">{project.stack}</p>
-          </div>
-        </div>
-      </div>
-    </article>
-  );
-}
+const ACCENTS = ["#b12d6c", "#2456c8", "#2e7d46", "#c26a1f", "#7a4fc9", "#1f7a78"];
+const ACCENT_NAMES = ["Rose", "Blue", "Green", "Amber", "Violet", "Teal"];
 
 export function App() {
-  const [language, setLanguage] = useState("en");
-  const [openProject, setOpenProject] = useState(null);
-  const shellRef = useRef(null);
-  const glowRef = useRef(null);
-  const text = content[language];
+  const [accent, setAccent] = useState(() => localStorage.getItem("tn-accent") || ACCENTS[0]);
+  const [dark, setDark] = useState(() => localStorage.getItem("tn-dark") === "1");
 
   useEffect(() => {
-    document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
-  }, [language]);
+    localStorage.setItem("tn-accent", accent);
+    document.documentElement.style.setProperty("--tn-accent", accent);
+  }, [accent]);
 
   useEffect(() => {
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (preference.matches || !("IntersectionObserver" in window)) return undefined;
-    const animations = new Set();
-    const activeGroups = new Map();
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(({ target, isIntersecting }) => {
-        if (!isIntersecting) {
-          activeGroups.get(target)?.forEach((animation) => {
-            animation.cancel();
-            animations.delete(animation);
-          });
-          activeGroups.delete(target);
-          return;
-        }
-        if (activeGroups.has(target)) return;
-        const groupAnimations = new Set();
-        activeGroups.set(target, groupAnimations);
-        // Observe stationary containers so animated transforms cannot retrigger entry.
-        const selector = target.matches(".about")
-          ? "h1, .about__copy > div, .availability"
-          : target.matches(".project")
-            ? ".project__number, .project__copy, .project__media"
-            : ":scope > h2";
-        target.querySelectorAll(selector).forEach((element) => {
-        const isMedia = element.classList.contains("project__media");
-        const isHeading = element.matches("h1, h2");
-        const delay = isMedia ? 150 : element.matches(".about__copy > div:nth-child(2)") ? 120 : 0;
-        const animation = element.animate([
-          {
-            opacity: 0,
-            transform: `translateY(${isHeading ? 64 : 80}px) scale(${isMedia ? .94 : .98})`,
-            filter: "blur(5px)",
-          },
-          { opacity: 1, transform: "translateY(0) scale(1)", filter: "blur(0px)" },
-        ], { duration: 950, delay, fill: "backwards", easing: "cubic-bezier(.16, 1, .3, 1)" });
-        animations.add(animation);
-        groupAnimations.add(animation);
-        animation.onfinish = () => {
-          animations.delete(animation);
-          groupAnimations.delete(animation);
-        };
-        });
-      });
-    }, { threshold: 0 });
-    shellRef.current.querySelectorAll(".about, .projects, .prow").forEach((element) => observer.observe(element));
-    const stop = () => {
-      if (!preference.matches) return;
-      observer.disconnect();
-      animations.forEach((animation) => animation.cancel());
-      animations.clear();
-      activeGroups.clear();
-    };
-    preference.addEventListener("change", stop);
-    return () => {
-      observer.disconnect();
-      animations.forEach((animation) => animation.cancel());
-      activeGroups.clear();
-      preference.removeEventListener("change", stop);
-    };
-  }, []);
+    localStorage.setItem("tn-dark", dark ? "1" : "0");
+    if (dark) document.documentElement.dataset.tnDark = "1";
+    else delete document.documentElement.dataset.tnDark;
+  }, [dark]);
 
-  useEffect(() => {
-    const glow = glowRef.current;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!glow || reducedMotion.matches) return undefined;
-
-    let frame = 0;
-    const moveGlow = (event) => {
-      if (event.pointerType === "touch" || reducedMotion.matches) return;
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        glow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
-        glow.dataset.active = "true";
-      });
-    };
-    const dimGlow = () => { glow.dataset.active = "false"; };
-
-    window.addEventListener("pointermove", moveGlow, { passive: true });
-    document.documentElement.addEventListener("mouseleave", dimGlow);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("pointermove", moveGlow);
-      document.documentElement.removeEventListener("mouseleave", dimGlow);
-    };
-  }, []);
+  const cycleAccent = () => {
+    const i = ACCENTS.indexOf(accent);
+    setAccent(ACCENTS[(i + 1) % ACCENTS.length]);
+  };
 
   return (
-    <div ref={shellRef} className={`site-shell language-${language}`}>
-      <div className="side-rail" aria-hidden="true"><i /><i /><i /></div>
-      <img className="tech-field" src="/assets/tech-field.png" alt="" aria-hidden="true" />
-      <img ref={glowRef} className="cursor-glow" src="/assets/cursor-glow.png" alt="" aria-hidden="true" />
-      <img className="path-line" src="/assets/path-line-transparent.png" alt="" aria-hidden="true" />
-      <aside className="site-sidebar">
-        <a className="wordmark" href="#about">Alex Chen</a>
-        <div className="sidebar-intro">
-          {text.about.map((column) => column.map((paragraph) => <p key={paragraph}>{paragraph}</p>))}
-        </div>
-        <div className="availability"><span aria-hidden="true" /><strong>{text.available}</strong><small>{text.availability}</small></div>
-        <nav className="sidebar-nav" aria-label={language === "zh" ? "主导航" : "Primary navigation"}>
-          <a href="#about">{text.nav.about}</a>
-          <a href="#projects">{text.nav.projects}</a>
-          <a href="/fitness-tracker/">{text.nav.fitness}</a>
-          <a href="#resume">{text.nav.resume}</a>
-          <a className="github-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a>
-        </nav>
-        <div className="language-toggle" aria-label={language === "zh" ? "语言选择" : "Language selector"}>
-          <button type="button" className={language === "en" ? "active" : ""} onClick={() => setLanguage("en")} aria-pressed={language === "en"}>EN</button>
-          <span aria-hidden="true">/</span>
-          <button type="button" className={language === "zh" ? "active" : ""} onClick={() => setLanguage("zh")} aria-pressed={language === "zh"}>中文</button>
-        </div>
+    <div className="tn-shell">
+      <aside className="tn-side">
+        <section className="tn-sec tn-sec--brand">
+          <a className="tn-brand" href="/"><span className="tn-floppy">💾</span>hongjinlin.com</a>
+          <button className="tn-dot" onClick={cycleAccent} title={"Theme color: " + ACCENT_NAMES[ACCENTS.indexOf(accent)]} aria-label="Cycle theme color"><i /></button>
+        </section>
+        <section className="tn-sec">
+          <p>I'm <b>Hongjin</b>, backend &amp; machine-learning engineer and open-source creator. This is my digital garden. 🌱</p>
+        </section>
+        <section className="tn-sec">
+          <nav className="tn-nav" aria-label="Primary">
+            <a href="#"><span className="em">📝</span>Blog</a>
+            <a href="#projects"><span className="em">💻</span>Projects</a>
+            <a href="/fitness-tracker/"><span className="em">🏋️</span>Fitness</a>
+            <a href="#"><span className="em">💾</span>About me</a>
+          </nav>
+        </section>
+        <section className="tn-sec tn-sec--foot">
+          <a href="#">Email signup</a>
+          <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="#">Bluesky</a>
+          <a href="#">RSS feed</a>
+          <button className="tn-moon" onClick={() => setDark(!dark)}>{dark ? "☀️ Full Sun" : "🌙 New Moon"}</button>
+        </section>
       </aside>
-      <div className="site-content">
-      <main>
-        <section className="about" id="about">
-          <h1>{text.headline}</h1>
-        </section>
-        <section className="projects" id="projects">
-          <h2>{text.projectsTitle}</h2>
-          <p className="projects-intro">{text.projectsIntro}</p>
-          <div className="project-rows">
-            {projects.map((project, i) => (
-              <ProjectRow key={project.number} project={project} language={language} open={openProject === i} onToggle={() => setOpenProject((v) => (v === i ? null : i))} />
-            ))}
-          </div>
-        </section>
+
+      <main className="tn-main">
+        <div className="tn-col">
+          <h1>Hey, I'm Hongjin!</h1>
+          <p className="tn-lead">Backend &amp; machine-learning engineer, writer, all-around nerd.</p>
+          <h2>A brief timeline</h2>
+          <ul className="tn-timeline">
+            <li>
+              <span className="tn-yr">2003–2021</span>
+              <span><b>Ningbo kid</b>: forum-goer, gamer, lover of obscure '00s bands.</span>
+            </li>
+            <li>
+              <span className="tn-yr">2021–2026</span>
+              <span><b>BSc Computer Science</b>: distributed systems, applied machine learning, and the occasional all-nighter. <a href="#">Wrote some of it down</a> along the way.</span>
+            </li>
+            <li>
+              <span className="tn-yr">2026–now</span>
+              <span><b>Backend &amp; ML engineer</b>: building reliable systems, shipping features, and still documenting everything.</span>
+            </li>
+            <li>
+              <span className="tn-yr">Daily</span>
+              <span><b>60-day fitness log</b>: meals, workouts, and weight — <a href="/fitness-tracker/">follow along here</a>.</span>
+            </li>
+          </ul>
+          <p className="tn-also"><a href="#">Also</a>: city explorer, weight-lifter, brick-clicker, tea drinker, webmaster.</p>
+        </div>
       </main>
-      <footer id="resume"><p>{text.footer}</p><a href="mailto:alex.chen@example.com">alex.chen@example.com</a></footer>
-      </div>
-      <span id="project-details" className="anchor-target" aria-hidden="true" />
     </div>
   );
 }
