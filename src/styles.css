@@ -2,6 +2,14 @@
 @import "@fontsource-variable/google-sans-code";
 @import "@fontsource-variable/google-sans-flex";
 
+@font-face {
+  font-family: "Ma Shan Zheng Logo";
+  src: url("/fonts/ma-shan-zheng-hongjin.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   /* tania.dev replica tokens */
   --tn-bg: #f8f4e6;
@@ -42,7 +50,7 @@ h1, h2, h3 { margin: 0; font-family: "Outfit Variable", -apple-system, BlinkMacS
 .tn-sec { padding: 0 0 16px; margin: 0 16px 20px; border-bottom: 1px solid var(--tn-border); }
 .tn-sec--brand { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
 .tn-brand { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 16px; color: var(--tn-heading); text-decoration: none; }
-.tn-floppy { font-size: 17px; }
+.tn-brand--wordmark { font-family: "Ma Shan Zheng Logo", "KaiTi", cursive; font-size: 28px; font-weight: 400; letter-spacing: .08em; line-height: 1; }
 .tn-dot { width: 38px; height: 38px; border: 0; border-radius: 8px; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .tn-dot i { width: 17px; height: 17px; border-radius: 50% 46% 52% 48%; background: var(--tn-accent); transition: transform .2s ease; }
 .tn-dot:hover i { transform: scale(1.12); }

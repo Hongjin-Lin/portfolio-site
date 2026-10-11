@@ -82,7 +82,7 @@ export function App() {
   return (
     <div className="tn-shell">
       <header className="tn-mobile-nav">
-        <a className="tn-brand" href="/"><span className="tn-floppy">💾</span>hongjinlin.com</a>
+        <a className="tn-brand tn-brand--wordmark" href="/" aria-label="泓进主页">泓进</a>
         <div className="tn-mobile-actions">
           <button className="tn-dot" onClick={cycleAccent} aria-label="Cycle theme color"><i /></button>
           <button className="tn-moon" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}>{dark ? "☀️" : "🌙"}</button>
@@ -98,7 +98,7 @@ export function App() {
       </header>
       <aside className="tn-side">
         <section className="tn-sec tn-sec--brand">
-          <a className="tn-brand" href="/"><span className="tn-floppy">💾</span>hongjinlin.com</a>
+          <a className="tn-brand tn-brand--wordmark" href="/" aria-label="泓进主页">泓进</a>
           <button className="tn-dot" onClick={cycleAccent} title={"Theme color: " + ACCENT_NAMES[ACCENTS.indexOf(accent)]} aria-label="Cycle theme color"><i /></button>
         </section>
         <section className="tn-sec">
