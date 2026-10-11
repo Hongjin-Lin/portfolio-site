@@ -1,6 +1,8 @@
 @import "@fontsource-variable/outfit";
 @import "@fontsource-variable/google-sans-code";
 @import "@fontsource-variable/google-sans-flex";
+/* KingHwa OldSong by TerryWang, supplied through the licensed ZSFT FontsAPI. */
+@import url("https://fontsapi.zeoseven.com/309/main/result.css");
 
 @font-face {
   font-family: "Ma Shan Zheng Logo";
@@ -39,9 +41,10 @@ html[data-tn-dark="1"] {
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; min-width: 320px; min-height: 100vh; background: var(--tn-bg); color: var(--tn-text); font-family: -apple-system, BlinkMacSystemFont, "Google Sans Flex Variable", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif; font-synthesis: none; font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+html[lang^="zh"] body { font-family: "Google Sans Flex Variable", "KingHwaOldSong", -apple-system, BlinkMacSystemFont, Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif; }
 a { color: inherit; }
 h1, h2, h3 { margin: 0; font-family: "Outfit Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 600; color: var(--tn-heading); }
-.language-zh h1, .language-zh h2, .language-zh h3 { font-family: "Outfit Variable", "PingFang SC", "Microsoft YaHei", sans-serif; }
+.language-zh h1, .language-zh h2, .language-zh h3 { font-family: "Outfit Variable", "KingHwaOldSong", "PingFang SC", "Microsoft YaHei", sans-serif; }
 :focus-visible { outline: 2px solid var(--tn-accent); outline-offset: 3px; }
 
 /* ===== sidebar ===== */
