@@ -61,6 +61,7 @@ export function App() {
   const [accent, setAccent] = useState(() => localStorage.getItem("tn-accent") || ACCENTS[0]);
   const [dark, setDark] = useState(() => localStorage.getItem("tn-dark") === "1");
   const [openProject, setOpenProject] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("tn-accent", accent);
@@ -80,6 +81,21 @@ export function App() {
 
   return (
     <div className="tn-shell">
+      <header className="tn-mobile-nav">
+        <a className="tn-brand" href="/"><span className="tn-floppy">💾</span>hongjinlin.com</a>
+        <div className="tn-mobile-actions">
+          <button className="tn-dot" onClick={cycleAccent} aria-label="Cycle theme color"><i /></button>
+          <button className="tn-moon" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}>{dark ? "☀️" : "🌙"}</button>
+          <button className="tn-menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={menuOpen ? "Close navigation" : "Open navigation"}>{menuOpen ? "×" : "☰"}</button>
+        </div>
+        {menuOpen && <nav className="tn-mobile-menu" aria-label="Mobile primary">
+          <a href="#" onClick={() => setMenuOpen(false)}>📝 Blog</a>
+          <a href="#shelves" onClick={() => setMenuOpen(false)}>🔎 Shelves</a>
+          <a href="#projects" onClick={() => setMenuOpen(false)}>💻 Projects</a>
+          <a href="/fitness-tracker/">🏋️ Fitness</a>
+          <a href="#about" onClick={() => setMenuOpen(false)}>💾 About me</a>
+        </nav>}
+      </header>
       <aside className="tn-side">
         <section className="tn-sec tn-sec--brand">
           <a className="tn-brand" href="/"><span className="tn-floppy">💾</span>hongjinlin.com</a>
@@ -111,6 +127,7 @@ export function App() {
 
       <main className="tn-main">
         <section className="tn-hero-section" aria-label="Introduction">
+          <div className="tn-hero-inner">
           <div className="tn-col" id="about">
           <h1>Hey, I'm Hongjin!</h1>
           <p className="tn-lead">Backend &amp; machine-learning engineer, writer, all-around nerd.</p>
@@ -139,6 +156,7 @@ export function App() {
             <img className="apple-ensemble" src="/assets/apples/apple-ensemble.png" alt="Four green apples holding hands and dancing together" />
             <p className="tn-apple-caption">A little green energy for your day 🍏</p>
           </aside>
+          </div>
         </section>
         <div className="tn-lower-sections">
           <section id="shelves" className="tn-shelves">
