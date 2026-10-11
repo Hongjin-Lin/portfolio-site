@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import { EnvelopeSimpleIcon as EnvelopeSimple } from "@phosphor-icons/react/dist/csr/EnvelopeSimple";
+import { GithubLogoIcon as GithubLogo } from "@phosphor-icons/react/dist/csr/GithubLogo";
+import { LinkedinLogoIcon as LinkedinLogo } from "@phosphor-icons/react/dist/csr/LinkedinLogo";
+import { MoonIcon as Moon } from "@phosphor-icons/react/dist/csr/Moon";
+import { SunIcon as Sun } from "@phosphor-icons/react/dist/csr/Sun";
 
 const ACCENTS = ["#b12d6c", "#2456c8", "#2e7d46", "#c26a1f", "#7a4fc9", "#1f7a78"];
 const ACCENT_NAMES = ["Rose", "Blue", "Green", "Amber", "Violet", "Teal"];
@@ -104,12 +109,10 @@ export function App() {
         <BrandLogo />
         <div className="tn-mobile-actions">
           <button className="tn-dot" onClick={cycleAccent} aria-label="Cycle theme color"><i /></button>
-          <button className="tn-moon" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}>{dark ? "☀️" : "🌙"}</button>
+          <button className="tn-icon-button" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}>{dark ? <Sun size={24} weight="regular" /> : <Moon size={24} weight="regular" />}</button>
           <button className="tn-menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={menuOpen ? "Close navigation" : "Open navigation"}>{menuOpen ? "×" : "☰"}</button>
         </div>
         {menuOpen && <nav className="tn-mobile-menu" aria-label="Mobile primary">
-          <a href="#" onClick={() => setMenuOpen(false)}>📝 Blog</a>
-          <a href="#shelves" onClick={() => setMenuOpen(false)}>🔎 Shelves</a>
           <a href="#projects" onClick={() => setMenuOpen(false)}>💻 Projects</a>
           <a href="/fitness-tracker/">🏋️ Fitness</a>
           <a href="#about" onClick={() => setMenuOpen(false)}>💾 About me</a>
@@ -118,15 +121,16 @@ export function App() {
       <aside className="tn-side">
         <section className="tn-sec tn-sec--brand">
           <BrandLogo />
-          <button className="tn-dot" onClick={cycleAccent} title={"Theme color: " + ACCENT_NAMES[ACCENTS.indexOf(accent)]} aria-label="Cycle theme color"><i /></button>
+          <div className="tn-theme-actions">
+            <button className="tn-dot" onClick={cycleAccent} title={"Theme color: " + ACCENT_NAMES[ACCENTS.indexOf(accent)]} aria-label="Cycle theme color"><i /></button>
+            <button className="tn-icon-button" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}>{dark ? <Sun size={24} weight="regular" /> : <Moon size={24} weight="regular" />}</button>
+          </div>
         </section>
         <section className="tn-sec">
           <p>I'm <b>Hongjin</b>, backend &amp; machine-learning engineer and open-source creator. This is my digital garden. 🌱</p>
         </section>
         <section className="tn-sec tn-sec--nonav">
           <nav className="tn-nav" aria-label="Primary">
-            <a href="#"><span className="em">📝</span>Blog</a>
-            <a href="#shelves"><span className="em">🔎</span>Shelves</a>
             <a href="#projects"><span className="em">💻</span>Projects</a>
             <a href="/fitness-tracker/"><span className="em">🏋️</span>Fitness</a>
             <a href="#about"><span className="em">💾</span>About me</a>
@@ -134,13 +138,10 @@ export function App() {
         </section>
         <section className="tn-sec tn-sec--foot">
           <div className="tn-socials" aria-label="Social links">
-            <a href="#" aria-label="Email">✉</a>
-            <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer" aria-label="GitHub">⌘</a>
-            <a href="#" aria-label="Bluesky">🦋</a>
-            <a href="#" aria-label="RSS feed">◔</a>
+            <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer" aria-label="GitHub"><GithubLogo size={26} weight="regular" /></a>
+            <a href="#" aria-label="LinkedIn"><LinkedinLogo size={25} weight="regular" /></a>
+            <a href="#" aria-label="Email"><EnvelopeSimple size={25} weight="regular" /></a>
           </div>
-          <div className="tn-footer-links"><a href="#">Resume</a><a href="#shelves">Topics</a><a href="https://github.com/Hongjin-Lin/portfolio-site" target="_blank" rel="noreferrer">Source</a></div>
-          <button className="tn-moon" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}>{dark ? "☀️" : "🌙"}</button>
         </section>
       </aside>
 
