@@ -61,7 +61,7 @@ const COPY = {
     intro: "I am Hongjin, an incoming MSc Computer Science & Engineering student at the Technical University of Denmark 📖.",
     projects: "Projects", fitness: "Fitness", about: "About me", resume: "Resume",
     introAria: "Introduction", greeting: "Hey, I'm Hongjin!",
-    lead: "Backend & machine-learning engineer, writer, all-around nerd.",
+    lead: "CS student, climber, landscape photographer.",
     introHeading: "A brief introduction", close: "CLOSE ↑", details: "DETAILS ↓",
     timeline: [
       { year: "2003–2021", title: "Ningbo kid", text: ": forum-goer, gamer, lover of obscure '00s bands." },
