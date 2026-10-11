@@ -13,7 +13,7 @@ const COPY = {
   en: {
     projects: "Projects", fitness: "Fitness", about: "About me", resume: "Resume",
     intro: "I am Hongjin, an incoming MSc Computer Science & Engineering student at the Technical University of Denmark 📖.",
-    eyebrow: "A LITTLE ABOUT ME", title: "Hey, I'm Hongjin.",
+    pageTitle: "About me",
     opening: "I’m an incoming MSc Computer Science & Engineering student at the Technical University of Denmark. I studied Computer Science at the University of Nottingham, where I became especially interested in the systems that make software dependable and useful.",
     second: "I like working across backend engineering and machine learning: understanding a problem, building the pieces behind it, and writing down what I learn along the way.",
     now: "What I’m doing now", nowText: "Getting ready for my next chapter at DTU, and continuing to explore backend systems, distributed computing, and applied machine learning.",
@@ -30,7 +30,7 @@ const COPY = {
   zh: {
     projects: "项目", fitness: "健身打卡", about: "关于我", resume: "简历",
     intro: "你好，我是泓进，即将入读丹麦技术大学计算机科学与工程硕士项目。📖",
-    eyebrow: "关于我", title: "你好，我是泓进。",
+    pageTitle: "关于我",
     opening: "我即将入读丹麦技术大学计算机科学与工程硕士项目。本科就读于诺丁汉大学计算机科学专业，在学习过程中逐渐对那些让软件可靠、实用的系统产生了浓厚兴趣。",
     second: "我喜欢在后端工程与机器学习之间探索：理解问题、搭建背后的系统，也把一路学到的东西记录下来。",
     now: "最近在做什么", nowText: "正在为 DTU 的新阶段做准备，也会继续探索后端系统、分布式计算和应用机器学习。",
@@ -143,8 +143,7 @@ export function About() {
     </aside>
     <main className="tn-main about-main">
       <article className="about-page">
-        <p className="about-eyebrow">{copy.eyebrow}</p>
-        <h1>{copy.title}</h1>
+        <h1 className="about-title"><img className="about-title-icon" src="/icons/nalong-thinking.png" alt="" aria-hidden="true" />{copy.pageTitle}</h1>
         <div className="about-intro">
           <div className="about-copy"><p>{copy.opening}</p><p>{copy.second}</p>
             <a className="about-email" href={`mailto:${email}`}><EnvelopeSimple size={19} />{email}</a>
