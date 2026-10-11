@@ -1,13 +1,37 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { GithubLogoIcon as GithubLogo } from "@phosphor-icons/react/dist/csr/GithubLogo";
+import { LinkedinLogoIcon as LinkedinLogo } from "@phosphor-icons/react/dist/csr/LinkedinLogo";
+import { EnvelopeSimpleIcon as EnvelopeSimple } from "@phosphor-icons/react/dist/csr/EnvelopeSimple";
+import { MoonIcon as Moon } from "@phosphor-icons/react/dist/csr/Moon";
+import { SunIcon as Sun } from "@phosphor-icons/react/dist/csr/Sun";
 import config from "../data/fitness/config.json";
 import rawEntries from "../data/fitness/entries.json";
 import * as lib from "./data.js";
 import { Editor } from "./editor.jsx";
 
 const LANG_KEY = "ft_lang";
+const ACCENTS = ["#b12d6c", "#2456c8", "#2e7d46", "#c26a1f", "#7a4fc9", "#1f7a78"];
+const ACCENT_NAMES = ["Rose", "Blue", "Green", "Amber", "Violet", "Teal"];
+
+function FitnessBrand() {
+  return <a className="tn-brand tn-brand--root" href="/" aria-label="root/ home">
+    <span className="tn-brand-mascot" aria-hidden="true"><img className="tn-brand-avatar" src="/icons/focus-reader.png" alt="" /><span className="tn-image-tint tn-image-tint--mascot" /></span>
+    <span className="tn-brand-lockup"><span className="tn-brand-wordmark">root<span className="tn-brand-slash">/</span></span></span>
+  </a>;
+}
+
+function FitnessNavIcon({ type }) {
+  if (type === "about") return <img className="tn-nav-icon tn-nav-icon--nalong" src="/icons/nalong-thinking.png" alt="" aria-hidden="true" />;
+  const props = { className: "tn-nav-icon", viewBox: "0 0 28 28", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true };
+  if (type === "projects") return <svg {...props}><rect x="3.5" y="4" width="21" height="20" rx="2" fill="#e8e4f2"/><path d="M4 9h20M8 13l-2 2 2 2m4-4-2 2 2 2m3 1 4-6" stroke="#547d94"/></svg>;
+  if (type === "fitness") return <svg {...props}><path d="M5 10v8m3-10v12m12-12v12m3-10v8M8 14h12" stroke="#c26a1f"/><path d="M5 10v8m3-10v12m12-12v12m3-10v8" stroke="#1f7a78"/></svg>;
+  return <svg {...props}><path d="M7 3.8h9l5 5v15H7z" fill="#f6e6b8"/><path d="M16 4v5h5m-11 4h8m-8 4h8m-8 4h6" stroke="#c26a1f"/></svg>;
+}
 
 const T = {
   zh: {
+    intro: "你好，我是泓进，后端与机器学习工程师、开源创作者。这里是我的数字花园。🌱",
+    projects: "项目", fitness: "健身打卡", about: "关于我", resume: "简历",
     eyebrow: "Fitness Tracker",
     title: "60 天饮食与训练打卡",
     subtitle: (c) => `每日三餐与加餐（照片 · 卡路里 · 蛋白质）、体重与训练记录。目标：每天 ${c.calorieTarget} kcal，蛋白质 ${c.proteinMin}–${c.proteinMax} g。`,
@@ -30,6 +54,8 @@ const T = {
     noWeight: "未记录", lightboxClose: "关闭大图",
   },
   en: {
+    intro: "I am Hongjin, an incoming MSc Computer Science & Engineering student at the Technical University of Denmark 📖.",
+    projects: "Projects", fitness: "Fitness", about: "About me", resume: "Resume",
     eyebrow: "Fitness Tracker",
     title: "60 Days of Diet & Training",
     subtitle: (c) => `Daily meals & snacks (photos · calories · protein), weight, and workouts. Target: ${c.calorieTarget} kcal and ${c.proteinMin}–${c.proteinMax} g protein per day.`,
@@ -333,7 +359,11 @@ export function App() {
   const [editorDate, setEditorDate] = useState(lib.todayKey());
   const [selected, setSelected] = useState(null);
   const [zoom, setZoom] = useState(null);
-  const glowRef = useRef(null);
+  const [accent, setAccent] = useState(() => localStorage.getItem("tn-accent") || ACCENTS[0]);
+  const [dark, setDark] = useState(() => localStorage.getItem("tn-dark") === "1");
+  const [themeOpen, setThemeOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [emailCopyState, setEmailCopyState] = useState("idle");
   const selectTimer = useRef(null);
   const t = T[lang];
 
@@ -342,30 +372,44 @@ export function App() {
     localStorage.setItem(LANG_KEY, lang);
   }, [lang]);
 
-  useEffect(() => () => clearTimeout(selectTimer.current), []);
+  useEffect(() => {
+    localStorage.setItem("tn-accent", accent);
+    document.documentElement.style.setProperty("--tn-accent", accent);
+  }, [accent]);
 
   useEffect(() => {
-    const glow = glowRef.current;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!glow || reduced.matches) return undefined;
-    let frame = 0;
-    const move = (event) => {
-      if (event.pointerType === "touch") return;
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        glow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
-        glow.dataset.active = "true";
-      });
-    };
-    const dim = () => { glow.dataset.active = "false"; };
-    window.addEventListener("pointermove", move, { passive: true });
-    document.documentElement.addEventListener("mouseleave", dim);
+    localStorage.setItem("tn-dark", dark ? "1" : "0");
+    if (dark) document.documentElement.dataset.tnDark = "1";
+    else delete document.documentElement.dataset.tnDark;
+  }, [dark]);
+
+  useEffect(() => {
+    if (!themeOpen) return undefined;
+    const outside = (event) => { if (!event.target.closest(".tn-theme-actions, .tn-mobile-actions")) setThemeOpen(false); };
+    const escape = (event) => { if (event.key === "Escape") setThemeOpen(false); };
+    document.addEventListener("pointerdown", outside);
+    window.addEventListener("keydown", escape);
     return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("pointermove", move);
-      document.documentElement.removeEventListener("mouseleave", dim);
+      document.removeEventListener("pointerdown", outside);
+      window.removeEventListener("keydown", escape);
     };
-  }, []);
+  }, [themeOpen]);
+
+  useEffect(() => () => clearTimeout(selectTimer.current), []);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("hongjin1125@outlook.com");
+      setEmailCopyState("copied");
+    } catch {
+      setEmailCopyState("error");
+    }
+    window.setTimeout(() => setEmailCopyState("idle"), 1800);
+  };
+
+  const renderThemePicker = (id) => themeOpen && <div className="tn-theme-picker" id={id} role="group" aria-label="Choose theme color">
+    {ACCENTS.map((color, i) => <button key={color} type="button" className={`tn-theme-swatch${accent === color ? " active" : ""}`} style={{ "--swatch-color": color }} title={`${ACCENT_NAMES[i]} theme`} aria-label={`Choose ${ACCENT_NAMES[i]} theme`} aria-pressed={accent === color} onClick={() => { setAccent(color); setThemeOpen(false); }}><i /></button>)}
+  </div>;
 
   const { start, keys } = useMemo(() => lib.buildRange(rawEntries, config), []);
   const real = useMemo(() => lib.sortByDate(lib.realEntries(rawEntries), "desc"), []);
@@ -389,24 +433,59 @@ export function App() {
   };
 
   return (
-    <div className={`ft-shell language-${lang}`}>
-      <div className="side-rail" aria-hidden="true"><i /><i /><i /></div>
-      <img className="tech-field" src="/assets/tech-field.png" alt="" aria-hidden="true" />
-      <img ref={glowRef} className="cursor-glow" src="/assets/cursor-glow.png" alt="" aria-hidden="true" />
-
-      <header className="ft-header">
-        <a className="ft-wordmark" href="/">hongjinlin.com</a>
-        <div className="ft-nav">
-          <a href="/">← {t.backHome}</a>
-          <div className="ft-lang" aria-label="Language">
-            <button type="button" className={lang === "en" ? "active" : ""} onClick={() => setLang("en")} aria-pressed={lang === "en"}>EN</button>
-            <span aria-hidden="true">/</span>
-            <button type="button" className={lang === "zh" ? "active" : ""} onClick={() => setLang("zh")} aria-pressed={lang === "zh"}>中文</button>
-          </div>
+    <div className={`ft-shell tn-shell${lang === "zh" ? " language-zh" : ""}`}>
+      <header className="tn-mobile-nav ft-mobile-nav">
+        <FitnessBrand />
+        <div className="tn-mobile-actions">
+          <button className={`tn-dot${themeOpen ? " open" : ""}`} onClick={() => setThemeOpen(!themeOpen)} aria-label="Choose theme color" aria-haspopup="true" aria-expanded={themeOpen} aria-controls="ft-mobile-theme-picker" data-tooltip="Accent color"><i /></button>
+          {renderThemePicker("ft-mobile-theme-picker")}
+          <button className="tn-icon-button" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"} data-tooltip="Theme">{dark ? <Sun size={24} /> : <Moon size={24} />}</button>
+          <button className="tn-menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={menuOpen ? "Close navigation" : "Open navigation"}>{menuOpen ? "×" : "☰"}</button>
         </div>
+        {menuOpen && <nav className="tn-mobile-menu" aria-label="Mobile primary">
+          <a href="/#projects" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="projects" />{t.projects}</a>
+          <a href="/fitness-tracker/" aria-current="page" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="fitness" />{t.fitness}</a>
+          <a href="/#about" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="about" />{t.about}</a>
+          <a href="/#about" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="resume" />{t.resume}</a>
+          <div className="tn-lang-switch tn-lang-switch--mobile" role="group" aria-label="Language">
+            <button type="button" className={lang === "en" ? "active" : ""} onClick={() => setLang("en")} aria-pressed={lang === "en"}>EN</button><span aria-hidden="true">/</span><button type="button" className={lang === "zh" ? "active" : ""} onClick={() => setLang("zh")} aria-pressed={lang === "zh"}>中</button>
+          </div>
+        </nav>}
       </header>
 
-      <main className="ft-main">
+      <aside className="tn-side ft-side">
+        <section className="tn-sec tn-sec--brand">
+          <FitnessBrand />
+          <div className="tn-theme-actions">
+            <button className={`tn-dot${themeOpen ? " open" : ""}`} onClick={() => setThemeOpen(!themeOpen)} aria-label="Choose theme color" aria-haspopup="true" aria-expanded={themeOpen} aria-controls="ft-desktop-theme-picker" data-tooltip="Accent color"><i /></button>
+            {renderThemePicker("ft-desktop-theme-picker")}
+            <button className="tn-icon-button" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"} data-tooltip="Theme">{dark ? <Sun size={24} /> : <Moon size={24} />}</button>
+          </div>
+        </section>
+        <section className="tn-sec"><p>{t.intro}</p></section>
+        <section className="tn-sec tn-sec--nonav">
+          <nav className="tn-nav" aria-label={lang === "zh" ? "主导航" : "Primary"}>
+            <a href="/#projects"><FitnessNavIcon type="projects" />{t.projects}</a>
+            <a href="/fitness-tracker/" aria-current="page"><FitnessNavIcon type="fitness" />{t.fitness}</a>
+            <a href="/#about"><FitnessNavIcon type="about" />{t.about}</a>
+            <a href="/#about"><FitnessNavIcon type="resume" />{t.resume}</a>
+          </nav>
+        </section>
+        <section className="tn-sec tn-sec--foot">
+          <div className="tn-footer-actions">
+            <div className="tn-socials" aria-label="Social links">
+              <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer" aria-label="GitHub" data-tooltip="GitHub"><GithubLogo size={26} /></a>
+              <a href="#" aria-label="LinkedIn" data-tooltip="LinkedIn"><LinkedinLogo size={25} /></a>
+              <button type="button" className="tn-social-copy" onClick={copyEmail} aria-label={emailCopyState === "copied" ? "Email copied" : "Copy my email"} data-tooltip={emailCopyState === "copied" ? "Email copied!" : emailCopyState === "error" ? "Could not copy" : "Copy my email"}><EnvelopeSimple size={25} /></button>
+            </div>
+            <div className="tn-lang-switch tn-lang-switch--inline" role="group" aria-label="Language">
+              <button type="button" className={lang === "en" ? "active" : ""} onClick={() => setLang("en")} aria-pressed={lang === "en"}>EN</button><span aria-hidden="true">/</span><button type="button" className={lang === "zh" ? "active" : ""} onClick={() => setLang("zh")} aria-pressed={lang === "zh"}>中</button>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+      <main className="ft-main tn-main">
         <section className="ft-hero">
           <p className="ft-eyebrow"><span aria-hidden="true" /> {t.eyebrow}</p>
           <h1>{t.title}</h1>
@@ -455,12 +534,11 @@ export function App() {
             </section>
           </div>
         </div>
+        <footer className="ft-footer">
+          <p>{t.deployNote}</p>
+          <button type="button" className="ft-btn ft-btn--primary" onClick={() => openEditorAt(lib.todayKey())}>✎ {t.edit}</button>
+        </footer>
       </main>
-
-      <footer className="ft-footer">
-        <p>{t.deployNote}</p>
-        <button type="button" className="ft-btn ft-btn--primary" onClick={() => openEditorAt(lib.todayKey())}>✎ {t.edit}</button>
-      </footer>
 
       <Editor
         open={editorOpen}

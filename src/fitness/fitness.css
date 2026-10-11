@@ -266,3 +266,122 @@ span.ft-cell { height: 14px; width: 14px; border-radius: 5px; display: inline-bl
 @media (prefers-reduced-motion: reduce) {
   .ft-btn, .ft-cell, .ft-thumb img, .ft-bar i, .ft-day { transition: none; }
 }
+
+/* Fitness tracker now uses the same shell and theme tokens as the home page. */
+.ft-shell {
+  --paper: var(--tn-bg);
+  --ink: var(--tn-text);
+  --green: var(--tn-accent);
+  --sage: color-mix(in srgb, var(--tn-accent) 52%, var(--tn-bg));
+  --coral: var(--tn-accent);
+  --muted: var(--tn-muted);
+  --line: var(--tn-border);
+  position: relative;
+  min-height: 100vh;
+  background: var(--tn-bg);
+  color: var(--tn-text);
+  font-size: 16px;
+}
+
+.ft-main.tn-main { margin: 0 0 0 24px; padding: 32px; }
+.ft-side .tn-nav a[aria-current="page"] { color: var(--tn-accent); background: color-mix(in srgb, var(--tn-accent) 9%, var(--tn-bg)); font-weight: 600; }
+.ft-side .tn-nav a[aria-current="page"] .tn-nav-icon { color: var(--tn-accent); }
+.ft-hero { padding: 20px 0 32px; }
+.ft-eyebrow { margin-bottom: 14px; color: var(--tn-accent); font: 600 11px/1.3 "Google Sans Code Variable", ui-monospace, monospace; letter-spacing: .1em; }
+.ft-eyebrow span { background: var(--tn-accent); }
+.ft-hero h1 { max-width: 760px; color: var(--tn-heading); font: 700 48px/1.18 "Outfit Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: -.015em; }
+.language-zh .ft-hero h1 { line-height: 1.3; }
+.ft-sub { max-width: 740px; margin-top: 12px; color: var(--tn-text); font-size: 17.6px; line-height: 1.55; }
+
+.ft-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 20px; margin: 8px 0 0; border-top: 1px solid var(--tn-border); }
+.ft-stat { min-height: 120px; padding: 18px 0 16px; border: 0; border-bottom: 1px solid var(--tn-border); border-radius: 0; background: transparent; }
+.ft-stat-label { margin-bottom: 10px; color: var(--tn-muted); font: 600 10.5px/1.2 "Google Sans Code Variable", ui-monospace, monospace; letter-spacing: .08em; }
+.ft-stat-value { color: var(--tn-heading); font-size: 30px; }
+.ft-stat-value small, .ft-stat-sub { color: var(--tn-muted); }
+.ft-spark { color: var(--tn-accent); }
+
+.ft-columns { grid-template-columns: minmax(245px, 0.8fr) minmax(0, 1.7fr); gap: 34px; margin-top: 48px; }
+.ft-col--cal { top: 28px; }
+.ft-section { padding-top: 22px; border-color: var(--tn-border); }
+.ft-section h2 { margin-bottom: 18px; color: var(--tn-heading); font: 600 24px/1.3 "Outfit Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: -.01em; }
+.ft-section--cal h2 { margin-bottom: 18px; }
+.ft-cal-hint { color: var(--tn-muted); font-size: 13px; }
+.ft-cal-dow, .ft-cal-month { color: var(--tn-muted); }
+.ft-cell { border-radius: 7px; color: var(--tn-text); }
+.ft-cell.is-full { background: var(--tn-accent); color: var(--tn-bg); }
+.ft-cell.is-partial { background: color-mix(in srgb, var(--tn-accent) 18%, var(--tn-bg)); border-color: color-mix(in srgb, var(--tn-accent) 42%, var(--tn-border)); color: var(--tn-text); }
+.ft-cell.is-missed { background: color-mix(in srgb, var(--tn-text) 5%, var(--tn-bg)); color: var(--tn-muted); }
+.ft-cell.is-future { border-color: var(--tn-border); color: var(--tn-muted); }
+.ft-cell.is-today { outline-color: var(--tn-accent); }
+.ft-legend { color: var(--tn-muted); }
+
+.ft-empty { border-color: var(--tn-border); border-radius: 10px; background: color-mix(in srgb, var(--tn-bg) 90%, var(--tn-heading)); }
+.ft-empty h3 { color: var(--tn-heading); font: 600 23px/1.3 "Outfit Variable", sans-serif; }
+.ft-empty p { color: var(--tn-text); }
+.ft-days { gap: 22px; }
+.ft-day { padding: 22px; border-color: var(--tn-border); border-radius: 10px; background: color-mix(in srgb, var(--tn-bg) 94%, var(--tn-heading)); }
+.ft-day.is-selected { border-color: var(--tn-accent); box-shadow: 0 8px 24px color-mix(in srgb, var(--tn-accent) 16%, transparent); }
+.ft-chip { border-color: var(--tn-border); color: var(--tn-muted); }
+.ft-chip--day { background: color-mix(in srgb, var(--tn-accent) 9%, var(--tn-bg)); border-color: color-mix(in srgb, var(--tn-accent) 35%, var(--tn-border)); color: var(--tn-accent); }
+.ft-chip--today, .ft-demo-wrap .ft-chip--demo { border-color: var(--tn-accent); background: var(--tn-accent); color: var(--tn-bg); }
+.ft-chip--weight { color: var(--tn-text); }
+.ft-chip--steps { color: var(--tn-accent); }
+.ft-edit-btn { border-color: color-mix(in srgb, var(--tn-accent) 48%, var(--tn-border)); background: color-mix(in srgb, var(--tn-accent) 8%, var(--tn-bg)); color: var(--tn-accent); font-family: "Google Sans Flex Variable", sans-serif; }
+.ft-edit-btn:hover, .ft-edit-btn:focus-visible { background: var(--tn-accent); color: var(--tn-bg); }
+.ft-day-date strong { color: var(--tn-heading); font-size: 30px; font-weight: 600; }
+.ft-day-date span { color: var(--tn-muted); }
+.ft-workout { border-radius: 9px; background: color-mix(in srgb, var(--tn-accent) 8%, var(--tn-bg)); }
+.ft-workout h3, .ft-meal h4 { color: var(--tn-accent); font-family: "Google Sans Code Variable", ui-monospace, monospace; }
+.ft-workout-title { color: var(--tn-heading); font-size: 19px; }
+.ft-workout-detail, .ft-meal-items, .ft-notes { color: var(--tn-text); }
+.ft-muted { color: var(--tn-muted); }
+.ft-meals { gap: 12px; }
+.ft-meal { border-color: var(--tn-border); border-radius: 9px; background: color-mix(in srgb, var(--tn-bg) 78%, var(--tn-border)); }
+.ft-meal--snack { border-color: color-mix(in srgb, var(--tn-accent) 40%, var(--tn-border)); }
+.ft-meal-numbers { color: var(--tn-muted); }
+.ft-meal-numbers strong { color: var(--tn-heading); }
+.ft-bar { background: color-mix(in srgb, var(--tn-text) 9%, var(--tn-bg)); }
+.ft-bar i { background: var(--tn-accent); }
+.ft-bar--protein .ft-band { background: var(--tn-heading); }
+.ft-notes { border-color: var(--tn-accent); }
+.ft-comments-toggle, .ft-btn { border-color: var(--tn-border); border-radius: 8px; background: transparent; color: var(--tn-text); font-family: "Google Sans Flex Variable", sans-serif; }
+.ft-comments-toggle:hover, .ft-comments-toggle:focus-visible { color: var(--tn-accent); border-color: var(--tn-accent); }
+.ft-footer { margin: 48px 0 0; padding: 22px 0 8px; border-top-color: var(--tn-border); }
+.ft-footer p { color: var(--tn-muted); }
+.ft-btn--primary { border-color: var(--tn-accent); background: var(--tn-accent); color: var(--tn-bg); }
+.ft-btn--primary:hover:not(:disabled) { border-color: color-mix(in srgb, var(--tn-accent) 80%, black); background: color-mix(in srgb, var(--tn-accent) 80%, black); }
+
+html[data-tn-dark="1"] .ft-empty,
+html[data-tn-dark="1"] .ft-day { background: color-mix(in srgb, var(--tn-bg) 92%, white); }
+html[data-tn-dark="1"] .ft-meal { background: color-mix(in srgb, var(--tn-bg) 88%, white); }
+html[data-tn-dark="1"] .ft-modal-panel { background: var(--tn-bg); }
+html[data-tn-dark="1"] .ft-modal-body input,
+html[data-tn-dark="1"] .ft-modal-body textarea,
+html[data-tn-dark="1"] .ft-token-row input { border-color: var(--tn-border); background: color-mix(in srgb, var(--tn-bg) 92%, white); color: var(--tn-text); }
+html[data-tn-dark="1"] .ft-token p,
+html[data-tn-dark="1"] .ft-token ol { color: var(--tn-text); }
+
+@media (max-width: 1120px) {
+  .ft-main.tn-main { margin: 0 auto; }
+}
+@media (max-width: 1019px) {
+  .ft-main.tn-main { margin: 0 auto; padding: 32px 32px 64px; }
+  .ft-hero { padding-top: 20px; }
+  .ft-footer { margin: 48px 0 0; padding: 22px 0 8px; }
+}
+@media (max-width: 960px) {
+  .ft-columns { grid-template-columns: 1fr; gap: 8px; }
+  .ft-section { margin-top: 28px; }
+  .ft-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  .ft-main.tn-main { margin: 0 auto; padding: 32px 24px 48px; }
+  .ft-hero h1 { font-size: 38.4px; text-wrap: balance; }
+  .ft-sub { font-size: 16px; }
+  .ft-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
+  .ft-stat { min-height: 108px; padding: 16px 0 13px; }
+  .ft-stat-value { font-size: 26px; }
+  .ft-columns { margin-top: 34px; }
+  .ft-day { padding: 17px; }
+  .ft-footer { flex-direction: column; align-items: flex-start; }
+}
