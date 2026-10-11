@@ -1,6 +1,6 @@
 {
-  "startDate": null,
-  "durationDays": 60,
+  "startDate": "2026-10-10",
+  "durationDays": 62,
   "calorieTarget": 2000,
   "proteinMin": 120,
   "proteinMax": 140,

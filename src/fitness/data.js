@@ -105,7 +105,7 @@ export function sortByDate(entries, dir = "asc") {
 }
 
 export function deriveStart(all, config) {
-  if (config.startDate) return mondayOf(config.startDate);
+  if (config.startDate) return config.startDate;
   const real = sortByDate(realEntries(all));
   if (real.length) return mondayOf(real[0].date);
   return mondayOf(todayKey());

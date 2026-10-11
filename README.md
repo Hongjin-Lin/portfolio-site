@@ -19,9 +19,9 @@ npm run test:sites
 The site is built with React and Vite. It includes English and Chinese content, responsive project layouts, and a cursor-reactive visual background on desktop devices.
 
 
-## Fitness Tracker（60 天饮食训练打卡）
+## Fitness Tracker（62 天饮食训练挑战）
 
-在线页面：[`/fitness-tracker/`](https://hongjinlin.com/fitness-tracker/)。记录每日三餐（照片 · 卡路里 · 蛋白质）、体重与训练内容，目标 2000 kcal / 蛋白质 120–140 g，周期 60 天。
+在线页面：[`/fitness-tracker/`](https://hongjinlin.com/fitness-tracker/)。记录每日三餐（照片 · 卡路里 · 蛋白质）、体重与训练内容，目标 2000 kcal / 蛋白质 120–140 g，挑战周期 2026-10-10 至 2026-12-10（共 62 天）。
 
 ### 每日打卡的三种方式
 
@@ -40,7 +40,7 @@ The site is built with React and Vite. It includes English and Chinese content, 
 
 ### 数据结构
 
-- `src/data/fitness/config.json` — 目标与仓库配置（起始日期 `startDate` 默认自动取第一条记录所在周）
+- `src/data/fitness/config.json` — 目标与仓库配置（设置 `startDate` 时按指定日期起算；未设置时自动取第一条记录所在周的周一）
 - `src/data/fitness/entries.json` — 每日记录数组（按日期升序）
 - `public/fitness/<YYYY-MM-DD>/*.jpg` — 餐食照片
 - 说明：网页编辑器删除照片只从记录中移除，仓库中的旧图片文件会保留（不影响页面）。
