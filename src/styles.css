@@ -52,7 +52,8 @@ h1, h2, h3 { margin: 0; font-family: "Outfit Variable", -apple-system, BlinkMacS
 .tn-theme-actions { display: flex; align-items: center; gap: 0; }
 .tn-brand { display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto; color: var(--tn-heading); text-decoration: none; }
 .tn-brand--root { gap: 8px; }
-.tn-brand-avatar { display: block; width: 29px; height: 38px; object-fit: contain; }
+.tn-brand-mascot { position: relative; display: block; flex: 0 0 29px; width: 29px; height: 38px; }
+.tn-brand-avatar { display: block; width: 100%; height: 100%; object-fit: contain; }
 .tn-brand-lockup { display: flex; align-items: center; }
 .tn-brand-wordmark { display: inline-flex; align-items: center; gap: 2px; font-family: "Google Sans Code Variable", ui-monospace, monospace; font-size: 20px; font-weight: 700; letter-spacing: -.07em; line-height: 1; white-space: nowrap; }
 .tn-brand-slash { color: var(--tn-accent); }
@@ -98,7 +99,11 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 .tn-shelves h2, .tn-projects > h2 { font-size: 30.4px; line-height: 1.3; margin: 0 0 8px; }
 .tn-shelves p { margin: 0; }
 .tn-hero-art { width: 250px; margin: 64px auto 0; display: flex; flex-direction: column; align-items: center; }
-.tn-hero-art .apple-ensemble { display: block; width: 250px; height: 204px; object-fit: contain; }
+.tn-artwork--apples { position: relative; display: block; width: 250px; height: 204px; flex: 0 0 auto; }
+.tn-hero-art .apple-ensemble { display: block; width: 100%; height: 100%; object-fit: contain; }
+.tn-image-tint { position: absolute; inset: 0; background: var(--tn-accent); mix-blend-mode: color; pointer-events: none; }
+.tn-image-tint--mascot { opacity: .58; mask: url("/icons/focus-reader-tint-mask.png") center / contain no-repeat; -webkit-mask: url("/icons/focus-reader-tint-mask.png") center / contain no-repeat; }
+.tn-image-tint--apples { opacity: .8; mask: url("/assets/apples/apple-ensemble-tint-mask.png") center / contain no-repeat; -webkit-mask: url("/assets/apples/apple-ensemble-tint-mask.png") center / contain no-repeat; }
 @container tn-hero (min-width: 860px) {
   .tn-hero-inner { flex-direction: row; align-items: flex-start; gap: 48px; }
   .tn-col { flex: 0 0 600px; width: 600px; max-width: 600px; }
@@ -122,7 +127,7 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
   .tn-shell { display: block; width: 100%; max-width: none; padding-top: 60px; }
   .tn-side { display: none; }
   .tn-mobile-nav { position: fixed; z-index: 20; inset: 0 0 auto; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px 0 32px; border-bottom: 1px solid var(--tn-border); background: var(--tn-bg); }
-  .tn-brand-avatar { width: 24px; height: 32px; }
+  .tn-brand-mascot { flex-basis: 24px; width: 24px; height: 32px; }
   .tn-brand-wordmark { font-size: 18px; }
   .tn-mobile-actions { display: flex; align-items: center; gap: 12px; }
   .tn-mobile-actions .tn-icon-button { margin: 0; }
@@ -134,7 +139,7 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
   .tn-hero-inner { flex-direction: column; }
   .tn-col { max-width: 760px; }
   .tn-hero-art { align-self: center; width: 250px; margin-top: 64px; }
-  .tn-hero-art .apple-ensemble { width: 150px; height: 122px; }
+  .tn-artwork--apples { width: 150px; height: 122px; }
 }
 
 @media (max-width: 600px) {

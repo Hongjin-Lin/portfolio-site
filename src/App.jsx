@@ -116,7 +116,10 @@ function ProjectRow({ project, index, open, onToggle, lang, copy }) {
 function BrandLogo() {
   return (
     <a className="tn-brand tn-brand--root" href="/" aria-label="返回 root 主页">
-      <img className="tn-brand-avatar" src="/icons/focus-reader.png" alt="" />
+      <span className="tn-brand-mascot" aria-hidden="true">
+        <img className="tn-brand-avatar" src="/icons/focus-reader.png" alt="" />
+        <span className="tn-image-tint tn-image-tint--mascot" />
+      </span>
       <span className="tn-brand-lockup">
         <span className="tn-brand-wordmark">root<span className="tn-brand-slash">/</span></span>
       </span>
@@ -227,7 +230,10 @@ export function App() {
           <p className="tn-also"><a href="#">{copy.also}</a>{copy.alsoText}</p>
           </div>
           <aside className="tn-hero-art" aria-label="Four dancing green apples">
-            <img className="apple-ensemble" src="/assets/apples/apple-ensemble.png" alt={copy.appleAlt} />
+            <span className="tn-artwork--apples">
+              <img className="apple-ensemble" src="/assets/apples/apple-ensemble.png" alt={copy.appleAlt} />
+              <span className="tn-image-tint tn-image-tint--apples" aria-hidden="true" />
+            </span>
           </aside>
           </div>
         </section>
