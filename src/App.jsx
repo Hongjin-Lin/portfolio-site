@@ -91,22 +91,26 @@ export function App() {
         <section className="tn-sec tn-sec--nonav">
           <nav className="tn-nav" aria-label="Primary">
             <a href="#"><span className="em">📝</span>Blog</a>
+            <a href="#shelves"><span className="em">🔎</span>Shelves</a>
             <a href="#projects"><span className="em">💻</span>Projects</a>
             <a href="/fitness-tracker/"><span className="em">🏋️</span>Fitness</a>
-            <a href="#"><span className="em">💾</span>About me</a>
+            <a href="#about"><span className="em">💾</span>About me</a>
           </nav>
         </section>
         <section className="tn-sec tn-sec--foot">
-          <a href="#">Email signup</a>
-          <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="#">Bluesky</a>
-          <a href="#">RSS feed</a>
-          <button className="tn-moon" onClick={() => setDark(!dark)}>{dark ? "☀️ Full Sun" : "🌙 New Moon"}</button>
+          <div className="tn-socials" aria-label="Social links">
+            <a href="#" aria-label="Email">✉</a>
+            <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer" aria-label="GitHub">⌘</a>
+            <a href="#" aria-label="Bluesky">🦋</a>
+            <a href="#" aria-label="RSS feed">◔</a>
+          </div>
+          <div className="tn-footer-links"><a href="#">Resume</a><a href="#shelves">Topics</a><a href="https://github.com/Hongjin-Lin/portfolio-site" target="_blank" rel="noreferrer">Source</a></div>
+          <button className="tn-moon" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}>{dark ? "☀️" : "🌙"}</button>
         </section>
       </aside>
 
       <main className="tn-main">
-        <div className="tn-col">
+        <div className="tn-col" id="about">
           <h1>Hey, I'm Hongjin!</h1>
           <p className="tn-lead">Backend &amp; machine-learning engineer, writer, all-around nerd.</p>
           <h2>A brief timeline</h2>
@@ -129,6 +133,10 @@ export function App() {
             </li>
           </ul>
           <p className="tn-also"><a href="#">Also</a>: city explorer, weight-lifter, brick-clicker, tea drinker, webmaster.</p>
+          <section id="shelves" className="tn-shelves">
+            <h2>Shelves</h2>
+            <p>Hand-picked paths through my notes, projects, and things I keep learning.</p>
+          </section>
           <section id="projects" className="tn-projects">
             <h2>Projects</h2>
             {PROJECTS.map((p, i) => (
@@ -136,6 +144,12 @@ export function App() {
             ))}
           </section>
         </div>
+        <aside className="tn-hero-art" aria-label="Four dancing green apples">
+          <div className="tn-apple-orbit">
+            <img className="apple-ensemble" src="/assets/apples/apple-ensemble.png" alt="Four green apples holding hands and dancing together" />
+          </div>
+          <p className="tn-apple-caption">A little green energy for your day 🍏</p>
+        </aside>
       </main>
     </div>
   );
