@@ -3,153 +3,109 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>配色方案预览 · 手绘温暖风</title>
+<title>配色方案预览 · taniarascia 布局</title>
 <style>
 @font-face { font-family: Caveat; src: url(/fonts/caveat-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: Caveat; src: url(/fonts/caveat-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
-
-:root { --wobble: 16px 22px 14px 20px / 20px 14px 22px 16px; }
+body[data-theme="matcha"] { --nav-bg: #eef0da; --line: #d6d9b8; --paper: #f5f2e3; --panel: #ece8d2; --ink: #3a3324; --muted: #8a8168; --primary: #6f8353; --deep: #55673f; --accent: #cf6b35; --gingham: rgba(111,131,83,.12); }
+body[data-theme="terracotta"] { --nav-bg: #f0e2cf; --line: #dcc4a8; --paper: #f4e9da; --panel: #ecdcc7; --ink: #40312a; --muted: #97806e; --primary: #b96a4b; --deep: #8f4f37; --accent: #5f7d54; --gingham: rgba(185,106,75,.10); }
+body[data-theme="jam"] { --nav-bg: #f0ead0; --line: #d8d3ac; --paper: #f8f2d8; --panel: #f1ead0; --ink: #3e4a30; --muted: #8b8a6a; --primary: #cd5f4e; --deep: #55734f; --accent: #e0912f; --gingham: rgba(224,145,47,.10); }
+body[data-theme="sakura"] { --nav-bg: #f4e8e4; --line: #e0cbc6; --paper: #f9f1ec; --panel: #f3e6e0; --ink: #463a3d; --muted: #9a878a; --primary: #c97f92; --deep: #8f7fae; --accent: #8ba06b; --gingham: rgba(201,127,146,.10); }
 * { box-sizing: border-box; margin: 0; }
-
-/* ============ THEME TOKENS ============ */
-body[data-theme="matcha"] {
-  --paper: #f5f2e3; --panel: #ede8d3; --ink: #3a3324; --muted: #8a8168;
-  --primary: #6f8353; --deep: #55673f; --accent: #cf6b35; --soft: #e3b4bc;
-  --frame: #55673f; --gingham: rgba(111, 131, 83, .12);
-}
-body[data-theme="terracotta"] {
-  --paper: #f4e9da; --panel: #ecdcc7; --ink: #40312a; --muted: #97806e;
-  --primary: #b96a4b; --deep: #8f4f37; --accent: #5f7d54; --soft: #d9a86c;
-  --frame: #6e4433; --gingham: rgba(185, 106, 75, .10);
-}
-body[data-theme="jam"] {
-  --paper: #f8f2d8; --panel: #f1ead0; --ink: #3e4a30; --muted: #8b8a6a;
-  --primary: #cd5f4e; --deep: #55734f; --accent: #e0912f; --soft: #a8bf8a;
-  --frame: #55734f; --gingham: rgba(224, 145, 47, .10);
-}
-body[data-theme="sakura"] {
-  --paper: #f9f1ec; --panel: #f3e6e0; --ink: #463a3d; --muted: #9a878a;
-  --primary: #c97f92; --deep: #8f7fae; --accent: #8ba06b; --soft: #a8bf8a;
-  --frame: #b98a97; --gingham: rgba(201, 127, 146, .10);
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: var(--paper); color: var(--ink); min-height: 100vh; padding: 26px;
-  transition: background .4s ease;
-}
-/* 颗粒纹理 */
-body::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
-/* 格纹 */
-body::after { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .35;
-  background-image: repeating-linear-gradient(0deg, var(--gingham) 0 1px, transparent 1px 22px), repeating-linear-gradient(90deg, var(--gingham) 0 1px, transparent 1px 22px); }
-/* 手绘粗框 */
-.frame { position: fixed; inset: 12px; z-index: 1; pointer-events: none; border: 3px solid var(--frame); border-radius: 18px 9px 16px 10px / 10px 16px 9px 18px; opacity: .85; }
-
-.shell { position: relative; z-index: 2; display: flex; gap: 34px; max-width: 1180px; margin: 26px auto 0; }
-
-/* ============ 侧边栏 ============ */
-.side { flex: 0 0 270px; background: var(--panel); border: 2px solid var(--ink); border-radius: var(--wobble); padding: 26px 22px; display: flex; flex-direction: column; gap: 20px; box-shadow: 4px 5px 0 rgba(58, 51, 36, .12); }
-.wordmark { font: 700 24px/1 "Outfit Variable", -apple-system, sans-serif; letter-spacing: -.01em; }
-.side .intro { font-size: 13px; line-height: 1.8; color: var(--ink); opacity: .85; }
-.side .intro p { margin-bottom: 12px; }
-.hand { font-family: Caveat, "Segoe Script", cursive; font-size: 20px; font-weight: 700; color: var(--accent); }
-.badge { display: flex; align-items: center; gap: 9px; font-size: 12px; }
+html { scroll-behavior: smooth; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; font-size: 16px; line-height: 1.55; padding-left: 32px; transition: background .4s ease; }
+body::before { content: ""; position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: .5; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 10; height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px 0 32px; background: var(--nav-bg); border-bottom: 1px solid var(--line); }
+.brand { font: 700 17px/1 "Outfit Variable", -apple-system, sans-serif; text-decoration: none; color: var(--ink); }
+.navlinks { display: flex; gap: 22px; }
+.navlinks a { font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none; opacity: .85; }
+.navlinks a:hover { color: var(--primary); }
+.sidebar { position: sticky; top: 0; float: left; width: 260px; height: 100vh; padding: 84px 26px 24px; background: var(--nav-bg); border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 22px; }
+.avatar { width: 84px; height: 84px; border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%; border: 2.5px solid var(--ink); background: var(--panel); display: flex; align-items: center; justify-content: center; font-family: Caveat, cursive; font-size: 40px; color: var(--primary); }
+.side-name { font: 700 20px/1.2 "Outfit Variable", sans-serif; }
+.side-role { font-size: 13.5px; color: var(--muted); }
+.side-block h3 { font: 600 11px/1 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 10px; }
+.side-block a { display: block; font-size: 15px; color: var(--ink); text-decoration: none; padding: 4px 0; }
+.side-block a:hover { color: var(--primary); }
+.side-note { font-family: Caveat, cursive; font-size: 19px; color: var(--accent); margin-top: auto; }
+.badge { display: flex; align-items: center; gap: 9px; font-size: 13px; }
 .badge i { width: 10px; height: 10px; border-radius: 50% 45% 55% 48%; background: var(--primary); border: 1.5px solid var(--ink); }
-.side nav { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
-.side nav a { text-decoration: none; color: var(--ink); font-size: 13.5px; padding: 7px 2px; border-bottom: 2px dashed color-mix(in srgb, var(--ink) 18%, transparent); }
-.side nav a span { font-family: Caveat, cursive; color: var(--accent); font-size: 16px; margin-right: 8px; }
-.langs { margin-top: auto; display: flex; gap: 10px; font-size: 12px; opacity: .75; }
-.langs b { font-family: Caveat, cursive; font-size: 18px; color: var(--accent); }
-
-/* ============ 主区 ============ */
-.main { flex: 1; min-width: 0; }
-h1.hero { font: 700 clamp(38px, 4.6vw, 62px)/1.15 "Outfit Variable", sans-serif; letter-spacing: -.015em; max-width: 620px; }
-.hero-row { display: flex; gap: 24px; align-items: flex-start; }
-.vertical { writing-mode: vertical-rl; font-size: 15px; letter-spacing: .35em; color: var(--deep); border: 2px solid var(--deep); border-radius: 12px 6px 10px 8px / 8px 10px 6px 12px; padding: 16px 7px; opacity: .8; font-weight: 600; }
-.sec { margin-top: 40px; }
-.sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
-.sec-head h2 { font: 700 34px/1 "Outfit Variable", sans-serif; letter-spacing: -.01em; }
-.sec-head .hand { font-size: 22px; }
-.rows { border: 2px solid var(--ink); border-radius: var(--wobble); overflow: hidden; background: color-mix(in srgb, var(--paper) 82%, #fff); box-shadow: 4px 5px 0 rgba(58, 51, 36, .12); }
-.row { display: flex; align-items: center; gap: 18px; padding: 20px 22px; border-bottom: 2px dashed color-mix(in srgb, var(--ink) 25%, transparent); cursor: pointer; transition: background .25s ease, transform .25s ease; }
-.row:last-child { border-bottom: 0; }
-.row:hover { background: color-mix(in srgb, var(--primary) 16%, var(--paper)); transform: translateX(5px); }
-.row .no { font-family: Caveat, cursive; font-size: 24px; color: var(--accent); }
-.row .t { font: 600 21px/1.2 "Outfit Variable", sans-serif; flex: 1; }
-.row .tag { font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border: 1.5px solid var(--muted); border-radius: 999px 12px 999px 14px / 14px 999px 12px 999px; padding: 4px 10px; }
-.row .arr { font-size: 18px; color: var(--primary); }
-.chips { display: flex; gap: 10px; margin-top: 16px; }
-.chip { font-size: 11px; border: 1.5px solid var(--ink); border-radius: 999px 14px 999px 12px / 12px 999px 14px 999px; padding: 5px 12px; background: color-mix(in srgb, var(--paper) 70%, #fff); }
-.chip.hot { background: var(--soft); }
-
-/* ============ 切换器 ============ */
-.switcher { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 5; display: flex; gap: 10px; padding: 10px 12px; background: #fff; border: 2px solid var(--ink); border-radius: var(--wobble); box-shadow: 4px 5px 0 rgba(58,51,36,.15); }
-.switcher button { border: 2px solid transparent; background: transparent; padding: 7px 14px; border-radius: 12px 7px 10px 8px / 8px 10px 7px 12px; font: 600 13px/1 inherit; color: var(--ink); cursor: pointer; }
-.switcher button.on { border-color: var(--ink); background: color-mix(in srgb, var(--primary) 20%, #fff); }
-.switcher .sw { width: 14px; height: 14px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: -1px; border: 1.5px solid var(--ink); }
-@media (max-width: 900px) { .shell { flex-direction: column; } .side { flex-basis: auto; } }
+.content { margin-left: 348px; max-width: 600px; padding: 76px 0 60px; }
+.lead { font-size: 20.8px; line-height: 1.45; margin: 0 0 8px; }
+.greet { font-family: Caveat, cursive; font-size: 30px; color: var(--accent); }
+h1 { font: 700 48px/1.2 "Outfit Variable", -apple-system, sans-serif; letter-spacing: -.01em; margin: 0 0 8px; }
+h2 { font: 600 20.8px/1.3 "Outfit Variable", sans-serif; margin: 0 0 10px; }
+section { margin-bottom: 56px; }
+.timeline { list-style: none; padding: 0; }
+.timeline li { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1.5px dashed color-mix(in srgb, var(--ink) 22%, transparent); font-size: 15px; }
+.timeline b { flex: 0 0 118px; font: 600 11px/1.7 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--primary); }
+.proj { padding: 16px 0; border-bottom: 1.5px dashed color-mix(in srgb, var(--ink) 22%, transparent); }
+.proj h3 { font: 600 17px/1.3 "Outfit Variable", sans-serif; }
+.proj h3 .yr { font: 400 11px/1 "Google Sans Code Variable", monospace; color: var(--muted); margin-left: 8px; }
+.proj p { font-size: 15px; color: color-mix(in srgb, var(--ink) 88%, transparent); margin-top: 5px; }
+.pill { display: inline-block; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border: 1.5px solid var(--muted); border-radius: 999px 12px 999px 14px / 14px 999px 12px 999px; padding: 3px 9px; margin-top: 8px; }
+footer { border-top: 1px solid var(--line); padding: 20px 0 40px; font-size: 13px; color: var(--muted); }
+footer .hand { font-family: Caveat, cursive; font-size: 20px; color: var(--accent); }
+.switcher { position: fixed; bottom: 18px; right: 24px; z-index: 60; display: flex; gap: 8px; padding: 9px 11px; background: #fff; border: 2px solid var(--ink); border-radius: 14px 8px 12px 9px / 9px 12px 8px 14px; box-shadow: 3px 4px 0 rgba(0,0,0,.12); }
+.switcher button { border: 2px solid transparent; background: transparent; padding: 6px 12px; border-radius: 10px 6px 9px 7px / 7px 9px 6px 10px; font: 600 12.5px/1 inherit; color: var(--ink); cursor: pointer; }
+.switcher button.on { border-color: var(--ink); background: color-mix(in srgb, var(--primary) 18%, #fff); }
+.switcher .sw { width: 12px; height: 12px; border-radius: 50% 45% 55% 48%; display: inline-block; margin-right: 6px; vertical-align: -1px; border: 1.5px solid var(--ink); }
 </style>
 </head>
 <body data-theme="matcha">
-  <div class="frame" aria-hidden="true"></div>
-
-  <div class="shell">
-    <aside class="side">
-      <div class="wordmark">Hongjin Lin</div>
-      <div class="intro">
-        <p>Backend &amp; ML engineer, turning ideas into systems people can rely on.</p>
-        <p>现在的主页换了手绘温暖风：<span class="hand">cozy &amp; hand-drawn</span></p>
-      </div>
-      <div class="badge"><i></i><span><b>AVAILABLE</b> · Open to work</span></div>
-      <nav>
-        <a href="#"><span>01</span>About</a>
-        <a href="#"><span>02</span>Projects</a>
-        <a href="#"><span>03</span>Fitness</a>
-        <a href="#"><span>04</span>Résumé</a>
-      </nav>
-      <div class="langs"><b>Languages</b><span>EN / 中文</span></div>
-    </aside>
-
-    <main class="main">
-      <div class="hero-row">
-        <h1 class="hero">Building the foundations for <em>intelligent</em> products.</h1>
-        <div class="vertical" id="vtext">抹茶拿铁</div>
-      </div>
-
-      <div class="chips">
-        <span class="chip hot">✎ hand-drawn</span>
-        <span class="chip">warm &amp; minimal</span>
-        <span class="chip">paper grain</span>
-        <span class="chip">wobbly borders</span>
-      </div>
-
-      <section class="sec">
-        <div class="sec-head"><h2>Projects</h2><span class="hand">selected work ~</span></div>
-        <div class="rows">
-          <div class="row"><span class="no">01</span><span class="t">RAG Knowledge Assistant</span><span class="tag">LLM Systems</span><span class="arr">→</span></div>
-          <div class="row"><span class="no">02</span><span class="t">Real-time Recommendation API</span><span class="tag">API · ML</span><span class="arr">→</span></div>
-          <div class="row"><span class="no">03</span><span class="t">Distributed Task Queue</span><span class="tag">Infrastructure</span><span class="arr">→</span></div>
-          <div class="row"><span class="no">🍵</span><span class="t">60 天饮食训练打卡</span><span class="tag">Fitness</span><span class="arr">→</span></div>
-        </div>
-      </section>
-    </main>
-  </div>
-
+  <nav class="navbar">
+    <a class="brand" href="#">hongjinlin.com</a>
+    <div class="navlinks"><a href="#">About</a><a href="#projects">Projects</a><a href="#">Fitness</a><a href="#">Résumé</a></div>
+  </nav>
+  <aside class="sidebar">
+    <div class="avatar">紅</div>
+    <div>
+      <div class="side-name">Hongjin Lin</div>
+      <div class="side-role">Backend &amp; ML engineer</div>
+    </div>
+    <div class="badge"><i></i><span>Available for work</span></div>
+    <div class="side-block">
+      <h3>Elsewhere</h3>
+      <a href="#">GitHub ↗</a><a href="#">Fitness Tracker →</a><a href="#">Résumé →</a>
+    </div>
+    <div class="side-block">
+      <h3>Theme</h3>
+      <div style="font-family: Caveat, cursive; font-size: 19px; color: var(--accent);" id="themeName">Matcha Latte</div>
+    </div>
+    <div class="side-note">drawn by hand, brewed with tea ~</div>
+  </aside>
+  <main class="content">
+    <div class="greet">Hey, I'm Hongjin!</div>
+    <h1>Building reliable systems &amp; intelligent products.</h1>
+    <p class="lead">Backend &amp; machine-learning engineer — I care about clear design, testable code, and shipping features that make a real impact.</p>
+    <section>
+      <h2>A brief timeline</h2>
+      <ul class="timeline">
+        <li><b>2026</b><span>Graduated with a B.S. in Computer Science — distributed systems &amp; applied ML.</span></li>
+        <li><b>Now</b><span>Looking for a team where I can contribute, keep learning, and build products that scale.</span></li>
+        <li><b>Daily</b><span>Logging meals, workouts and weight for 60 days — <a href="#">follow along →</a></span></li>
+      </ul>
+    </section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="proj"><h3>RAG Knowledge Assistant<span class="yr">2026</span></h3><p>A retrieval-augmented assistant answering over private documents with citations — modular ingestion, hybrid retrieval, evaluation tooling.</p><span class="pill">LLM Systems</span></div>
+      <div class="proj"><h3>Real-time Recommendation API<span class="yr">2025</span></h3><p>Low-latency recommendations with collaborative filtering and content signals; P99 128ms at 2.5k rps.</p><span class="pill">API · ML</span></div>
+      <div class="proj"><h3>Distributed Task Queue<span class="yr">2025</span></h3><p>Fault-tolerant queueing with delayed scheduling, retries and rate limiting — observable by default.</p><span class="pill">Infrastructure</span></div>
+    </section>
+    <footer><span class="hand">drawn by hand, brewed with tea ~</span><br/>© 2026 Hongjin Lin · hongjinlin.com</footer>
+  </main>
   <div class="switcher" id="sw">
     <button data-t="matcha" class="on"><span class="sw" style="background:#6f8353"></span>抹茶拿铁</button>
     <button data-t="terracotta"><span class="sw" style="background:#b96a4b"></span>陶土茶屋</button>
     <button data-t="jam"><span class="sw" style="background:#cd5f4e"></span>野菜果酱</button>
     <button data-t="sakura"><span class="sw" style="background:#c97f92"></span>樱花芋泥</button>
   </div>
-
 <script>
-const names = { matcha: "抹茶拿铁", terracotta: "陶土茶屋", jam: "野菜果酱", sakura: "樱花芋泥" };
+const names = { matcha: "Matcha Latte", terracotta: "Tea House", jam: "Vegetable Jam", sakura: "Sakura Ube" };
 document.getElementById("sw").addEventListener("click", (e) => {
   const btn = e.target.closest("button"); if (!btn) return;
   document.body.dataset.theme = btn.dataset.t;
-  document.getElementById("vtext").textContent = names[btn.dataset.t];
+  document.getElementById("themeName").textContent = names[btn.dataset.t];
   document.querySelectorAll("#sw button").forEach(b => b.classList.toggle("on", b === btn));
 });
 </script>
