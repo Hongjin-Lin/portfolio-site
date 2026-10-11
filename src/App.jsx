@@ -64,28 +64,28 @@ const COPY = {
     lead: "CS student, climber, landscape photographer.",
     introHeading: "A brief introduction", close: "CLOSE ↑", details: "DETAILS ↓",
     timeline: [
-      { year: "2003–2021", title: "Ningbo kid", text: ": forum-goer, gamer, lover of obscure '00s bands." },
-      { year: "2021–2026", title: "BSc Computer Science", text: ": distributed systems, applied machine learning, and the occasional all-nighter. ", link: "Wrote some of it down", tail: " along the way." },
-      { year: "2026–now", title: "Backend & ML engineer", text: ": building reliable systems, shipping features, and still documenting everything." },
-      { year: "Daily", title: "60-day fitness log", text: ": meals, workouts, and weight — ", link: "follow along here", href: "/fitness-tracker/", tail: "." },
+      { year: "2004–2022", title: "Shenzhen, China", text: " — Grew up reading widely and staying curious about how things work." },
+      { year: "2022–2026", title: "BSc in Computer Science, University of Nottingham", text: " — Built a strong foundation in computer science, with particular interests in software engineering and applied machine learning." },
+      { year: "2026–now", title: "Incoming MSc student in Computer Science & Engineering, Technical University of Denmark", text: " — Looking forward to deepening my knowledge of AI and machine learning, and exploring how to bring AI models into practical, real-world applications." },
     ],
-    also: "Also", alsoText: ": city explorer, weight-lifter, brick-clicker, tea drinker, webmaster.",
+    career: "Career direction", careerText: ": I aspire to become a Machine Learning Engineer or AI Engineer, applying technology to real-world problems and building useful tools that make people’s lives easier.",
+    outside: "Outside tech", outsideText: ": Travelling, cycling, climbing, and landscape photography.",
     shelves: "Shelves", shelvesDescription: "Hand-picked paths through my notes, projects, and things I keep learning.",
     appleAlt: "Four green apples holding hands and dancing together",
   },
   zh: {
-    intro: "你好，我是泓进，后端与机器学习工程师、开源创作者。这里是我的数字花园。🌱",
+    intro: "你好，我是泓进，即将入读丹麦技术大学计算机科学与工程硕士项目。这里是我的数字花园。🌱",
     projects: "项目", fitness: "健身打卡", about: "关于我", resume: "简历",
     introAria: "个人介绍", greeting: "嗨，我是泓进！",
-    lead: "后端与机器学习工程师、写作者，也是个技术爱好者。",
+    lead: "计算机专业学生、攀岩爱好者、风光摄影爱好者。",
     introHeading: "简单介绍", close: "收起 ↑", details: "查看详情 ↓",
     timeline: [
-      { year: "2003–2021", title: "宁波长大", text: "：逛论坛、玩游戏，喜欢冷门的 00 年代乐队。" },
-      { year: "2021–2026", title: "计算机科学学士", text: "：学习分布式系统与应用机器学习，偶尔也会熬夜。一路上", link: "记下了一些经历", tail: "。" },
-      { year: "2026–现在", title: "后端与机器学习工程师", text: "：构建可靠的系统、交付功能，也持续记录技术实践。" },
-      { year: "日常", title: "60 天健身打卡", text: "：记录饮食、训练和体重，", link: "点这里一起看看", href: "/fitness-tracker/", tail: "。" },
+      { year: "2004–2022", title: "中国深圳", text: " — 在阅读中长大，也一直好奇事物如何运作。" },
+      { year: "2022–2026", title: "诺丁汉大学计算机科学学士", text: " — 打下了扎实的计算机科学基础，并逐渐对软件工程与应用机器学习产生兴趣。" },
+      { year: "2026–现在", title: "丹麦技术大学计算机科学与工程硕士新生", text: " — 希望进一步深入学习人工智能与机器学习，并探索如何将 AI 模型应用于真实场景。" },
     ],
-    also: "还有", alsoText: "：城市漫游、举铁、玩积木、喝茶，也喜欢打理个人网站。",
+    career: "职业方向", careerText: "：我希望未来成为机器学习工程师或 AI 工程师，用技术解决实际问题，打造实用工具，让人们的生活更轻松。",
+    outside: "工作之外", outsideText: "：旅行、骑行、攀岩和风光摄影。",
     shelves: "收藏架", shelvesDescription: "整理我持续学习的主题、笔记与项目。",
     appleAlt: "四只牵手跳舞的青苹果",
   },
@@ -312,7 +312,8 @@ export function App() {
               </li>
             ))}
           </ul>
-          <p className="tn-also"><a href="#">{copy.also}</a>{copy.alsoText}</p>
+          <p className="tn-also"><b>{copy.career}</b>{copy.careerText}</p>
+          <p className="tn-also"><b>{copy.outside}</b>{copy.outsideText}</p>
           </div>
           <aside className="tn-hero-art" aria-label="Four dancing green apples">
             <span className="tn-artwork--apples">
