@@ -137,6 +137,39 @@ function LanguageSwitch({ lang, onChange, mobile = false, inline = false }) {
   );
 }
 
+function SidebarNavIcon({ type }) {
+  const common = { className: "tn-nav-icon", viewBox: "0 0 28 28", "aria-hidden": true, focusable: false, fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round" };
+  if (type === "projects") return <svg {...common}>
+    <path d="M4.2 5.4q.1-1.1 1.3-1.1h17q1.1 0 1.2 1.2v13q-.1 1.1-1.3 1.1H5.4q-1.2-.1-1.2-1.2z" fill="#d8e9d6" />
+    <path d="M6.7 7.5q0-.7.8-.7h13.1q.7 0 .7.8v8.7q0 .7-.8.7H7.4q-.7 0-.7-.8z" fill="#8cbd9b" />
+    <path d="M10.5 22.5h7m-3.5-2.7v2.7M4.2 5.4q.1-1.1 1.3-1.1h17q1.1 0 1.2 1.2v13q-.1 1.1-1.3 1.1H5.4q-1.2-.1-1.2-1.2z" />
+    <path d="m10.2 13.6 2.3-2.1 2 1.8 2.8-2.6" stroke="#fff8df" strokeWidth="1.3" />
+    <circle cx="18.5" cy="9.6" r=".8" fill="#efaa54" stroke="none" />
+    <path d="M4.8 20.7q4.4-.4 9.2-.2 4.7-.2 9.2.3l-1 1.4q-8.2.5-16.4 0z" fill="#efb66b" />
+  </svg>;
+  if (type === "fitness") return <svg {...common}>
+    <path d="M5.1 10.1q1.1-.7 2.3-.1l1.1.8v6.4l-1.2.8q-1.2.6-2.2-.2z" fill="#edaa65" />
+    <path d="M19.5 10.6 20.7 10q1.2-.6 2.2.2v7.7q-1.1.7-2.3.1l-1.1-.8z" fill="#8fb8bd" />
+    <path d="M8.5 13.2q4.6-.8 11.1 0v2.5q-6.3.9-11.1 0z" fill="#f3d57b" />
+    <path d="M5.1 10.1q1.1-.7 2.3-.1l1.1.8v6.4l-1.2.8q-1.2.6-2.2-.2zM19.5 10.6 20.7 10q1.2-.6 2.2.2v7.7q-1.1.7-2.3.1l-1.1-.8zM8.5 13.2q4.6-.8 11.1 0v2.5q-6.3.9-11.1 0z" />
+    <path d="M4.1 11.3v5.4m19.7-5.4v5.4" />
+  </svg>;
+  if (type === "about") return <svg {...common}>
+    <path d="M5.7 22.8q.5-5.1 5.2-6.1h6.2q4.6 1 5.2 6.1-8.2 1.4-16.6 0Z" fill="#9fc9a5" />
+    <path d="M8.4 10.3q-.6-5.1 4.8-6.1 5.4.8 5.2 6-.2 5-4.9 5.3-4.8-.2-5.1-5.2Z" fill="#f1c66b" />
+    <path d="M8.4 9.1q1.1-5.6 6.2-5.1 2.9.2 3.7 2.6l-1.2 1.7q-2.9-.2-5.3-1.7-1.2 1.9-3.4 2.5ZM5.7 22.8q.5-5.1 5.2-6.1h6.2q4.6 1 5.2 6.1-8.2 1.4-16.6 0Z" />
+    <path d="M11.2 11.5h.1m4.3 0h.1m-3.6 2.1q1.3 1 2.6-.1" strokeWidth="1.25" />
+    <path d="M13.9 3.5q-.2-1.2.6-2" stroke="#80aa72" strokeWidth="1.4" />
+  </svg>;
+  return <svg {...common}>
+    <path d="M7 3.8h9.2l5.1 5.1v14.3q0 1.1-1.2 1.1H7q-1.1 0-1.1-1.2V5q0-1.2 1.1-1.2Z" fill="#f6e6b8" />
+    <path d="M16.1 3.9v4q0 1.1 1.1 1.1h4" fill="#e8ad67" />
+    <path d="M9.3 12.4q4.2-.5 8.8 0M9.3 15.9q2.9-.4 6.2 0m-6.2 3.5q4.3-.4 8.7 0" />
+    <path d="m4.8 20.6 1.8-1.1 1.1 1.8-1.9 1.1-1.4.3z" fill="#dc8b6c" />
+    <path d="M7 3.8h9.2l5.1 5.1v14.3q0 1.1-1.2 1.1H7q-1.1 0-1.1-1.2V5q0-1.2 1.1-1.2Z" />
+  </svg>;
+}
+
 export function App() {
   const [accent, setAccent] = useState(() => localStorage.getItem("tn-accent") || ACCENTS[0]);
   const [dark, setDark] = useState(() => localStorage.getItem("tn-dark") === "1");
@@ -176,10 +209,10 @@ export function App() {
           <button className="tn-menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={menuOpen ? "Close navigation" : "Open navigation"}>{menuOpen ? "×" : "☰"}</button>
         </div>
         {menuOpen && <nav className="tn-mobile-menu" aria-label="Mobile primary">
-          <a href="#projects" onClick={() => setMenuOpen(false)}>💻 {copy.projects}</a>
-          <a href="/fitness-tracker/">🏋️ {copy.fitness}</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>💾 {copy.about}</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>📄 {copy.resume}</a>
+          <a href="#projects" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="projects" />{copy.projects}</a>
+          <a href="/fitness-tracker/"><SidebarNavIcon type="fitness" />{copy.fitness}</a>
+          <a href="#about" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="about" />{copy.about}</a>
+          <a href="#about" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="resume" />{copy.resume}</a>
           <LanguageSwitch lang={lang} onChange={setLang} mobile />
         </nav>}
       </header>
@@ -196,10 +229,10 @@ export function App() {
         </section>
         <section className="tn-sec tn-sec--nonav">
           <nav className="tn-nav" aria-label={lang === "zh" ? "主导航" : "Primary"}>
-            <a href="#projects"><span className="em">💻</span>{copy.projects}</a>
-            <a href="/fitness-tracker/"><span className="em">🏋️</span>{copy.fitness}</a>
-            <a href="#about"><span className="em">💾</span>{copy.about}</a>
-            <a href="#about"><span className="em">📄</span>{copy.resume}</a>
+            <a href="#projects"><SidebarNavIcon type="projects" />{copy.projects}</a>
+            <a href="/fitness-tracker/"><SidebarNavIcon type="fitness" />{copy.fitness}</a>
+            <a href="#about"><SidebarNavIcon type="about" />{copy.about}</a>
+            <a href="#about"><SidebarNavIcon type="resume" />{copy.resume}</a>
           </nav>
         </section>
         <section className="tn-sec tn-sec--foot">

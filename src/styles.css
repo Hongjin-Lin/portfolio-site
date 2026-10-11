@@ -63,6 +63,8 @@ h1, h2, h3 { margin: 0; font-family: "Outfit Variable", -apple-system, BlinkMacS
 .tn-side p { margin: 0; }
 .tn-nav { display: flex; flex-direction: column; gap: 2px; }
 .tn-nav a { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 500; color: var(--tn-text); text-decoration: none; padding: 4px 8px; margin: 0 -8px; border-radius: 8px; }
+.tn-nav-icon { display: block; flex: 0 0 24px; width: 24px; height: 24px; color: #554e47; overflow: visible; transition: transform .2s ease; }
+.tn-nav a:hover .tn-nav-icon { transform: rotate(-4deg) translateY(-1px); }
 .tn-nav a:hover { background: rgba(0, 0, 0, .05); }
 html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 .tn-sec--foot { margin-top: auto; border-bottom: 0; }
@@ -136,7 +138,7 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
   .tn-mobile-actions .tn-icon-button { margin: 0; }
   .tn-menu-toggle { width: 36px; height: 36px; border: 0; background: transparent; color: var(--tn-text); font-size: 22px; cursor: pointer; }
   .tn-mobile-menu { position: absolute; top: 60px; left: 0; right: 0; display: flex; flex-direction: column; gap: 4px; padding: 12px 24px 18px; border-bottom: 1px solid var(--tn-border); background: var(--tn-bg); box-shadow: 0 8px 16px rgb(0 0 0 / 6%); }
-  .tn-mobile-menu a { padding: 8px; color: var(--tn-text); text-decoration: none; }
+  .tn-mobile-menu a { display: flex; align-items: center; gap: 10px; padding: 8px; color: var(--tn-text); text-decoration: none; }
   .tn-main { max-width: 1020px; margin: 0 auto; padding: 32px 32px 64px; }
   .tn-hero-section { min-height: 0; }
   .tn-hero-inner { flex-direction: column; }
