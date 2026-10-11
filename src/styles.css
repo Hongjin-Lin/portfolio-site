@@ -37,7 +37,7 @@ h1, h2, h3 { margin: 0; font-family: "Outfit Variable", -apple-system, BlinkMacS
 
 /* ===== sidebar ===== */
 .tn-shell { min-height: 100vh; background: var(--tn-bg); }
-.tn-side { position: sticky; top: 0; float: left; width: 260px; height: 100vh; margin-left: 32px; background: var(--tn-bg); border-right: 1px solid var(--tn-border); display: flex; flex-direction: column; }
+.tn-side { position: sticky; top: 32px; float: left; width: 260px; height: calc(100vh - 32px); margin: 32px 0 0 108px; background: var(--tn-bg); border-right: 1px solid var(--tn-border); display: flex; flex-direction: column; }
 .tn-sec { padding: 0 0 16px; margin: 0 16px 20px; border-bottom: 1px solid var(--tn-border); }
 .tn-sec--brand { display: flex; align-items: center; justify-content: space-between; }
 .tn-brand { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 16px; color: var(--tn-heading); text-decoration: none; }
@@ -55,7 +55,7 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 .tn-sec--foot a:hover, .tn-moon:hover { color: var(--tn-accent); }
 
 /* ===== main column ===== */
-.tn-main { margin-left: 293px; padding: 56px 32px 64px 35px; }
+.tn-main { margin-left: 369px; padding: 56px 32px 64px 72px; }
 .tn-sec--nonav { border-bottom: 0; }
 .tn-col { max-width: 600px; }
 .tn-col h1 { font-size: 48px; font-weight: 700; line-height: 1.2; letter-spacing: -.01em; margin: 0 0 8px; color: var(--tn-heading); }
