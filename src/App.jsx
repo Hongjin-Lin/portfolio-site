@@ -176,6 +176,8 @@ export function App() {
   const [lang, setLang] = useState(() => localStorage.getItem("ft_lang") || "en");
   const [openProject, setOpenProject] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [themeOpen, setThemeOpen] = useState(false);
+  const [emailCopyState, setEmailCopyState] = useState("idle");
   const copy = COPY[lang];
 
   useEffect(() => {
@@ -194,18 +196,70 @@ export function App() {
     document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
   }, [lang]);
 
-  const cycleAccent = () => {
-    const i = ACCENTS.indexOf(accent);
-    setAccent(ACCENTS[(i + 1) % ACCENTS.length]);
+  useEffect(() => {
+    if (!themeOpen) return undefined;
+    const onPointerDown = (event) => {
+      if (!event.target.closest(".tn-theme-actions, .tn-mobile-actions")) setThemeOpen(false);
+    };
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setThemeOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [themeOpen]);
+
+  const copyEmail = async () => {
+    const email = "hongjin1125@outlook.com";
+    try {
+      await navigator.clipboard.writeText(email);
+    } catch {
+      const input = document.createElement("textarea");
+      input.value = email;
+      input.style.position = "fixed";
+      input.style.opacity = "0";
+      document.body.appendChild(input);
+      input.select();
+      const copied = document.execCommand("copy");
+      input.remove();
+      if (!copied) {
+        setEmailCopyState("error");
+        window.setTimeout(() => setEmailCopyState("idle"), 1800);
+        return;
+      }
+    }
+    setEmailCopyState("copied");
+    window.setTimeout(() => setEmailCopyState("idle"), 1800);
   };
+
+  const renderThemePicker = (id) => themeOpen && (
+    <div className="tn-theme-picker" id={id} role="group" aria-label="Choose theme color">
+      {ACCENTS.map((color, index) => (
+        <button
+          key={color}
+          type="button"
+          className={`tn-theme-swatch${accent === color ? " active" : ""}`}
+          style={{ "--swatch-color": color }}
+          title={`${ACCENT_NAMES[index]} theme`}
+          aria-label={`Choose ${ACCENT_NAMES[index]} theme`}
+          aria-pressed={accent === color}
+          onClick={() => { setAccent(color); setThemeOpen(false); }}
+        ><i /></button>
+      ))}
+    </div>
+  );
 
   return (
     <div className={`tn-shell${lang === "zh" ? " language-zh" : ""}`}>
       <header className="tn-mobile-nav">
         <BrandLogo />
         <div className="tn-mobile-actions">
-          <button className="tn-dot" onClick={cycleAccent} aria-label="Cycle theme color"><i /></button>
-          <button className="tn-icon-button" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}>{dark ? <Sun size={24} weight="regular" /> : <Moon size={24} weight="regular" />}</button>
+          <button className={`tn-dot${themeOpen ? " open" : ""}`} onClick={() => setThemeOpen(!themeOpen)} aria-label="Choose theme color" aria-haspopup="true" aria-expanded={themeOpen} aria-controls="mobile-theme-picker" data-tooltip="Accent color"><i /></button>
+          {renderThemePicker("mobile-theme-picker")}
+          <button className="tn-icon-button" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"} data-tooltip="Theme">{dark ? <Sun size={24} weight="regular" /> : <Moon size={24} weight="regular" />}</button>
           <button className="tn-menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={menuOpen ? "Close navigation" : "Open navigation"}>{menuOpen ? "×" : "☰"}</button>
         </div>
         {menuOpen && <nav className="tn-mobile-menu" aria-label="Mobile primary">
@@ -220,8 +274,9 @@ export function App() {
         <section className="tn-sec tn-sec--brand">
           <BrandLogo />
           <div className="tn-theme-actions">
-            <button className="tn-dot" onClick={cycleAccent} title={"Theme color: " + ACCENT_NAMES[ACCENTS.indexOf(accent)]} aria-label="Cycle theme color"><i /></button>
-            <button className="tn-icon-button" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}>{dark ? <Sun size={24} weight="regular" /> : <Moon size={24} weight="regular" />}</button>
+            <button className={`tn-dot${themeOpen ? " open" : ""}`} onClick={() => setThemeOpen(!themeOpen)} aria-label="Choose theme color" aria-haspopup="true" aria-expanded={themeOpen} aria-controls="desktop-theme-picker" data-tooltip="Accent color"><i /></button>
+            {renderThemePicker("desktop-theme-picker")}
+            <button className="tn-icon-button" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"} data-tooltip="Theme">{dark ? <Sun size={24} weight="regular" /> : <Moon size={24} weight="regular" />}</button>
           </div>
         </section>
         <section className="tn-sec">
@@ -238,9 +293,9 @@ export function App() {
         <section className="tn-sec tn-sec--foot">
           <div className="tn-footer-actions">
             <div className="tn-socials" aria-label="Social links">
-              <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer" aria-label="GitHub"><GithubLogo size={26} weight="regular" /></a>
-              <a href="#" aria-label="LinkedIn"><LinkedinLogo size={25} weight="regular" /></a>
-              <a href="#" aria-label="Email"><EnvelopeSimple size={25} weight="regular" /></a>
+              <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer" aria-label="GitHub" data-tooltip="GitHub"><GithubLogo size={26} weight="regular" /></a>
+              <a href="#" aria-label="LinkedIn" data-tooltip="LinkedIn"><LinkedinLogo size={25} weight="regular" /></a>
+              <button type="button" className="tn-social-copy" onClick={copyEmail} aria-label={emailCopyState === "copied" ? "Email copied" : "Copy my email"} data-tooltip={emailCopyState === "copied" ? "Email copied!" : emailCopyState === "error" ? "Could not copy" : "Copy my email"}><EnvelopeSimple size={25} weight="regular" /></button>
             </div>
             <LanguageSwitch lang={lang} onChange={setLang} inline />
           </div>
