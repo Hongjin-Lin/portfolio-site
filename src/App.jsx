@@ -131,7 +131,7 @@ export function App() {
           <div className="tn-col" id="about">
           <h1>Hey, I'm Hongjin!</h1>
           <p className="tn-lead">Backend &amp; machine-learning engineer, writer, all-around nerd.</p>
-          <h2>A brief timeline</h2>
+          <h2>A brief introduction</h2>
           <ul className="tn-timeline">
             <li>
               <span className="tn-yr">2003–2021</span>

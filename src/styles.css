@@ -76,9 +76,9 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 .tn-hero-inner { display: flex; flex-direction: column; align-items: stretch; }
 .tn-sec--nonav { border-bottom: 0; }
 .tn-col { width: 100%; max-width: 760px; min-width: 0; }
-.tn-col h1 { max-width: 600px; font-size: 38.4px; font-weight: 700; line-height: 1.2; letter-spacing: -.01em; margin: 0 0 8px; color: var(--tn-heading); }
+.tn-col h1 { max-width: 600px; font-size: 48px; font-weight: 700; line-height: 1.2; letter-spacing: -.01em; margin: 0 0 8px; color: var(--tn-heading); }
 .tn-lead { max-width: 600px; font-size: 20.8px; line-height: 1.3; margin: 0 0 8px; }
-.tn-col h2 { font-size: 30.4px; line-height: 1.3; margin: 28px 0 12px; }
+.tn-col h2 { font-size: 20.8px; line-height: 1.3; margin: 28px 0 12px; }
 .tn-timeline { list-style: none; padding: 0; margin: 20px 0 0; }
 .tn-timeline li { display: flex; gap: 12px; padding: 0 0 8px; margin: 0 0 16px; }
 .tn-yr { flex: 0 0 90px; font-family: "Google Sans Code Variable", ui-monospace, "SF Mono", Consolas, monospace; font-size: 12.8px; line-height: 1.9; color: var(--tn-muted); }
@@ -130,8 +130,8 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 @media (max-width: 600px) {
   .tn-mobile-nav { padding-inline: 16px; }
   .tn-main { padding: 32px 24px 48px; }
-  .tn-col h1 { font-size: 32px; }
-  .tn-col h2 { font-size: 25.6px; }
+  .tn-col h1 { font-size: 38.4px; }
+  .tn-col h2 { font-size: 18.4px; }
   .tn-shelves h2, .tn-projects > h2 { font-size: 25.6px; }
   .tn-also { font-size: 17.6px; }
   .tn-proj h3 { font-size: 22.4px; }
