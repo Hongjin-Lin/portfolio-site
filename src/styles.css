@@ -1,5 +1,6 @@
 @import "@fontsource-variable/outfit";
 @import "@fontsource-variable/google-sans-code";
+@import "@fontsource-variable/google-sans-flex";
 
 :root {
   /* tania.dev replica tokens */
@@ -29,7 +30,7 @@ html[data-tn-dark="1"] {
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; min-width: 320px; min-height: 100vh; background: var(--tn-bg); color: var(--tn-text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; font-synthesis: none; font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: var(--tn-bg); color: var(--tn-text); font-family: -apple-system, BlinkMacSystemFont, "Google Sans Flex Variable", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif; font-synthesis: none; font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 a { color: inherit; }
 h1, h2, h3 { margin: 0; font-family: "Outfit Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 600; color: var(--tn-heading); }
 .language-zh h1, .language-zh h2, .language-zh h3 { font-family: "Outfit Variable", "PingFang SC", "Microsoft YaHei", sans-serif; }
@@ -67,18 +68,18 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 .tn-hero-inner { display: flex; flex-direction: column; align-items: stretch; }
 .tn-sec--nonav { border-bottom: 0; }
 .tn-col { width: 100%; max-width: 760px; min-width: 0; }
-.tn-col h1 { max-width: 600px; font-size: 48px; font-weight: 700; line-height: 1.2; letter-spacing: -.01em; margin: 0 0 8px; color: var(--tn-heading); }
+.tn-col h1 { max-width: 600px; font-size: 38.4px; font-weight: 700; line-height: 1.2; letter-spacing: -.01em; margin: 0 0 8px; color: var(--tn-heading); }
 .tn-lead { max-width: 600px; font-size: 20.8px; line-height: 1.3; margin: 0 0 8px; }
-.tn-col h2 { font-size: 20.8px; line-height: 1.3; margin: 28px 0 12px; }
+.tn-col h2 { font-size: 30.4px; line-height: 1.3; margin: 28px 0 12px; }
 .tn-timeline { list-style: none; padding: 0; margin: 20px 0 0; }
 .tn-timeline li { display: flex; gap: 12px; padding: 0 0 8px; margin: 0 0 16px; }
 .tn-yr { flex: 0 0 90px; font-family: "Google Sans Code Variable", ui-monospace, "SF Mono", Consolas, monospace; font-size: 12.8px; line-height: 1.9; color: var(--tn-muted); }
 .tn-timeline a { color: var(--tn-accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
-.tn-also { margin-top: 26px; }
+.tn-also { margin-top: 26px; font-size: 19.2px; line-height: 1.55; }
 .tn-also a { color: var(--tn-accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
 .tn-lower-sections { margin-top: 0; }
 .tn-shelves { margin-top: 0; }
-.tn-shelves h2, .tn-projects > h2 { font-size: 32px; line-height: 1.2; margin: 0 0 8px; }
+.tn-shelves h2, .tn-projects > h2 { font-size: 30.4px; line-height: 1.3; margin: 0 0 8px; }
 .tn-shelves p { margin: 0; }
 .tn-hero-art { width: 250px; margin: 64px auto 0; display: flex; flex-direction: column; align-items: center; }
 .tn-hero-art .apple-ensemble { display: block; width: 250px; height: 204px; object-fit: contain; }
@@ -90,6 +91,10 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 
 @container tn-hero (max-width: 859px) {
   .tn-hero-section { min-height: 0; }
+}
+
+@media (min-width: 800px) {
+  .tn-timeline { font-size: 17.6px; }
 }
 
 @media (min-width: 1020px) and (max-width: 1359px) {
@@ -117,7 +122,12 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 @media (max-width: 600px) {
   .tn-mobile-nav { padding-inline: 16px; }
   .tn-main { padding: 32px 24px 48px; }
-  .tn-col h1 { font-size: 38px; }
+  .tn-col h1 { font-size: 32px; }
+  .tn-col h2 { font-size: 25.6px; }
+  .tn-shelves h2, .tn-projects > h2 { font-size: 25.6px; }
+  .tn-also { font-size: 17.6px; }
+  .tn-proj h3 { font-size: 22.4px; }
+  .tn-proj .brief, .tn-proj .pad p { font-size: 16px; }
   .tn-timeline li { gap: 8px; }
   .tn-yr { flex-basis: 78px; }
 }
@@ -137,8 +147,8 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 .tn-proj .thumb img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }
 .tn-proj .body { flex: 1; min-width: 0; }
 .tn-proj .meta { font: 600 11px/1 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--tn-accent); margin-bottom: 7px; }
-.tn-proj h3 { font-size: 19px; line-height: 1.3; letter-spacing: -.005em; }
-.tn-proj .brief { font-size: 14.5px; line-height: 1.6; margin-top: 6px; }
+.tn-proj h3 { font-size: 25.6px; line-height: 1.3; letter-spacing: -.005em; }
+.tn-proj .brief { font-size: 17.6px; line-height: 1.55; margin-top: 6px; }
 .tn-proj .note { font: 600 10.5px/1 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .09em; color: var(--tn-muted); margin-top: 10px; }
 .tn-proj .toggle { position: absolute; right: 0; top: 26px; font: 600 11px/1 "Google Sans Code Variable", ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--tn-text); background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; opacity: .85; }
 .tn-proj .toggle:hover { color: var(--tn-accent); opacity: 1; }
@@ -146,7 +156,7 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 .tn-proj.open .detail { grid-template-rows: 1fr; }
 .tn-proj .inner { overflow: hidden; min-height: 0; }
 .tn-proj .pad { padding: 16px 0 8px; }
-.tn-proj .pad p { font-size: 14.5px; line-height: 1.7; margin-bottom: 10px; }
+.tn-proj .pad p { font-size: 17.6px; line-height: 1.55; margin-bottom: 10px; }
 .tn-proj .pad .res { position: relative; padding-left: 18px; }
 .tn-proj .pad .res::before { content: ""; position: absolute; left: 0; top: 8px; width: 9px; height: 2px; background: var(--tn-accent); }
 .tn-proj .stack { font: 400 10.5px/1.6 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--tn-muted); }
