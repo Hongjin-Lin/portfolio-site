@@ -445,7 +445,7 @@ export function App() {
         {menuOpen && <nav className="tn-mobile-menu" aria-label="Mobile primary">
           <a href="/#projects" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="projects" />{t.projects}</a>
           <a href="/fitness-tracker/" aria-current="page" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="fitness" />{t.fitness}</a>
-          <a href="/#about" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="about" />{t.about}</a>
+          <a href="/me/" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="about" />{t.about}</a>
           <a href="/#about" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="resume" />{t.resume}</a>
           <div className="tn-lang-switch tn-lang-switch--mobile" role="group" aria-label="Language">
             <button type="button" className={lang === "en" ? "active" : ""} onClick={() => setLang("en")} aria-pressed={lang === "en"}>EN</button><span aria-hidden="true">/</span><button type="button" className={lang === "zh" ? "active" : ""} onClick={() => setLang("zh")} aria-pressed={lang === "zh"}>中</button>
@@ -467,7 +467,7 @@ export function App() {
           <nav className="tn-nav" aria-label={lang === "zh" ? "主导航" : "Primary"}>
             <a href="/#projects"><FitnessNavIcon type="projects" />{t.projects}</a>
             <a href="/fitness-tracker/" aria-current="page"><FitnessNavIcon type="fitness" />{t.fitness}</a>
-            <a href="/#about"><FitnessNavIcon type="about" />{t.about}</a>
+            <a href="/me/"><FitnessNavIcon type="about" />{t.about}</a>
             <a href="/#about"><FitnessNavIcon type="resume" />{t.resume}</a>
           </nav>
         </section>

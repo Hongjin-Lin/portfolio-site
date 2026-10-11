@@ -113,7 +113,7 @@ function ProjectRow({ project, index, open, onToggle, lang, copy }) {
   );
 }
 
-function BrandLogo() {
+export function BrandLogo() {
   return (
     <a className="tn-brand tn-brand--root" href="/" aria-label="返回 root 主页">
       <span className="tn-brand-mascot" aria-hidden="true">
@@ -127,7 +127,7 @@ function BrandLogo() {
   );
 }
 
-function LanguageSwitch({ lang, onChange, mobile = false, inline = false }) {
+export function LanguageSwitch({ lang, onChange, mobile = false, inline = false }) {
   return (
     <div className={`tn-lang-switch${mobile ? " tn-lang-switch--mobile" : ""}${inline ? " tn-lang-switch--inline" : ""}`} role="group" aria-label="Language">
       <button type="button" className={lang === "en" ? "active" : ""} onClick={() => onChange("en")} aria-pressed={lang === "en"}>EN</button>
@@ -137,7 +137,7 @@ function LanguageSwitch({ lang, onChange, mobile = false, inline = false }) {
   );
 }
 
-function SidebarNavIcon({ type }) {
+export function SidebarNavIcon({ type }) {
   if (type === "about") return <img className="tn-nav-icon tn-nav-icon--nalong" src="/icons/nalong-thinking.png" alt="" aria-hidden="true" decoding="async" />;
   const common = { className: "tn-nav-icon", viewBox: "0 0 28 28", "aria-hidden": true, focusable: false, fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round" };
   if (type === "projects") return <svg {...common}>
@@ -260,7 +260,7 @@ export function App() {
         {menuOpen && <nav className="tn-mobile-menu" aria-label="Mobile primary">
           <a href="#projects" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="projects" />{copy.projects}</a>
           <a href="/fitness-tracker/"><SidebarNavIcon type="fitness" />{copy.fitness}</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="about" />{copy.about}</a>
+          <a href="/me/" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="about" />{copy.about}</a>
           <a href="#about" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="resume" />{copy.resume}</a>
           <LanguageSwitch lang={lang} onChange={setLang} mobile />
         </nav>}
@@ -281,7 +281,7 @@ export function App() {
           <nav className="tn-nav" aria-label={lang === "zh" ? "主导航" : "Primary"}>
             <a href="#projects"><SidebarNavIcon type="projects" />{copy.projects}</a>
             <a href="/fitness-tracker/"><SidebarNavIcon type="fitness" />{copy.fitness}</a>
-            <a href="#about"><SidebarNavIcon type="about" />{copy.about}</a>
+            <a href="/me/"><SidebarNavIcon type="about" />{copy.about}</a>
             <a href="#about"><SidebarNavIcon type="resume" />{copy.resume}</a>
           </nav>
         </section>
