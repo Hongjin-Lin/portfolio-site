@@ -52,13 +52,9 @@ h1, h2, h3 { margin: 0; font-family: "Outfit Variable", -apple-system, BlinkMacS
 .tn-brand { display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto; color: var(--tn-heading); text-decoration: none; }
 .tn-brand--root { gap: 8px; }
 .tn-brand-avatar { display: block; width: 36px; height: 48px; object-fit: contain; }
-.tn-brand-lockup { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
-.tn-brand-wordmark { font-family: "Google Sans Code Variable", ui-monospace, monospace; font-size: 20px; font-weight: 700; letter-spacing: -.07em; line-height: 1; white-space: nowrap; }
-.tn-brand-wordmark b { color: var(--tn-accent); font-weight: 800; }
-.tn-brand-slash { color: #5f8a59; font-weight: 700; }
-.tn-root-path { width: 78px; height: 14px; overflow: visible; fill: none; stroke: #668758; stroke-width: 1.45; stroke-linecap: round; stroke-linejoin: round; }
-.tn-root-path circle { fill: #668758; stroke: none; }
-.tn-root-path .tn-root-sprout { fill: var(--tn-bg); stroke: #668758; stroke-width: 1.15; }
+.tn-brand-lockup { display: flex; align-items: center; }
+.tn-brand-wordmark { display: inline-flex; align-items: center; gap: 2px; font-family: "Google Sans Code Variable", ui-monospace, monospace; font-size: 20px; font-weight: 700; letter-spacing: -.07em; line-height: 1; white-space: nowrap; }
+.tn-brand-bamboo { width: 16px; height: 23px; flex: 0 0 auto; color: #5f8a59; overflow: visible; }
 .tn-dot { width: 38px; height: 38px; border: 0; border-radius: 8px; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .tn-dot i { width: 17px; height: 17px; border-radius: 50% 46% 52% 48%; background: var(--tn-accent); transition: transform .2s ease; }
 .tn-dot:hover i { transform: scale(1.12); }
@@ -124,7 +120,7 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
   .tn-mobile-nav { position: fixed; z-index: 20; inset: 0 0 auto; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px 0 32px; border-bottom: 1px solid var(--tn-border); background: var(--tn-bg); }
   .tn-brand-avatar { width: 30px; height: 40px; }
   .tn-brand-wordmark { font-size: 18px; }
-  .tn-root-path { width: 70px; height: 12px; }
+  .tn-brand-bamboo { width: 14px; height: 21px; }
   .tn-mobile-actions { display: flex; align-items: center; gap: 12px; }
   .tn-mobile-actions .tn-moon { margin: 0; }
   .tn-menu-toggle { width: 36px; height: 36px; border: 0; background: transparent; color: var(--tn-text); font-size: 22px; cursor: pointer; }

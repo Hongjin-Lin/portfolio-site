@@ -59,15 +59,18 @@ function ProjectRow({ project, index, open, onToggle }) {
 
 function BrandLogo() {
   return (
-    <a className="tn-brand tn-brand--root" href="/" aria-label="返回 B root/ 主页">
+    <a className="tn-brand tn-brand--root" href="/" aria-label="返回 root 主页">
       <img className="tn-brand-avatar" src="/icons/focus-reader.png" alt="" />
       <span className="tn-brand-lockup">
-        <span className="tn-brand-wordmark"><b>B</b> root<span className="tn-brand-slash">/</span></span>
-        <svg className="tn-root-path" viewBox="0 0 78 14" aria-hidden="true">
-          <path d="M4 1v4h69M17 5v7m0-7c0 3-3 4-5 7m21-7v8m0-8c0 3 3 4 5 7m15-7v7m0-7c0 3-3 4-5 7m20-7v8m0-8c0 3 3 4 5 7" />
-          <path className="tn-root-sprout" d="M4 4C0 1 1-1 5 2c2-3 5-3 6-2-1 3-4 5-7 4" />
-          <circle cx="12" cy="12" r=".9" /><circle cx="38" cy="12" r=".9" /><circle cx="48" cy="12" r=".9" /><circle cx="77" cy="12" r=".9" />
-        </svg>
+        <span className="tn-brand-wordmark">root
+          <svg className="tn-brand-bamboo" viewBox="0 0 18 25" aria-hidden="true">
+            <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 23 12 3" strokeWidth="3.2" />
+              <path d="m6.6 18.4 3.8 1.3m-2.1-6.2 3.8 1.3m-2-6.1 3.8 1.3" strokeWidth="1.25" />
+              <path d="M11.5 4.5c-3.4.2-5.2-1.2-5.4-3.3 2.8-.1 4.7.8 5.4 3.3Zm1.3-2.3C13 0 15-.5 17 .5c-1 2-2.6 3-4.2 2.9" strokeWidth="1.2" />
+            </g>
+          </svg>
+        </span>
       </span>
     </a>
   );
