@@ -75,7 +75,7 @@ const COPY = {
   zh: {
     intro: "你好，我是泓进，即将入读丹麦技术大学计算机科学与工程硕士项目。这里是我的数字花园。🌱",
     projects: "项目", fitness: "健身打卡", about: "关于我", resume: "简历",
-    introAria: "个人介绍", greeting: "嗨，我是泓进！",
+    introAria: "个人介绍", greeting: "Hey, I'm Hongjin!",
     lead: "计算机专业学生、攀岩爱好者、风光摄影爱好者。",
     introHeading: "简单介绍", close: "收起 ↑", details: "查看详情 ↓",
     timeline: [

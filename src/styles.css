@@ -187,7 +187,6 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 
 /* ===== projects rows ===== */
 .tn-projects { margin-top: 44px; }
-.tn-projects::before { content: ""; display: block; width: calc(100% - 192px); height: 1px; background: var(--tn-border); margin-bottom: 38px; }
 .tn-projects h2 { margin: 0 0 6px; }
 .tn-proj { display: flex; flex-wrap: wrap; gap: 12px 20px; padding: 22px 0; border-top: 1px solid var(--tn-border); position: relative; }
 .tn-proj:first-of-type { border-top: 0; padding-top: 10px; }
