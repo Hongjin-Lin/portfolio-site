@@ -58,7 +58,7 @@ const PROJECTS = [
 
 const COPY = {
   en: {
-    intro: "I am Hongjin, an incoming MSc Computer Science & Engineering student at the Technical University of Denmark 📚.",
+    intro: "I am Hongjin, an incoming MSc Computer Science & Engineering student at the Technical University of Denmark 📖.",
     projects: "Projects", fitness: "Fitness", about: "About me", resume: "Resume",
     introAria: "Introduction", greeting: "Hey, I'm Hongjin!",
     lead: "Backend & machine-learning engineer, writer, all-around nerd.",
