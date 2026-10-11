@@ -67,16 +67,7 @@ function BrandLogo() {
     <a className="tn-brand tn-brand--root" href="/" aria-label="返回 root 主页">
       <img className="tn-brand-avatar" src="/icons/focus-reader.png" alt="" />
       <span className="tn-brand-lockup">
-        <span className="tn-brand-wordmark">root
-          <svg className="tn-brand-bamboo" viewBox="0 0 22 30" aria-hidden="true">
-            <g strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5.5 28 15.8 3" fill="none" stroke="#6f9b62" strokeWidth="5.8" />
-              <path d="m5.1 25 6 2m2-7.2 5.8 2m-2.1-8 5.6 2" fill="none" stroke="#365f3e" strokeWidth="1.8" />
-              <path d="m8.2 20.6 1.6.5m2-7.2 1.7.5m2-7.7 1.4.5" fill="none" stroke="#b2cc80" strokeWidth=".9" />
-              <path d="M15 4.5c-3.7.3-5.7-1.2-5.7-3.4 3-.2 5 .9 5.7 3.4Zm1.8-2.6C17.5-.1 19.7-.6 21.4.4c-.9 2.2-2.7 3.2-4.6 3" fill="#6f9b62" stroke="#365f3e" strokeWidth="1.05" />
-            </g>
-          </svg>
-        </span>
+        <span className="tn-brand-wordmark">root<span className="tn-brand-slash">/</span></span>
       </span>
     </a>
   );
