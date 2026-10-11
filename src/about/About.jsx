@@ -17,12 +17,6 @@ const COPY = {
     opening: "I’m an incoming MSc Computer Science & Engineering student at the Technical University of Denmark. I studied Computer Science at the University of Nottingham, where I became especially interested in the systems that make software dependable and useful.",
     second: "I like working across backend engineering and machine learning: understanding a problem, building the pieces behind it, and writing down what I learn along the way.",
     now: "What I’m doing now", nowText: "Getting ready for my next chapter at DTU, and continuing to explore backend systems, distributed computing, and applied machine learning.",
-    background: "A bit of background",
-    timeline: [
-      { year: "2003–2021", title: "Ningbo, China", text: "Grew up curious about computers, games, and how things work." },
-      { year: "2021–2026", title: "University of Nottingham", text: "Studied Computer Science and graduated with a foundation in computing and software engineering." },
-      { year: "2026–now", title: "Technical University of Denmark", text: "Preparing to begin an MSc in Computer Science & Engineering." },
-    ],
     interests: "Away from the keyboard", interestsText: "I enjoy exploring cities, lifting weights, building with bricks, drinking tea, and keeping this little corner of the internet growing.",
     sayHello: "Say hello", contact: "I’m always happy to talk about software, machine learning, or a good cup of tea.",
     email: "Email me", photoAlt: "Hongjin at his University of Nottingham graduation",
@@ -34,12 +28,6 @@ const COPY = {
     opening: "我即将入读丹麦技术大学计算机科学与工程硕士项目。本科就读于诺丁汉大学计算机科学专业，在学习过程中逐渐对那些让软件可靠、实用的系统产生了浓厚兴趣。",
     second: "我喜欢在后端工程与机器学习之间探索：理解问题、搭建背后的系统，也把一路学到的东西记录下来。",
     now: "最近在做什么", nowText: "正在为 DTU 的新阶段做准备，也会继续探索后端系统、分布式计算和应用机器学习。",
-    background: "我的一些经历",
-    timeline: [
-      { year: "2003–2021", title: "中国宁波", text: "在好奇心的驱动下长大，喜欢电脑、游戏和研究事物的运行方式。" },
-      { year: "2021–2026", title: "诺丁汉大学", text: "学习计算机科学，打下计算与软件工程方面的基础。" },
-      { year: "2026–现在", title: "丹麦技术大学", text: "准备开始计算机科学与工程硕士阶段的学习。" },
-    ],
     interests: "离开键盘之后", interestsText: "我喜欢在城市里漫游、举铁、拼积木、喝茶，也喜欢慢慢打理这个小小的网络角落。",
     sayHello: "欢迎联系我", contact: "很乐意聊聊软件、机器学习，或者一杯好茶。",
     email: "给我发邮件", photoAlt: "泓进在诺丁汉大学毕业典礼上的照片",
@@ -151,7 +139,6 @@ export function About() {
           <figure className="about-portrait"><img src="/images/hongjin-graduation.png" alt={copy.photoAlt} width="1024" height="1536" fetchPriority="high" /></figure>
         </div>
         <section className="about-section about-now"><h2>{copy.now}</h2><p>{copy.nowText}</p></section>
-        <section className="about-section"><h2>{copy.background}</h2><ol className="about-timeline">{copy.timeline.map((item) => <li key={item.year}><span className="about-year">{item.year}</span><div><h3>{item.title}</h3><p>{item.text}</p></div></li>)}</ol></section>
         <section className="about-section"><h2>{copy.interests}</h2><p>{copy.interestsText}</p></section>
         <section className="about-contact"><h2>{copy.sayHello}</h2><p>{copy.contact}</p><a href={`mailto:${email}`}>{copy.email} <span aria-hidden="true">↗</span></a></section>
       </article>
