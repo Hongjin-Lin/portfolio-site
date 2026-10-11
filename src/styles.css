@@ -82,9 +82,6 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 .tn-shelves p { margin: 0; }
 .tn-hero-art { width: 250px; margin: 64px auto 0; display: flex; flex-direction: column; align-items: center; }
 .tn-hero-art .apple-ensemble { display: block; width: 250px; height: 204px; object-fit: contain; }
-.tn-apple-caption { position: relative; width: 250px; margin: 20px 0 0; padding: 9.6px 14.4px; text-align: center; border: 1px solid var(--tn-border); border-radius: 12px; background: var(--tn-bg); font-size: 14px; line-height: 1.5; color: var(--tn-muted); }
-.tn-apple-caption::before { content: ""; position: absolute; top: -7px; left: 50%; width: 12px; height: 12px; transform: translateX(-50%) rotate(45deg); background: var(--tn-bg); border-left: 1px solid var(--tn-border); border-top: 1px solid var(--tn-border); }
-
 @container tn-hero (min-width: 860px) {
   .tn-hero-inner { flex-direction: row; align-items: flex-start; gap: 48px; }
   .tn-col { flex: 0 0 600px; width: 600px; max-width: 600px; }

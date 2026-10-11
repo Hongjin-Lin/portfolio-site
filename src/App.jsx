@@ -154,7 +154,6 @@ export function App() {
           </div>
           <aside className="tn-hero-art" aria-label="Four dancing green apples">
             <img className="apple-ensemble" src="/assets/apples/apple-ensemble.png" alt="Four green apples holding hands and dancing together" />
-            <p className="tn-apple-caption">A little green energy for your day 🍏</p>
           </aside>
           </div>
         </section>
