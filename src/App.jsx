@@ -127,9 +127,9 @@ function BrandLogo() {
   );
 }
 
-function LanguageSwitch({ lang, onChange, mobile = false }) {
+function LanguageSwitch({ lang, onChange, mobile = false, inline = false }) {
   return (
-    <div className={`tn-lang-switch${mobile ? " tn-lang-switch--mobile" : ""}`} role="group" aria-label="Language">
+    <div className={`tn-lang-switch${mobile ? " tn-lang-switch--mobile" : ""}${inline ? " tn-lang-switch--inline" : ""}`} role="group" aria-label="Language">
       <button type="button" className={lang === "en" ? "active" : ""} onClick={() => onChange("en")} aria-pressed={lang === "en"}>EN</button>
       <span aria-hidden="true">/</span>
       <button type="button" className={lang === "zh" ? "active" : ""} onClick={() => onChange("zh")} aria-pressed={lang === "zh"}>中</button>
@@ -203,12 +203,14 @@ export function App() {
           </nav>
         </section>
         <section className="tn-sec tn-sec--foot">
-          <div className="tn-socials" aria-label="Social links">
-            <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer" aria-label="GitHub"><GithubLogo size={26} weight="regular" /></a>
-            <a href="#" aria-label="LinkedIn"><LinkedinLogo size={25} weight="regular" /></a>
-            <a href="#" aria-label="Email"><EnvelopeSimple size={25} weight="regular" /></a>
+          <div className="tn-footer-actions">
+            <div className="tn-socials" aria-label="Social links">
+              <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer" aria-label="GitHub"><GithubLogo size={26} weight="regular" /></a>
+              <a href="#" aria-label="LinkedIn"><LinkedinLogo size={25} weight="regular" /></a>
+              <a href="#" aria-label="Email"><EnvelopeSimple size={25} weight="regular" /></a>
+            </div>
+            <LanguageSwitch lang={lang} onChange={setLang} inline />
           </div>
-          <LanguageSwitch lang={lang} onChange={setLang} />
         </section>
       </aside>
 

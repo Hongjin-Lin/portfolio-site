@@ -66,6 +66,7 @@ h1, h2, h3 { margin: 0; font-family: "Outfit Variable", -apple-system, BlinkMacS
 .tn-nav a:hover { background: rgba(0, 0, 0, .05); }
 html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 .tn-sec--foot { margin-top: auto; border-bottom: 0; }
+.tn-footer-actions { display: flex; align-items: center; gap: 13px; }
 .tn-socials { display: flex; gap: 13px; align-items: center; }
 .tn-socials a { width: 27px; height: 28px; display: grid; place-items: center; color: var(--tn-muted); text-decoration: none; }
 .tn-socials a:hover { color: var(--tn-accent); }
@@ -74,6 +75,8 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 .tn-lang-switch button { padding: 2px 3px; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; }
 .tn-lang-switch button.active { color: var(--tn-heading); font-weight: 700; }
 .tn-lang-switch button:hover { color: var(--tn-accent); }
+.tn-lang-switch--inline { gap: 1px; margin: 0; font-size: 11px; line-height: 1; }
+.tn-lang-switch--inline button { min-width: 18px; height: 28px; padding: 0 1px; display: grid; place-items: center; }
 .tn-lang-switch--mobile { align-self: flex-start; padding: 9px 8px 0; margin-top: 6px; border-top: 1px solid var(--tn-border); }
 .tn-icon-button { width: 38px; height: 38px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--tn-muted); cursor: pointer; }
 .tn-icon-button:hover { color: var(--tn-accent); }
