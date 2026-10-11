@@ -119,5 +119,31 @@
       }
     ],
     "notes": ""
+  },
+  {
+    "date": "2026-10-11",
+    "weightKg": 82.8,
+    "workouts": [],
+    "meals": [
+      {
+        "type": "lunch",
+        "items": "外带：烤鸡腿×2（带皮）+ 蒜蓉生菜 + 沃集鲜杂粮饭 180g",
+        "kcal": 782,
+        "protein": 47,
+        "photos": [
+          "/fitness/2026-10-11/lunch-1.jpg"
+        ]
+      },
+      {
+        "type": "snack",
+        "items": "瑞幸泰奶鸳鸯拿铁（原创，16oz/冰/不另外加糖）",
+        "kcal": 313,
+        "protein": 6.5,
+        "photos": [
+          "/fitness/2026-10-11/snack-1.jpg"
+        ]
+      }
+    ],
+    "notes": ""
   }
 ]
