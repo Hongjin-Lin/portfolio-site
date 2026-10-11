@@ -70,7 +70,6 @@ const COPY = {
     ],
     career: "Career direction", careerText: ": I aspire to become a Machine Learning Engineer or AI Engineer, applying technology to real-world problems and building useful tools that make people’s lives easier.",
     outside: "Outside tech", outsideText: ": Travelling, cycling, climbing, and landscape photography.",
-    shelves: "Shelves", shelvesDescription: "Hand-picked paths through my notes, projects, and things I keep learning.",
     appleAlt: "Four green apples holding hands and dancing together",
   },
   zh: {
@@ -86,7 +85,6 @@ const COPY = {
     ],
     career: "职业方向", careerText: "：我希望未来成为机器学习工程师或 AI 工程师，用技术解决实际问题，打造实用工具，让人们的生活更轻松。",
     outside: "工作之外", outsideText: "：旅行、骑行、攀岩和风光摄影。",
-    shelves: "收藏架", shelvesDescription: "整理我持续学习的主题、笔记与项目。",
     appleAlt: "四只牵手跳舞的青苹果",
   },
 };
@@ -324,10 +322,6 @@ export function App() {
           </div>
         </section>
         <div className="tn-lower-sections">
-          <section id="shelves" className="tn-shelves">
-            <h2>{copy.shelves}</h2>
-            <p>{copy.shelvesDescription}</p>
-          </section>
           <section id="projects" className="tn-projects">
             <h2>{copy.projects}</h2>
             {PROJECTS.map((p, i) => (
