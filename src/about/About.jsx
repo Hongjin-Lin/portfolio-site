@@ -16,7 +16,6 @@ const COPY = {
     eyebrow: "A LITTLE ABOUT ME", title: "Hey, I'm Hongjin.",
     opening: "I’m an incoming MSc Computer Science & Engineering student at the Technical University of Denmark. I studied Computer Science at the University of Nottingham, where I became especially interested in the systems that make software dependable and useful.",
     second: "I like working across backend engineering and machine learning: understanding a problem, building the pieces behind it, and writing down what I learn along the way.",
-    caption: "University of Nottingham · graduation day",
     now: "What I’m doing now", nowText: "Getting ready for my next chapter at DTU, and continuing to explore backend systems, distributed computing, and applied machine learning.",
     background: "A bit of background",
     timeline: [
@@ -34,7 +33,6 @@ const COPY = {
     eyebrow: "关于我", title: "你好，我是泓进。",
     opening: "我即将入读丹麦技术大学计算机科学与工程硕士项目。本科就读于诺丁汉大学计算机科学专业，在学习过程中逐渐对那些让软件可靠、实用的系统产生了浓厚兴趣。",
     second: "我喜欢在后端工程与机器学习之间探索：理解问题、搭建背后的系统，也把一路学到的东西记录下来。",
-    caption: "诺丁汉大学 · 毕业日",
     now: "最近在做什么", nowText: "正在为 DTU 的新阶段做准备，也会继续探索后端系统、分布式计算和应用机器学习。",
     background: "我的一些经历",
     timeline: [
@@ -151,7 +149,7 @@ export function About() {
           <div className="about-copy"><p>{copy.opening}</p><p>{copy.second}</p>
             <a className="about-email" href={`mailto:${email}`}><EnvelopeSimple size={19} />{email}</a>
           </div>
-          <figure className="about-portrait"><img src="/images/hongjin-graduation.png" alt={copy.photoAlt} /><figcaption>{copy.caption}</figcaption></figure>
+          <figure className="about-portrait"><img src="/images/hongjin-graduation.png" alt={copy.photoAlt} width="1024" height="1536" fetchPriority="high" /></figure>
         </div>
         <section className="about-section about-now"><h2>{copy.now}</h2><p>{copy.nowText}</p></section>
         <section className="about-section"><h2>{copy.background}</h2><ol className="about-timeline">{copy.timeline.map((item) => <li key={item.year}><span className="about-year">{item.year}</span><div><h3>{item.title}</h3><p>{item.text}</p></div></li>)}</ol></section>
