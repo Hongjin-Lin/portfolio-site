@@ -73,7 +73,7 @@ h1, h2, h3 { margin: 0; font-family: "Outfit Variable", -apple-system, BlinkMacS
 .tn-nav { display: flex; flex-direction: column; gap: 2px; }
 .tn-nav a { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 500; color: var(--tn-text); text-decoration: none; padding: 4px 8px; margin: 0 -8px; border-radius: 8px; }
 .tn-nav-icon { display: block; flex: 0 0 24px; width: 24px; height: 24px; color: var(--tn-muted); overflow: visible; transition: transform .2s ease; }
-.tn-nav-icon--nalong { flex-basis: 27px; width: 27px; height: 27px; object-fit: contain; }
+.tn-nav-icon--nalong { flex-basis: 32px; width: 32px; height: 32px; object-fit: contain; }
 .tn-nav a:hover .tn-nav-icon { transform: rotate(-4deg) translateY(-1px); }
 .tn-nav a:hover { background: rgba(0, 0, 0, .05); }
 html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
