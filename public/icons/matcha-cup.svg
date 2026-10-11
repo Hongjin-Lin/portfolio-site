@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- matcha oat latte mug, hand-drawn, text removed -->
+  <g stroke="#2e2418" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- straw -->
+    <path d="M74 8 L82 34" fill="none" stroke-width="4.5"/>
+    <!-- mug body -->
+    <path d="M38 34 Q37 30 42 29 L80 28 Q85 28 84 33 L86 78 Q87 100 62 101 Q38 102 38 80 Z" fill="#f2ead2"/>
+    <!-- matcha band -->
+    <path d="M39 34 Q60 40 84 32 L85 52 Q61 60 40 53 Z" fill="#7a944e"/>
+    <!-- foam edge -->
+    <path d="M40 44 Q52 50 63 45 Q74 40 84 44" fill="none" stroke-width="2"/>
+    <!-- ice cubes -->
+    <rect x="48" y="37" width="10" height="8" rx="2" fill="#dfe6c3" transform="rotate(-8 53 41)"/>
+    <rect x="64" y="36" width="10" height="8" rx="2" fill="#dfe6c3" transform="rotate(6 69 40)"/>
+    <!-- handle -->
+    <path d="M85 48 Q104 50 103 62 Q102 74 86 74" fill="none" stroke-width="4"/>
+    <!-- label band -->
+    <path d="M40 62 L84 60 L85 80 Q62 88 41 81 Z" fill="#f6efdc"/>
+    <path d="M44 68 L81 66" fill="none" stroke-width="1.6"/>
+    <path d="M44 78 L81 76" fill="none" stroke-width="1.6"/>
+    <!-- cat face (no text) -->
+    <path d="M56 71 l3 -4 3 4 M62 71 l3 -4 3 4" fill="none" stroke-width="1.6"/>
+    <circle cx="59" cy="74" r="1.1" fill="#2e2418" stroke="none"/>
+    <circle cx="65" cy="74" r="1.1" fill="#2e2418" stroke="none"/>
+    <path d="M60 77 q2 1.6 4 0" fill="none" stroke-width="1.4"/>
+  </g>
+</svg>

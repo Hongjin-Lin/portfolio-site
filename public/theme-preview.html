@@ -3,109 +3,114 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>配色方案预览 · taniarascia 布局</title>
+<title>背景质感预览 · v3</title>
+<link rel="icon" type="image/svg+xml" href="/icons/matcha-cup.svg" />
 <style>
 @font-face { font-family: Caveat; src: url(/fonts/caveat-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: Caveat; src: url(/fonts/caveat-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
-body[data-theme="matcha"] { --nav-bg: #eef0da; --line: #d6d9b8; --paper: #f5f2e3; --panel: #ece8d2; --ink: #3a3324; --muted: #8a8168; --primary: #6f8353; --deep: #55673f; --accent: #cf6b35; --gingham: rgba(111,131,83,.12); }
-body[data-theme="terracotta"] { --nav-bg: #f0e2cf; --line: #dcc4a8; --paper: #f4e9da; --panel: #ecdcc7; --ink: #40312a; --muted: #97806e; --primary: #b96a4b; --deep: #8f4f37; --accent: #5f7d54; --gingham: rgba(185,106,75,.10); }
-body[data-theme="jam"] { --nav-bg: #f0ead0; --line: #d8d3ac; --paper: #f8f2d8; --panel: #f1ead0; --ink: #3e4a30; --muted: #8b8a6a; --primary: #cd5f4e; --deep: #55734f; --accent: #e0912f; --gingham: rgba(224,145,47,.10); }
-body[data-theme="sakura"] { --nav-bg: #f4e8e4; --line: #e0cbc6; --paper: #f9f1ec; --panel: #f3e6e0; --ink: #463a3d; --muted: #9a878a; --primary: #c97f92; --deep: #8f7fae; --accent: #8ba06b; --gingham: rgba(201,127,146,.10); }
+/* ===== 6 个背景变体（取自参考图采样色） ===== */
+body[data-bg="matcha"]        { --bg: #8fa25b; --frame: #5f7040; --ink: #2e2418; --cream: #f4eed8; --accent: #f6efdc; --divider: rgba(46,36,24,.34); }
+body[data-bg="matcha-light"]  { --bg: #a9ba78; --frame: #7f9354; --ink: #33301b; --cream: #f6f2df; --accent: #4a3d20; --divider: rgba(51,48,27,.34); }
+body[data-bg="terracotta"]    { --bg: #a15938; --frame: #6e3a24; --ink: #2b1207; --cream: #f4e3cb; --accent: #f4e3cb; --divider: rgba(43,18,7,.34); }
+body[data-bg="terracotta-light"] { --bg: #c08565; --frame: #96603f; --ink: #33190f; --cream: #f7e9d9; --accent: #5f3d28; --divider: rgba(51,25,15,.32); }
+body[data-bg="apple"]         { --bg: #aee48f; --frame: #85b96b; --ink: #2e4222; --cream: #f4f8e4; --accent: #4a6b2f; --divider: rgba(46,66,34,.32); }
+body[data-bg="lemon"]         { --bg: #e1ebca; --frame: #a8d8c0; --ink: #4a4426; --cream: #fbf7e8; --accent: #7a944e; --divider: rgba(74,68,38,.30); }
 * { box-sizing: border-box; margin: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; font-size: 16px; line-height: 1.55; padding-left: 32px; transition: background .4s ease; }
-body::before { content: ""; position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: .5; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
-.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 10; height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px 0 32px; background: var(--nav-bg); border-bottom: 1px solid var(--line); }
-.brand { font: 700 17px/1 "Outfit Variable", -apple-system, sans-serif; text-decoration: none; color: var(--ink); }
-.navlinks { display: flex; gap: 22px; }
-.navlinks a { font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none; opacity: .85; }
-.navlinks a:hover { color: var(--primary); }
-.sidebar { position: sticky; top: 0; float: left; width: 260px; height: 100vh; padding: 84px 26px 24px; background: var(--nav-bg); border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 22px; }
-.avatar { width: 84px; height: 84px; border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%; border: 2.5px solid var(--ink); background: var(--panel); display: flex; align-items: center; justify-content: center; font-family: Caveat, cursive; font-size: 40px; color: var(--primary); }
-.side-name { font: 700 20px/1.2 "Outfit Variable", sans-serif; }
-.side-role { font-size: 13.5px; color: var(--muted); }
-.side-block h3 { font: 600 11px/1 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 10px; }
-.side-block a { display: block; font-size: 15px; color: var(--ink); text-decoration: none; padding: 4px 0; }
-.side-block a:hover { color: var(--primary); }
-.side-note { font-family: Caveat, cursive; font-size: 19px; color: var(--accent); margin-top: auto; }
-.badge { display: flex; align-items: center; gap: 9px; font-size: 13px; }
-.badge i { width: 10px; height: 10px; border-radius: 50% 45% 55% 48%; background: var(--primary); border: 1.5px solid var(--ink); }
-.content { margin-left: 348px; max-width: 600px; padding: 76px 0 60px; }
-.lead { font-size: 20.8px; line-height: 1.45; margin: 0 0 8px; }
-.greet { font-family: Caveat, cursive; font-size: 30px; color: var(--accent); }
-h1 { font: 700 48px/1.2 "Outfit Variable", -apple-system, sans-serif; letter-spacing: -.01em; margin: 0 0 8px; }
-h2 { font: 600 20.8px/1.3 "Outfit Variable", sans-serif; margin: 0 0 10px; }
-section { margin-bottom: 56px; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; font-size: 16px; line-height: 1.55; transition: background .4s ease; }
+/* 颗粒纹理 */
+body::after { content: ""; position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: .4; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E"); }
+/* 粗糙画框（参考图的深色毛边框） */
+.frame { position: fixed; inset: 10px; z-index: 30; pointer-events: none; border: 13px solid var(--frame); border-radius: 4px; filter: url(#rough); opacity: .92; }
+.shell { display: flex; gap: 46px; max-width: 1120px; margin: 0 auto; padding: 34px 28px 60px; }
+/* ===== 左侧栏（完全按截图结构） ===== */
+.side { flex: 0 0 280px; position: sticky; top: 0; align-self: flex-start; height: 100vh; display: flex; flex-direction: column; padding: 26px 6px 20px; }
+.brand { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; }
+.brand img { width: 34px; height: 34px; }
+.brand .name { font: 700 21px/1 "Outfit Variable", -apple-system, sans-serif; letter-spacing: -.01em; }
+.divider { border: 0; border-top: 1.5px solid var(--divider); margin: 0; }
+.intro { padding: 18px 0; font-size: 16.5px; line-height: 1.55; }
+.intro .hand { font-family: Caveat, cursive; font-size: 21px; color: var(--cream); text-shadow: 0 1px 0 rgba(0,0,0,.15); }
+.side nav { display: flex; flex-direction: column; }
+.side nav a { display: flex; align-items: center; gap: 13px; font-size: 17.5px; color: var(--ink); text-decoration: none; padding: 15px 2px; border-bottom: 1.5px solid var(--divider); transition: transform .2s ease; }
+.side nav a .em { font-size: 21px; }
+.side nav a:hover { transform: translateX(5px); }
+.socials { margin-top: auto; display: flex; gap: 18px; font-size: 19px; padding-top: 18px; }
+.socials a { color: var(--ink); text-decoration: none; opacity: .85; }
+.socials a:hover { opacity: 1; transform: translateY(-2px); }
+/* ===== 内容列（左移，贴近侧栏） ===== */
+.content { flex: 0 0 620px; max-width: 620px; padding-top: 26px; }
+.greet { font-family: Caveat, cursive; font-size: 31px; color: var(--cream); text-shadow: 0 1px 0 rgba(0,0,0,.18); }
+h1 { font: 700 46px/1.18 "Outfit Variable", -apple-system, sans-serif; letter-spacing: -.012em; margin: 2px 0 10px; }
+.lead { font-size: 19px; line-height: 1.5; margin-bottom: 8px; }
+section { margin-top: 46px; }
+h2 { font: 600 21px/1.3 "Outfit Variable", sans-serif; margin-bottom: 10px; }
 .timeline { list-style: none; padding: 0; }
-.timeline li { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1.5px dashed color-mix(in srgb, var(--ink) 22%, transparent); font-size: 15px; }
-.timeline b { flex: 0 0 118px; font: 600 11px/1.7 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--primary); }
-.proj { padding: 16px 0; border-bottom: 1.5px dashed color-mix(in srgb, var(--ink) 22%, transparent); }
-.proj h3 { font: 600 17px/1.3 "Outfit Variable", sans-serif; }
-.proj h3 .yr { font: 400 11px/1 "Google Sans Code Variable", monospace; color: var(--muted); margin-left: 8px; }
-.proj p { font-size: 15px; color: color-mix(in srgb, var(--ink) 88%, transparent); margin-top: 5px; }
-.pill { display: inline-block; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border: 1.5px solid var(--muted); border-radius: 999px 12px 999px 14px / 14px 999px 12px 999px; padding: 3px 9px; margin-top: 8px; }
-footer { border-top: 1px solid var(--line); padding: 20px 0 40px; font-size: 13px; color: var(--muted); }
-footer .hand { font-family: Caveat, cursive; font-size: 20px; color: var(--accent); }
-.switcher { position: fixed; bottom: 18px; right: 24px; z-index: 60; display: flex; gap: 8px; padding: 9px 11px; background: #fff; border: 2px solid var(--ink); border-radius: 14px 8px 12px 9px / 9px 12px 8px 14px; box-shadow: 3px 4px 0 rgba(0,0,0,.12); }
-.switcher button { border: 2px solid transparent; background: transparent; padding: 6px 12px; border-radius: 10px 6px 9px 7px / 7px 9px 6px 10px; font: 600 12.5px/1 inherit; color: var(--ink); cursor: pointer; }
-.switcher button.on { border-color: var(--ink); background: color-mix(in srgb, var(--primary) 18%, #fff); }
-.switcher .sw { width: 12px; height: 12px; border-radius: 50% 45% 55% 48%; display: inline-block; margin-right: 6px; vertical-align: -1px; border: 1.5px solid var(--ink); }
+.timeline li { display: flex; gap: 14px; padding: 11px 0; border-bottom: 1.5px dashed var(--divider); font-size: 15.5px; }
+.timeline b { flex: 0 0 110px; font: 600 11px/1.8 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--cream); text-shadow: 0 1px 0 rgba(0,0,0,.14); }
+.proj { padding: 16px 0; border-bottom: 1.5px dashed var(--divider); }
+.proj h3 { font: 600 17.5px/1.3 "Outfit Variable", sans-serif; }
+.proj h3 .yr { font: 400 11px/1 "Google Sans Code Variable", monospace; color: var(--cream); text-shadow: 0 1px 0 rgba(0,0,0,.14); margin-left: 8px; }
+.proj p { font-size: 15px; margin-top: 5px; opacity: .94; }
+.pill { display: inline-block; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); background: var(--cream); border: 1.5px solid var(--ink); border-radius: 999px 12px 999px 14px / 14px 999px 12px 999px; padding: 3px 10px; margin-top: 9px; }
+footer { margin-top: 52px; padding: 18px 0 10px; border-top: 1.5px solid var(--divider); font-size: 13px; }
+footer .hand { font-family: Caveat, cursive; font-size: 21px; color: var(--cream); text-shadow: 0 1px 0 rgba(0,0,0,.15); }
+/* ===== 切换器 ===== */
+.switcher { position: fixed; bottom: 22px; right: 26px; z-index: 60; display: flex; flex-wrap: wrap; gap: 7px; padding: 9px 11px; background: var(--cream); border: 2px solid var(--ink); border-radius: 14px 8px 12px 9px / 9px 12px 8px 14px; box-shadow: 3px 4px 0 rgba(0,0,0,.18); }
+.switcher button { border: 2px solid transparent; background: transparent; padding: 6px 11px; border-radius: 10px 6px 9px 7px / 7px 9px 6px 10px; font: 600 12.5px/1 inherit; color: var(--ink); cursor: pointer; }
+.switcher button.on { border-color: var(--ink); background: rgba(255,255,255,.55); }
+.switcher .sw { width: 12px; height: 12px; border-radius: 50% 45% 55% 48%; display: inline-block; margin-right: 6px; border: 1.5px solid var(--ink); }
+@media (max-width: 1000px) { .shell { flex-direction: column; gap: 20px; } .side { position: static; flex-basis: auto; height: auto; } .content { flex: 1; max-width: none; } }
 </style>
 </head>
-<body data-theme="matcha">
-  <nav class="navbar">
-    <a class="brand" href="#">hongjinlin.com</a>
-    <div class="navlinks"><a href="#">About</a><a href="#projects">Projects</a><a href="#">Fitness</a><a href="#">Résumé</a></div>
-  </nav>
-  <aside class="sidebar">
-    <div class="avatar">紅</div>
-    <div>
-      <div class="side-name">Hongjin Lin</div>
-      <div class="side-role">Backend &amp; ML engineer</div>
-    </div>
-    <div class="badge"><i></i><span>Available for work</span></div>
-    <div class="side-block">
-      <h3>Elsewhere</h3>
-      <a href="#">GitHub ↗</a><a href="#">Fitness Tracker →</a><a href="#">Résumé →</a>
-    </div>
-    <div class="side-block">
-      <h3>Theme</h3>
-      <div style="font-family: Caveat, cursive; font-size: 19px; color: var(--accent);" id="themeName">Matcha Latte</div>
-    </div>
-    <div class="side-note">drawn by hand, brewed with tea ~</div>
-  </aside>
-  <main class="content">
-    <div class="greet">Hey, I'm Hongjin!</div>
-    <h1>Building reliable systems &amp; intelligent products.</h1>
-    <p class="lead">Backend &amp; machine-learning engineer — I care about clear design, testable code, and shipping features that make a real impact.</p>
-    <section>
-      <h2>A brief timeline</h2>
-      <ul class="timeline">
-        <li><b>2026</b><span>Graduated with a B.S. in Computer Science — distributed systems &amp; applied ML.</span></li>
-        <li><b>Now</b><span>Looking for a team where I can contribute, keep learning, and build products that scale.</span></li>
-        <li><b>Daily</b><span>Logging meals, workouts and weight for 60 days — <a href="#">follow along →</a></span></li>
-      </ul>
-    </section>
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="proj"><h3>RAG Knowledge Assistant<span class="yr">2026</span></h3><p>A retrieval-augmented assistant answering over private documents with citations — modular ingestion, hybrid retrieval, evaluation tooling.</p><span class="pill">LLM Systems</span></div>
-      <div class="proj"><h3>Real-time Recommendation API<span class="yr">2025</span></h3><p>Low-latency recommendations with collaborative filtering and content signals; P99 128ms at 2.5k rps.</p><span class="pill">API · ML</span></div>
-      <div class="proj"><h3>Distributed Task Queue<span class="yr">2025</span></h3><p>Fault-tolerant queueing with delayed scheduling, retries and rate limiting — observable by default.</p><span class="pill">Infrastructure</span></div>
-    </section>
-    <footer><span class="hand">drawn by hand, brewed with tea ~</span><br/>© 2026 Hongjin Lin · hongjinlin.com</footer>
-  </main>
+<body data-bg="matcha">
+<svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" result="n" seed="7"/><feDisplacementMap in="SourceGraphic" in2="n" scale="9"/></filter></svg>
+<div class="frame" aria-hidden="true"></div>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">
+        <img id="brandIcon" src="/icons/matcha-cup.svg" alt="" />
+        <span class="name">hongjinlin.com</span>
+      </div>
+      <hr class="divider" />
+      <p class="intro">I'm <b>Hongjin</b>, backend &amp; machine-learning engineer. This is my <span class="hand">little digital café</span> — code, projects &amp; a 60-day fitness log. 🌱</p>
+      <hr class="divider" />
+      <nav>
+        <a href="#"><span class="em">👋</span>About me</a>
+        <a href="#projects"><span class="em">💻</span>Projects</a>
+        <a href="#"><span class="em">🏋️</span>Fitness Tracker</a>
+        <a href="#"><span class="em">📄</span>Résumé</a>
+      </nav>
+      <hr class="divider" />
+      <div class="socials"><a href="#">✉️</a><a href="#">🐙</a><a href="#">📡</a></div>
+    </aside>
+    <main class="content">
+      <div class="greet">Hey, I'm Hongjin! 🌱</div>
+      <h1>Building reliable systems &amp; intelligent products.</h1>
+      <p class="lead">I care about clear design, testable code, and shipping features that make a real impact — from RAG pipelines to real-time APIs.</p>
+      <section id="projects">
+        <h2>Projects</h2>
+        <div class="proj"><h3>RAG Knowledge Assistant<span class="yr">2026</span></h3><p>Retrieval-augmented assistant over private documents with citations — modular ingestion, hybrid retrieval, evaluation tooling.</p><span class="pill">LLM Systems</span></div>
+        <div class="proj"><h3>Real-time Recommendation API<span class="yr">2025</span></h3><p>Low-latency recommendations with collaborative filtering and content signals; P99 128ms at 2.5k rps.</p><span class="pill">API · ML</span></div>
+        <div class="proj"><h3>Distributed Task Queue<span class="yr">2025</span></h3><p>Fault-tolerant queueing with delayed scheduling, retries and rate limiting — observable by default.</p><span class="pill">Infrastructure</span></div>
+      </section>
+      <footer><span class="hand">drawn by hand, brewed with tea ~</span><br/>© 2026 Hongjin Lin · hongjinlin.com</footer>
+    </main>
+  </div>
   <div class="switcher" id="sw">
-    <button data-t="matcha" class="on"><span class="sw" style="background:#6f8353"></span>抹茶拿铁</button>
-    <button data-t="terracotta"><span class="sw" style="background:#b96a4b"></span>陶土茶屋</button>
-    <button data-t="jam"><span class="sw" style="background:#cd5f4e"></span>野菜果酱</button>
-    <button data-t="sakura"><span class="sw" style="background:#c97f92"></span>樱花芋泥</button>
+    <button data-bg="matcha" class="on" data-icon="cup"><span class="sw" style="background:#8fa25b"></span>抹茶拿铁</button>
+    <button data-bg="matcha-light" data-icon="cup"><span class="sw" style="background:#a9ba78"></span>抹茶·浅</button>
+    <button data-bg="terracotta" data-icon="pot"><span class="sw" style="background:#a15938"></span>陶土茶屋</button>
+    <button data-bg="terracotta-light" data-icon="pot"><span class="sw" style="background:#c08565"></span>陶土·浅</button>
+    <button data-bg="apple" data-icon="cup"><span class="sw" style="background:#aee48f"></span>青苹果</button>
+    <button data-bg="lemon" data-icon="cup"><span class="sw" style="background:#e1ebca"></span>柠檬红茶</button>
   </div>
 <script>
-const names = { matcha: "Matcha Latte", terracotta: "Tea House", jam: "Vegetable Jam", sakura: "Sakura Ube" };
+const icons = { cup: "/icons/matcha-cup.svg", pot: "/icons/teapot-cup.svg" };
 document.getElementById("sw").addEventListener("click", (e) => {
   const btn = e.target.closest("button"); if (!btn) return;
-  document.body.dataset.theme = btn.dataset.t;
-  document.getElementById("themeName").textContent = names[btn.dataset.t];
+  document.body.dataset.bg = btn.dataset.bg;
+  document.getElementById("brandIcon").src = icons[btn.dataset.icon];
   document.querySelectorAll("#sw button").forEach(b => b.classList.toggle("on", b === btn));
 });
 </script>
