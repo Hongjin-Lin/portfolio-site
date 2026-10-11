@@ -57,6 +57,22 @@ function ProjectRow({ project, index, open, onToggle }) {
   );
 }
 
+function BrandLogo() {
+  return (
+    <a className="tn-brand tn-brand--root" href="/" aria-label="返回 B root/ 主页">
+      <img className="tn-brand-avatar" src="/icons/focus-reader.png" alt="" />
+      <span className="tn-brand-lockup">
+        <span className="tn-brand-wordmark"><b>B</b> root<span className="tn-brand-slash">/</span></span>
+        <svg className="tn-root-path" viewBox="0 0 78 14" aria-hidden="true">
+          <path d="M4 1v4h69M17 5v7m0-7c0 3-3 4-5 7m21-7v8m0-8c0 3 3 4 5 7m15-7v7m0-7c0 3-3 4-5 7m20-7v8m0-8c0 3 3 4 5 7" />
+          <path className="tn-root-sprout" d="M4 4C0 1 1-1 5 2c2-3 5-3 6-2-1 3-4 5-7 4" />
+          <circle cx="12" cy="12" r=".9" /><circle cx="38" cy="12" r=".9" /><circle cx="48" cy="12" r=".9" /><circle cx="77" cy="12" r=".9" />
+        </svg>
+      </span>
+    </a>
+  );
+}
+
 export function App() {
   const [accent, setAccent] = useState(() => localStorage.getItem("tn-accent") || ACCENTS[0]);
   const [dark, setDark] = useState(() => localStorage.getItem("tn-dark") === "1");
@@ -82,7 +98,7 @@ export function App() {
   return (
     <div className="tn-shell">
       <header className="tn-mobile-nav">
-        <a className="tn-brand tn-brand--wordmark" href="/" aria-label="泓进主页">泓进</a>
+        <BrandLogo />
         <div className="tn-mobile-actions">
           <button className="tn-dot" onClick={cycleAccent} aria-label="Cycle theme color"><i /></button>
           <button className="tn-moon" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}>{dark ? "☀️" : "🌙"}</button>
@@ -98,7 +114,7 @@ export function App() {
       </header>
       <aside className="tn-side">
         <section className="tn-sec tn-sec--brand">
-          <a className="tn-brand tn-brand--wordmark" href="/" aria-label="泓进主页">泓进</a>
+          <BrandLogo />
           <button className="tn-dot" onClick={cycleAccent} title={"Theme color: " + ACCENT_NAMES[ACCENTS.indexOf(accent)]} aria-label="Cycle theme color"><i /></button>
         </section>
         <section className="tn-sec">
