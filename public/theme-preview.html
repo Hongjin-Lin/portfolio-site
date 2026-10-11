@@ -3,64 +3,70 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>背景质感预览 · v3</title>
+<title>泓进 · theme preview v4</title>
 <link rel="icon" type="image/svg+xml" href="/icons/matcha-cup.svg" />
 <style>
 @font-face { font-family: Caveat; src: url(/fonts/caveat-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: Caveat; src: url(/fonts/caveat-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
-/* ===== 6 个背景变体（取自参考图采样色） ===== */
-body[data-bg="matcha"]        { --bg: #8fa25b; --frame: #5f7040; --ink: #2e2418; --cream: #f4eed8; --accent: #f6efdc; --divider: rgba(46,36,24,.34); }
-body[data-bg="matcha-light"]  { --bg: #a9ba78; --frame: #7f9354; --ink: #33301b; --cream: #f6f2df; --accent: #4a3d20; --divider: rgba(51,48,27,.34); }
-body[data-bg="terracotta"]    { --bg: #a15938; --frame: #6e3a24; --ink: #2b1207; --cream: #f4e3cb; --accent: #f4e3cb; --divider: rgba(43,18,7,.34); }
-body[data-bg="terracotta-light"] { --bg: #c08565; --frame: #96603f; --ink: #33190f; --cream: #f7e9d9; --accent: #5f3d28; --divider: rgba(51,25,15,.32); }
-body[data-bg="apple"]         { --bg: #aee48f; --frame: #85b96b; --ink: #2e4222; --cream: #f4f8e4; --accent: #4a6b2f; --divider: rgba(46,66,34,.32); }
-body[data-bg="lemon"]         { --bg: #e1ebca; --frame: #a8d8c0; --ink: #4a4426; --cream: #fbf7e8; --accent: #7a944e; --divider: rgba(74,68,38,.30); }
+@font-face { font-family: HongjinBrush; src: url(/fonts/hongjin-brush.woff2) format("woff2"); font-display: swap; }
+body[data-bg="matcha"]   { --bg: #8fa25b; --frame: #5f7040; --ink: #2e2418; --cream: #f4eed8; --divider: rgba(46,36,24,.34); --meta: #f6efdc; }
+body[data-bg="matcha-light"] { --bg: #a9ba78; --frame: #7f9354; --ink: #33301b; --cream: #f6f2df; --divider: rgba(51,48,27,.34); --meta: #4a3d20; }
+body[data-bg="terracotta"] { --bg: #a15938; --frame: #6e3a24; --ink: #2b1207; --cream: #f4e3cb; --divider: rgba(43,18,7,.34); --meta: #f4e3cb; }
+body[data-bg="terracotta-light"] { --bg: #c08565; --frame: #96603f; --ink: #33190f; --cream: #f7e9d9; --divider: rgba(51,25,15,.32); --meta: #5f3d28; }
+body[data-bg="apple"]    { --bg: #aee48f; --frame: #85b96b; --ink: #2e4222; --cream: #f4f8e4; --divider: rgba(46,66,34,.32); --meta: #4a6b2f; }
+body[data-bg="lemon"]    { --bg: #e1ebca; --frame: #a8d8c0; --ink: #4a4426; --cream: #fbf7e8; --divider: rgba(74,68,38,.30); --meta: #7a944e; }
 * { box-sizing: border-box; margin: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; font-size: 16px; line-height: 1.55; transition: background .4s ease; }
-/* 颗粒纹理 */
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; font-size: 16px; line-height: 1.55; padding-left: 32px; transition: background .4s ease; }
 body::after { content: ""; position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: .4; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E"); }
-/* 粗糙画框（参考图的深色毛边框） */
 .frame { position: fixed; inset: 10px; z-index: 30; pointer-events: none; border: 13px solid var(--frame); border-radius: 4px; filter: url(#rough); opacity: .92; }
-.shell { display: flex; gap: 46px; max-width: 1120px; margin: 0 auto; padding: 34px 28px 60px; }
-/* ===== 左侧栏（完全按截图结构） ===== */
+.shell { display: flex; gap: 64px; max-width: 1120px; margin: 0 auto; padding: 34px 28px 60px; }
+.vline { width: 1.5px; align-self: stretch; background: var(--divider); filter: url(#rough); }
+/* ===== 侧栏（按截图结构） ===== */
 .side { flex: 0 0 280px; position: sticky; top: 0; align-self: flex-start; height: 100vh; display: flex; flex-direction: column; padding: 26px 6px 20px; }
-.brand { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; }
-.brand img { width: 34px; height: 34px; }
-.brand .name { font: 700 21px/1 "Outfit Variable", -apple-system, sans-serif; letter-spacing: -.01em; }
-.divider { border: 0; border-top: 1.5px solid var(--divider); margin: 0; }
+.brand { display: flex; align-items: center; gap: 14px; padding-bottom: 18px; }
+.logo { font-family: HongjinBrush, "Kaiti SC", "STKaiti", KaiTi, "楷体", serif; font-size: 34px; line-height: 1; color: var(--ink); display: flex; align-items: flex-start; gap: 2px; }
+.logo .l2 { margin-top: 8px; }
+.seal { width: 17px; height: 17px; margin-top: 2px; background: #c0392b; color: #f6efdc; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-family: HongjinBrush, "KaiTi", serif; font-size: 11px; transform: rotate(4deg); }
+.theme-dot { margin-left: auto; width: 22px; height: 22px; border-radius: 50% 45% 55% 48%; border: 2px solid var(--ink); background: var(--bg); cursor: pointer; transition: transform .2s ease; }
+.theme-dot:hover { transform: scale(1.15) rotate(20deg); }
 .intro { padding: 18px 0; font-size: 16.5px; line-height: 1.55; }
-.intro .hand { font-family: Caveat, cursive; font-size: 21px; color: var(--cream); text-shadow: 0 1px 0 rgba(0,0,0,.15); }
 .side nav { display: flex; flex-direction: column; }
-.side nav a { display: flex; align-items: center; gap: 13px; font-size: 17.5px; color: var(--ink); text-decoration: none; padding: 15px 2px; border-bottom: 1.5px solid var(--divider); transition: transform .2s ease; }
-.side nav a .em { font-size: 21px; }
-.side nav a:hover { transform: translateX(5px); }
+.side nav a { font-weight: 700; font-size: 17.5px; color: var(--ink); text-decoration: none; padding: 9px 2px; display: flex; align-items: center; gap: 13px; transition: transform .2s ease, color .2s ease; }
+.side nav a .em { font-size: 20px; }
+.side nav a:hover { color: var(--cream); transform: translateX(5px); }
 .socials { margin-top: auto; display: flex; gap: 18px; font-size: 19px; padding-top: 18px; }
 .socials a { color: var(--ink); text-decoration: none; opacity: .85; }
-.socials a:hover { opacity: 1; transform: translateY(-2px); }
-/* ===== 内容列（左移，贴近侧栏） ===== */
-.content { flex: 0 0 620px; max-width: 620px; padding-top: 26px; }
-.greet { font-family: Caveat, cursive; font-size: 31px; color: var(--cream); text-shadow: 0 1px 0 rgba(0,0,0,.18); }
-h1 { font: 700 46px/1.18 "Outfit Variable", -apple-system, sans-serif; letter-spacing: -.012em; margin: 2px 0 10px; }
+/* ===== 内容列 ===== */
+.content { flex: 0 0 620px; max-width: 620px; padding-top: 30px; }
+h1 { font: 700 46px/1.18 "Outfit Variable", -apple-system, sans-serif; letter-spacing: -.012em; margin: 0 0 10px; }
 .lead { font-size: 19px; line-height: 1.5; margin-bottom: 8px; }
-section { margin-top: 46px; }
-h2 { font: 600 21px/1.3 "Outfit Variable", sans-serif; margin-bottom: 10px; }
-.timeline { list-style: none; padding: 0; }
-.timeline li { display: flex; gap: 14px; padding: 11px 0; border-bottom: 1.5px dashed var(--divider); font-size: 15.5px; }
-.timeline b { flex: 0 0 110px; font: 600 11px/1.8 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--cream); text-shadow: 0 1px 0 rgba(0,0,0,.14); }
-.proj { padding: 16px 0; border-bottom: 1.5px dashed var(--divider); }
-.proj h3 { font: 600 17.5px/1.3 "Outfit Variable", sans-serif; }
-.proj h3 .yr { font: 400 11px/1 "Google Sans Code Variable", monospace; color: var(--cream); text-shadow: 0 1px 0 rgba(0,0,0,.14); margin-left: 8px; }
-.proj p { font-size: 15px; margin-top: 5px; opacity: .94; }
-.pill { display: inline-block; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); background: var(--cream); border: 1.5px solid var(--ink); border-radius: 999px 12px 999px 14px / 14px 999px 12px 999px; padding: 3px 10px; margin-top: 9px; }
-footer { margin-top: 52px; padding: 18px 0 10px; border-top: 1.5px solid var(--divider); font-size: 13px; }
-footer .hand { font-family: Caveat, cursive; font-size: 21px; color: var(--cream); text-shadow: 0 1px 0 rgba(0,0,0,.15); }
-/* ===== 切换器 ===== */
+section { margin-top: 48px; }
+h2 { font: 600 21px/1.3 "Outfit Variable", sans-serif; margin-bottom: 6px; }
+/* ===== Projects（编号 + 左图 + 右简介 + DETAILS，点击展开） ===== */
+.proj { display: flex; flex-wrap: wrap; gap: 12px 20px; padding: 22px 0; border-top: 1.5px solid var(--divider); position: relative; }
+.proj:first-of-type { border-top: 0; padding-top: 12px; }
+.proj .no { flex: 0 0 30px; font: 600 13px/1.6 "Google Sans Code Variable", ui-monospace, monospace; opacity: .75; }
+.proj .thumb { flex: 0 0 148px; align-self: flex-start; border: 2px solid var(--ink); border-radius: 10px 14px 12px 16px / 14px 12px 16px 10px; overflow: hidden; background: var(--cream); }
+.proj .thumb img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+.proj .body { flex: 1; min-width: 0; }
+.proj .meta { font: 600 11px/1 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--cream); text-shadow: 0 1px 0 rgba(0,0,0,.15); margin-bottom: 7px; }
+.proj h3 { font: 600 19px/1.3 "Outfit Variable", sans-serif; letter-spacing: -.005em; }
+.proj .brief { font-size: 14.5px; line-height: 1.6; margin-top: 6px; opacity: .93; }
+.proj .note { font: 600 10.5px/1 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .09em; opacity: .6; margin-top: 10px; }
+.proj .detail-toggle { position: absolute; right: 0; top: 24px; font: 600 11px/1 "Google Sans Code Variable", ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; opacity: .85; }
+.proj .detail-toggle:hover { color: var(--cream); }
+.proj .detail { flex: 1 1 100%; display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s cubic-bezier(.16,1,.3,1); }
+.proj.open .detail { grid-template-rows: 1fr; }
+.proj .detail-inner { overflow: hidden; min-height: 0; }
+.proj .detail-pad { padding-top: 16px; }
+.proj .detail-pad p { font-size: 14.5px; line-height: 1.7; margin-bottom: 10px; }
+.proj .detail-pad .res { padding-left: 18px; position: relative; }
+.proj .detail-pad .res::before { content: ""; position: absolute; left: 0; top: 8px; width: 9px; height: 2px; background: var(--cream); }
+.proj .stack { font: 400 10.5px/1.6 "Google Sans Code Variable", monospace; text-transform: uppercase; letter-spacing: .08em; opacity: .75; }
 .switcher { position: fixed; bottom: 22px; right: 26px; z-index: 60; display: flex; flex-wrap: wrap; gap: 7px; padding: 9px 11px; background: var(--cream); border: 2px solid var(--ink); border-radius: 14px 8px 12px 9px / 9px 12px 8px 14px; box-shadow: 3px 4px 0 rgba(0,0,0,.18); }
 .switcher button { border: 2px solid transparent; background: transparent; padding: 6px 11px; border-radius: 10px 6px 9px 7px / 7px 9px 6px 10px; font: 600 12.5px/1 inherit; color: var(--ink); cursor: pointer; }
 .switcher button.on { border-color: var(--ink); background: rgba(255,255,255,.55); }
-.switcher .sw { width: 12px; height: 12px; border-radius: 50% 45% 55% 48%; display: inline-block; margin-right: 6px; border: 1.5px solid var(--ink); }
-@media (max-width: 1000px) { .shell { flex-direction: column; gap: 20px; } .side { position: static; flex-basis: auto; height: auto; } .content { flex: 1; max-width: none; } }
+@media (max-width: 1000px) { .shell { flex-direction: column; gap: 20px; } .side { position: static; flex-basis: auto; height: auto; } .vline { display: none; } .content { flex: 1; max-width: none; } .proj { flex-wrap: wrap; } }
 </style>
 </head>
 <body data-bg="matcha">
@@ -69,49 +75,110 @@ footer .hand { font-family: Caveat, cursive; font-size: 21px; color: var(--cream
   <div class="shell">
     <aside class="side">
       <div class="brand">
-        <img id="brandIcon" src="/icons/matcha-cup.svg" alt="" />
-        <span class="name">hongjinlin.com</span>
+        <div class="logo">泓<span class="l2">进</span></div>
+        <div class="seal">印</div>
+        <button class="theme-dot" id="themeDot" title="Theme: Matcha"></button>
       </div>
-      <hr class="divider" />
-      <p class="intro">I'm <b>Hongjin</b>, backend &amp; machine-learning engineer. This is my <span class="hand">little digital café</span> — code, projects &amp; a 60-day fitness log. 🌱</p>
-      <hr class="divider" />
+      <hr class="divider" style="border:0;border-top:1.5px solid var(--divider);margin:0" />
+      <p class="intro">I'm <b>Hongjin</b>, backend &amp; machine-learning engineer. This is my <span style="font-family:Caveat,cursive;font-size:21px;color:var(--cream);text-shadow:0 1px 0 rgba(0,0,0,.15)">little digital café</span> — code, projects &amp; a 60-day fitness log. 🌱</p>
       <nav>
         <a href="#"><span class="em">👋</span>About me</a>
         <a href="#projects"><span class="em">💻</span>Projects</a>
         <a href="#"><span class="em">🏋️</span>Fitness Tracker</a>
         <a href="#"><span class="em">📄</span>Résumé</a>
       </nav>
-      <hr class="divider" />
       <div class="socials"><a href="#">✉️</a><a href="#">🐙</a><a href="#">📡</a></div>
     </aside>
+    <div class="vline" aria-hidden="true"></div>
     <main class="content">
-      <div class="greet">Hey, I'm Hongjin! 🌱</div>
       <h1>Building reliable systems &amp; intelligent products.</h1>
       <p class="lead">I care about clear design, testable code, and shipping features that make a real impact — from RAG pipelines to real-time APIs.</p>
       <section id="projects">
         <h2>Projects</h2>
-        <div class="proj"><h3>RAG Knowledge Assistant<span class="yr">2026</span></h3><p>Retrieval-augmented assistant over private documents with citations — modular ingestion, hybrid retrieval, evaluation tooling.</p><span class="pill">LLM Systems</span></div>
-        <div class="proj"><h3>Real-time Recommendation API<span class="yr">2025</span></h3><p>Low-latency recommendations with collaborative filtering and content signals; P99 128ms at 2.5k rps.</p><span class="pill">API · ML</span></div>
-        <div class="proj"><h3>Distributed Task Queue<span class="yr">2025</span></h3><p>Fault-tolerant queueing with delayed scheduling, retries and rate limiting — observable by default.</p><span class="pill">Infrastructure</span></div>
+        <div class="proj">
+          <span class="no">01</span>
+          <div class="thumb"><img src="/assets/rag-evaluation.png" alt="" /></div>
+          <div class="body">
+            <div class="meta">2026 · LLM Systems</div>
+            <h3>RAG Knowledge Assistant</h3>
+            <p class="brief">A retrieval-augmented assistant answering over private documents with citations.</p>
+            <p class="note">* MODULAR INGESTION · HYBRID RETRIEVAL</p>
+          </div>
+          <button class="detail-toggle" data-i="0">DETAILS ↓</button>
+          <div class="detail"><div class="detail-inner"><div class="detail-pad">
+            <p>Modular ingestion pipeline, hybrid retrieval (BM25 + vector), and an evaluation harness with citation-level scoring.</p>
+            <p class="res">Reduced hallucinations by 38% on a curated evaluation set.</p>
+            <div class="stack">Python · FastAPI · PostgreSQL · pgvector · LangChain · Docker</div>
+          </div></div></div>
+        </div>
+        <div class="proj">
+          <span class="no">02</span>
+          <div class="thumb"><img src="/assets/recommendation-api.png" alt="" /></div>
+          <div class="body">
+            <div class="meta">2025 · API · ML</div>
+            <h3>Real-time Recommendation API</h3>
+            <p class="brief">Low-latency recommendations with collaborative filtering and content signals.</p>
+            <p class="note">* STREAMING UPDATES · BUILT-IN EXPERIMENTS</p>
+          </div>
+          <button class="detail-toggle" data-i="1">DETAILS ↓</button>
+          <div class="detail"><div class="detail-inner"><div class="detail-pad">
+            <p>Typed API with streaming updates and built-in experiment tooling for online learning loops.</p>
+            <p class="res">Kept P99 latency at 128ms while serving 2.5k requests per second.</p>
+            <div class="stack">Python · gRPC · Redis · ClickHouse · Prometheus · Kubernetes</div>
+          </div></div></div>
+        </div>
+        <div class="proj">
+          <span class="no">03</span>
+          <div class="thumb"><img src="/assets/task-queue.png" alt="" /></div>
+          <div class="body">
+            <div class="meta">2025 · Infrastructure</div>
+            <h3>Distributed Task Queue</h3>
+            <p class="brief">Fault-tolerant queueing with delayed scheduling, retries and rate limiting.</p>
+            <p class="note">* HORIZONTAL SCALE · OBSERVABLE BY DEFAULT</p>
+          </div>
+          <button class="detail-toggle" data-i="2">DETAILS ↓</button>
+          <div class="detail"><div class="detail-inner"><div class="detail-pad">
+            <p>Designed for horizontal scale with delayed scheduling, automatic retries, and rate limiting.</p>
+            <p class="res">Achieved 99.95% successful completion across a three-node cluster.</p>
+            <div class="stack">Go · NATS · PostgreSQL · Redis · Docker · Kubernetes</div>
+          </div></div></div>
+        </div>
       </section>
-      <footer><span class="hand">drawn by hand, brewed with tea ~</span><br/>© 2026 Hongjin Lin · hongjinlin.com</footer>
     </main>
   </div>
   <div class="switcher" id="sw">
-    <button data-bg="matcha" class="on" data-icon="cup"><span class="sw" style="background:#8fa25b"></span>抹茶拿铁</button>
-    <button data-bg="matcha-light" data-icon="cup"><span class="sw" style="background:#a9ba78"></span>抹茶·浅</button>
-    <button data-bg="terracotta" data-icon="pot"><span class="sw" style="background:#a15938"></span>陶土茶屋</button>
-    <button data-bg="terracotta-light" data-icon="pot"><span class="sw" style="background:#c08565"></span>陶土·浅</button>
-    <button data-bg="apple" data-icon="cup"><span class="sw" style="background:#aee48f"></span>青苹果</button>
-    <button data-bg="lemon" data-icon="cup"><span class="sw" style="background:#e1ebca"></span>柠檬红茶</button>
+    <button data-bg="matcha" class="on"><span class="sw" style="background:#8fa25b"></span>抹茶拿铁</button>
+    <button data-bg="matcha-light"><span class="sw" style="background:#a9ba78"></span>抹茶·浅</button>
+    <button data-bg="terracotta"><span class="sw" style="background:#a15938"></span>陶土茶屋</button>
+    <button data-bg="terracotta-light"><span class="sw" style="background:#c08565"></span>陶土·浅</button>
+    <button data-bg="apple"><span class="sw" style="background:#aee48f"></span>青苹果</button>
+    <button data-bg="lemon"><span class="sw" style="background:#e1ebca"></span>柠檬红茶</button>
   </div>
 <script>
-const icons = { cup: "/icons/matcha-cup.svg", pot: "/icons/teapot-cup.svg" };
+const order = ["matcha", "matcha-light", "terracotta", "terracotta-light", "apple", "lemon"];
+const names = { matcha: "Matcha", "matcha-light": "Matcha Light", terracotta: "Tea House", "terracotta-light": "Tea House Light", apple: "Green Apple", lemon: "Lemon Tea" };
+const dot = document.getElementById("themeDot");
 document.getElementById("sw").addEventListener("click", (e) => {
   const btn = e.target.closest("button"); if (!btn) return;
-  document.body.dataset.bg = btn.dataset.bg;
-  document.getElementById("brandIcon").src = icons[btn.dataset.icon];
-  document.querySelectorAll("#sw button").forEach(b => b.classList.toggle("on", b === btn));
+  setTheme(btn.dataset.bg);
+});
+function setTheme(t) {
+  document.body.dataset.bg = t;
+  dot.style.background = getComputedStyle(document.body).getPropertyValue("--bg");
+  dot.title = "Theme: " + names[t];
+  document.querySelectorAll("#sw button").forEach(b => b.classList.toggle("on", b.dataset.bg === t));
+}
+dot.addEventListener("click", () => {
+  const cur = document.body.dataset.bg;
+  setTheme(order[(order.indexOf(cur) + 1) % order.length]);
+});
+setTheme("matcha");
+document.querySelectorAll(".detail-toggle").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const proj = btn.closest(".proj");
+    const open = proj.classList.toggle("open");
+    btn.textContent = open ? "CLOSE ↑" : "DETAILS ↓";
+  });
 });
 </script>
 </body>
