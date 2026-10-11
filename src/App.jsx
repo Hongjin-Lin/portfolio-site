@@ -110,7 +110,8 @@ export function App() {
       </aside>
 
       <main className="tn-main">
-        <div className="tn-col" id="about">
+        <section className="tn-hero-section" aria-label="Introduction">
+          <div className="tn-col" id="about">
           <h1>Hey, I'm Hongjin!</h1>
           <p className="tn-lead">Backend &amp; machine-learning engineer, writer, all-around nerd.</p>
           <h2>A brief timeline</h2>
@@ -133,6 +134,13 @@ export function App() {
             </li>
           </ul>
           <p className="tn-also"><a href="#">Also</a>: city explorer, weight-lifter, brick-clicker, tea drinker, webmaster.</p>
+          </div>
+          <aside className="tn-hero-art" aria-label="Four dancing green apples">
+            <img className="apple-ensemble" src="/assets/apples/apple-ensemble.png" alt="Four green apples holding hands and dancing together" />
+            <p className="tn-apple-caption">A little green energy for your day 🍏</p>
+          </aside>
+        </section>
+        <div className="tn-lower-sections">
           <section id="shelves" className="tn-shelves">
             <h2>Shelves</h2>
             <p>Hand-picked paths through my notes, projects, and things I keep learning.</p>
@@ -144,12 +152,6 @@ export function App() {
             ))}
           </section>
         </div>
-        <aside className="tn-hero-art" aria-label="Four dancing green apples">
-          <div className="tn-apple-orbit">
-            <img className="apple-ensemble" src="/assets/apples/apple-ensemble.png" alt="Four green apples holding hands and dancing together" />
-          </div>
-          <p className="tn-apple-caption">A little green energy for your day 🍏</p>
-        </aside>
       </main>
     </div>
   );
