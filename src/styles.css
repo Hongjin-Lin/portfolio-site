@@ -55,7 +55,8 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 .tn-sec--foot a:hover, .tn-moon:hover { color: var(--tn-accent); }
 
 /* ===== main column ===== */
-.tn-main { margin-left: 316px; padding: 56px 32px 64px; }
+.tn-main { margin-left: 316px; padding: 56px 32px 64px 72px; }
+.tn-sec--nonav { border-bottom: 0; }
 .tn-col { max-width: 600px; margin-inline: auto; }
 .tn-col h1 { font-size: 48px; font-weight: 700; line-height: 1.2; letter-spacing: -.01em; margin: 0 0 8px; color: var(--tn-heading); }
 .tn-lead { font-size: 20.8px; line-height: 1.45; margin: 0 0 8px; }

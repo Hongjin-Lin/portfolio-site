@@ -33,7 +33,7 @@ export function App() {
         <section className="tn-sec">
           <p>I'm <b>Hongjin</b>, backend &amp; machine-learning engineer and open-source creator. This is my digital garden. 🌱</p>
         </section>
-        <section className="tn-sec">
+        <section className="tn-sec tn-sec--nonav">
           <nav className="tn-nav" aria-label="Primary">
             <a href="#"><span className="em">📝</span>Blog</a>
             <a href="#projects"><span className="em">💻</span>Projects</a>
