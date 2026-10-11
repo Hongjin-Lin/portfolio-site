@@ -140,12 +140,13 @@ function LanguageSwitch({ lang, onChange, mobile = false, inline = false }) {
 function SidebarNavIcon({ type }) {
   const common = { className: "tn-nav-icon", viewBox: "0 0 28 28", "aria-hidden": true, focusable: false, fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round" };
   if (type === "projects") return <svg {...common}>
-    <path d="M4.2 5.4q.1-1.1 1.3-1.1h17q1.1 0 1.2 1.2v13q-.1 1.1-1.3 1.1H5.4q-1.2-.1-1.2-1.2z" fill="#d8e9d6" />
-    <path d="M6.7 7.5q0-.7.8-.7h13.1q.7 0 .7.8v8.7q0 .7-.8.7H7.4q-.7 0-.7-.8z" fill="#8cbd9b" />
-    <path d="M10.5 22.5h7m-3.5-2.7v2.7M4.2 5.4q.1-1.1 1.3-1.1h17q1.1 0 1.2 1.2v13q-.1 1.1-1.3 1.1H5.4q-1.2-.1-1.2-1.2z" />
-    <path d="m10.2 13.6 2.3-2.1 2 1.8 2.8-2.6" stroke="#fff8df" strokeWidth="1.3" />
-    <circle cx="18.5" cy="9.6" r=".8" fill="#efaa54" stroke="none" />
-    <path d="M4.8 20.7q4.4-.4 9.2-.2 4.7-.2 9.2.3l-1 1.4q-8.2.5-16.4 0z" fill="#efb66b" />
+    <path d="M4.1 4.3q0-1.1 1.2-1.1h17.4q1.2 0 1.2 1.2v18.8q0 1.1-1.2 1.1H5.3q-1.2 0-1.2-1.2z" fill="#e8e4f2" />
+    <path d="M4.2 8.2h19.5" />
+    <circle cx="7.2" cy="6.1" r=".8" fill="#dc816d" stroke="none" />
+    <circle cx="10" cy="6.1" r=".8" fill="#edc366" stroke="none" />
+    <circle cx="12.8" cy="6.1" r=".8" fill="#85b58c" stroke="none" />
+    <path d="M8 12.4v8.2m3.5-7.3-2.1 2.1 2.1 2.1m6.8-4.2 2.1 2.1-2.1 2.1m-1.6-5.2-2.1 6.2" stroke="#547d94" strokeWidth="1.4" />
+    <path d="M12.8 12.3h2.3m-2.3 7h3.4" stroke="#d68a63" strokeWidth="1.2" />
   </svg>;
   if (type === "fitness") return <svg {...common}>
     <path d="M5.1 10.1q1.1-.7 2.3-.1l1.1.8v6.4l-1.2.8q-1.2.6-2.2-.2z" fill="#edaa65" />
@@ -155,11 +156,13 @@ function SidebarNavIcon({ type }) {
     <path d="M4.1 11.3v5.4m19.7-5.4v5.4" />
   </svg>;
   if (type === "about") return <svg {...common}>
-    <path d="M5.7 22.8q.5-5.1 5.2-6.1h6.2q4.6 1 5.2 6.1-8.2 1.4-16.6 0Z" fill="#9fc9a5" />
-    <path d="M8.4 10.3q-.6-5.1 4.8-6.1 5.4.8 5.2 6-.2 5-4.9 5.3-4.8-.2-5.1-5.2Z" fill="#f1c66b" />
-    <path d="M8.4 9.1q1.1-5.6 6.2-5.1 2.9.2 3.7 2.6l-1.2 1.7q-2.9-.2-5.3-1.7-1.2 1.9-3.4 2.5ZM5.7 22.8q.5-5.1 5.2-6.1h6.2q4.6 1 5.2 6.1-8.2 1.4-16.6 0Z" />
-    <path d="M11.2 11.5h.1m4.3 0h.1m-3.6 2.1q1.3 1 2.6-.1" strokeWidth="1.25" />
-    <path d="M13.9 3.5q-.2-1.2.6-2" stroke="#80aa72" strokeWidth="1.4" />
+    <path d="M4.2 14.3q-.2-5.9 5-9.1 5.9-3.4 11.3.7 4.2 3.3 3.1 9.8-.9 6.9-8.2 8.4-7.6 1.1-10.6-4.6-1.1-2.1-.6-5.2Z" fill="#f2cd68" />
+    <path d="M7 10.2q.5-3.2 3-3.3 2.4.1 2.7 3-.3 2.3-2.7 2.4-2.5-.1-3-2.1Zm8-2.1q.4-3 2.8-3.1 2.4.1 2.7 3-.3 2.3-2.7 2.4-2.5-.1-2.8-2.3Z" fill="#9ccca1" stroke="#5a5149" strokeWidth="1.1" />
+    <ellipse cx="10.3" cy="9.8" rx=".85" ry="1.15" fill="#29272b" stroke="none" />
+    <ellipse cx="18" cy="7.6" rx=".85" ry="1.15" fill="#29272b" stroke="none" />
+    <path d="M10.5 15.2q2.6-.8 5.3-1.6" stroke="#75574c" strokeWidth="1.2" />
+    <path d="M5.2 17.2q2-.7 3.6.7l1.7 2.5q.7 1 .2 1.8-.8 1.1-1.8.2l-2.1-2.1q-2-.7-2.2-3.1Zm3.4.2q1.5-1 2.4.2l1.2 1.5q.6 1-.3 1.7-.8.5-1.6-.2" fill="#f2cd68" />
+    <path d="M21.4 15.7q1.6-.8 2.8.1m.2-3.5q1.4-.2 2.1.8" stroke="#8eaa86" strokeWidth="1.2" />
   </svg>;
   return <svg {...common}>
     <path d="M7 3.8h9.2l5.1 5.1v14.3q0 1.1-1.2 1.1H7q-1.1 0-1.1-1.2V5q0-1.2 1.1-1.2Z" fill="#f6e6b8" />
