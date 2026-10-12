@@ -76,7 +76,7 @@
   },
   {
     "date": "2026-10-12",
-    "weightKg": null,
+    "weightKg": 82.5,
     "workouts": [],
     "meals": [
       {
@@ -94,6 +94,13 @@
         "photos": []
       },
       {
+        "type": "dinner",
+        "items": "豆豉蒜蓉蒸排骨 5 块 + 鱼肉 40g + 熟白米饭 180g",
+        "kcal": 534,
+        "protein": 31,
+        "photos": []
+      },
+      {
         "type": "snack",
         "items": "瑞幸埃塞金烘拿铁（16oz/冰/不另外加糖/牛奶）",
         "kcal": 160,
@@ -101,6 +108,13 @@
         "photos": [
           "/fitness/2026-10-12/snack-1.jpg"
         ]
+      },
+      {
+        "type": "snack",
+        "items": "苹果 1 个（约 200g）",
+        "kcal": 104,
+        "protein": 1,
+        "photos": []
       }
     ],
     "notes": ""
