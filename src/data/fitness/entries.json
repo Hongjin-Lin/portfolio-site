@@ -85,6 +85,13 @@
         "kcal": 187,
         "protein": 22,
         "photos": []
+      },
+      {
+        "type": "lunch",
+        "items": "自制汤粉：红薯粉 120g（干重）+ 鱼丸肉卷 250g + 丝瓜汤",
+        "kcal": 825,
+        "protein": 30,
+        "photos": []
       }
     ],
     "notes": ""
