@@ -47,6 +47,13 @@
     "workouts": [],
     "meals": [
       {
+        "type": "breakfast",
+        "items": "瘦肉水煮蛋汤（水煮蛋 1 个 + 猪瘦肉 80g）",
+        "kcal": 187,
+        "protein": 22,
+        "photos": []
+      },
+      {
         "type": "lunch",
         "items": "外带：奥尔良烤鸡全腿 420g（去皮吃）+ 白灼生菜 175g + 沃集鲜杂粮饭 180g",
         "kcal": 838,
