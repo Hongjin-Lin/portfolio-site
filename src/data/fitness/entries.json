@@ -118,5 +118,20 @@
       }
     ],
     "notes": ""
+  },
+  {
+    "date": "2026-10-13",
+    "weightKg": 82.2,
+    "workouts": [],
+    "meals": [
+      {
+        "type": "breakfast",
+        "items": "早餐（自制，同 10-10）：燕麦 20g + 奇亚籽 5g + 蓝莓 30g + 牛奶 120ml（小象 5.0）+ 2 个煎蛋（生抽半勺）",
+        "kcal": 375,
+        "protein": 22,
+        "photos": []
+      }
+    ],
+    "notes": ""
   }
 ]
