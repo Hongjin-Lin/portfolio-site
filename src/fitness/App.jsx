@@ -199,7 +199,7 @@ function Comments({ date, lang }) {
 }
 
 function DayCard({ entry, start, lang, t, onZoom, onEdit, selected = false, hideDayNumber = false }) {
-  const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState(true);
   const totals = lib.dayTotals(entry);
   const n = lib.dayNumber(entry.date, start);
   const d = lib.parseKey(entry.date);
