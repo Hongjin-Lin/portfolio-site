@@ -170,30 +170,39 @@ function Comments({ date, lang }) {
   useEffect(() => {
     const el = ref.current;
     if (!el || el.childElementCount > 0) return undefined;
-    const script = document.createElement("script");
-    script.src = "https://giscus.app/client.js";
-    script.async = true;
-    script.crossOrigin = "anonymous";
-    const attrs = {
-      "data-repo": config.giscus.repo,
-      "data-repo-id": config.giscus.repoId,
-      "data-category": config.giscus.category,
-      "data-category-id": config.giscus.categoryId,
-      "data-mapping": "specific",
-      "data-term": `fitness-${date}`,
-      "data-strict": "1",
-      "data-reactions-enabled": "1",
-      "data-emit-metadata": "0",
-      "data-input-position": "top",
-      "data-theme": "light",
-      "data-lang": lang === "zh" ? "zh-CN" : "en",
-      "data-loading": "lazy",
-    };
-    Object.entries(attrs).forEach(([k, v]) => script.setAttribute(k, v));
-    el.appendChild(script);
-    return () => {
-      el.textContent = "";
-    };
+    // Direct widget iframe (multiple giscus client.js instances on one page
+    // would misplace each other's iframes into the first container).
+    const params = new URLSearchParams({
+      origin: window.location.href,
+      theme: "light",
+      reactionsEnabled: "1",
+      emitMetadata: "0",
+      inputPosition: "top",
+      repo: config.giscus.repo,
+      repoId: config.giscus.repoId,
+      category: config.giscus.category,
+      categoryId: config.giscus.categoryId,
+      mapping: "specific",
+      term: `fitness-${date}`,
+      strict: "1",
+      description: `Comments for the ${date} check-in`,
+      backLink: window.location.href,
+    });
+    try {
+      const stored = localStorage.getItem("giscus-session");
+      if (stored) params.set("session", JSON.parse(stored));
+    } catch { /* ignore session errors */ }
+    const iframe = document.createElement("iframe");
+    iframe.className = "giscus-frame";
+    iframe.title = `Comments · ${date}`;
+    iframe.setAttribute("scrolling", "no");
+    iframe.setAttribute("allow", "clipboard-write");
+    iframe.loading = "lazy";
+    iframe.style.opacity = "0";
+    iframe.addEventListener("load", () => iframe.style.removeProperty("opacity"));
+    iframe.src = `https://giscus.app/${lang === "zh" ? "zh-CN" : "en"}/widget?${params.toString()}`;
+    el.appendChild(iframe);
+    return () => { el.textContent = ""; };
   }, [date, lang]);
   return <div className="ft-comments" ref={ref} />;
 }
@@ -396,6 +405,31 @@ export function App() {
   }, [themeOpen]);
 
   useEffect(() => () => clearTimeout(selectTimer.current), []);
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const giscusParam = url.searchParams.get("giscus");
+    if (giscusParam) {
+      localStorage.setItem("giscus-session", JSON.stringify(giscusParam));
+      url.searchParams.delete("giscus");
+      url.hash = "";
+      history.replaceState(undefined, document.title, url.toString());
+    }
+    const onMessage = (event) => {
+      if (event.origin !== "https://giscus.app") return;
+      const data = event.data;
+      if (typeof data !== "object" || !data.giscus) return;
+      const g = data.giscus;
+      if (g.session) localStorage.setItem("giscus-session", JSON.stringify(g.session));
+      if (g.resizeHeight !== undefined) {
+        document.querySelectorAll(".ft-comments iframe").forEach((f) => {
+          if (f.contentWindow === event.source) f.style.height = `${g.resizeHeight}px`;
+        });
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
 
   const copyEmail = async () => {
     try {

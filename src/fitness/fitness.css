@@ -385,3 +385,6 @@ html[data-tn-dark="1"] .ft-token ol { color: var(--tn-text); }
   .ft-day { padding: 17px; }
   .ft-footer { flex-direction: column; align-items: flex-start; }
 }
+
+/* giscus direct iframes (one per day card) */
+.ft-comments iframe { width: 100%; border: 0; min-height: 150px; background: transparent; }
