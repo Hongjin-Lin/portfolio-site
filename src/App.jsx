@@ -10,6 +10,22 @@ const ACCENT_NAMES = ["Rose", "Blue", "Green", "Amber", "Violet", "Teal"];
 
 const PROJECTS = [
   {
+    title: "Banana Climbing — AI Efficiency Engineer",
+    titleZh: "香蕉攀岩 · AI 提效工程师",
+    meta: "2026.4 – 2026.8 · Internship · AI Efficiency Engineer",
+    metaZh: "2026.4 – 2026.8 · 实习 · AI 提效工程师",
+    image: "/assets/banana-ai.png",
+    brief: "Rebuilt and simplified the company reimbursement process with AI — Aliyun invoice OCR + Qwen structured extraction, enterprise-WeChat approval flow, and ~50k lines of AI-generated production code.",
+    briefZh: "利用 AI 能力重构并简化报销流程：接入阿里云发票 OCR 与 Qwen 构建结构化抽取管线，打通企业微信审批，约 5 万行 AI 生成代码生产交付。",
+    note: "* INTERNSHIP · 50–100 EMPLOYEES · ~200 ORDERS/MONTH",
+    noteZh: "* 实习 · 50–100 名员工使用 · 月均约 200 单",
+    detail: "Reimbursement redesign: the legacy flow required manually filling ~10 fields per claim and cross-checking expense categories, costing employees half a day to a full day monthly. With mentor guidance, proposed and shipped an 'AI recognition autofill + frequent-item reuse' refactor — three-table modeling for recipients, claims and claim details; server-side and admin pages; enterprise-WeChat approval integration; private attachment storage with signed temporary links. LLM: an Aliyun invoice OCR + Qwen structured-extraction pipeline — async recognition of amounts, issuers and expense categories with mixed multi-invoice submission; prompt engineering with dynamic injection of configuration candidate trees so the model only picks from existing categories; results written to drafts, fields below 0.8 confidence routed to human review, amount priorities (per-invoice, multi-ticket sum, replacement actual-pay) decided by code. Practiced OpenSpec spec-driven development, tests-alongside, safe database-migration auditing and PR pre-checks — ~50k lines of AI-generated production code. AI automation skills: finance voucher conversion (WeCom approval data auto-converted to vouchers, saving ~1 working day per month) and store scheduling scripts (per-store scheduling from 30 minutes down to 5 minutes via WorkBuddy self-service).",
+    detailZh: "报销流程重构：旧流程每笔报销需手动填写约 10 个字段并自查科目，员工每月花费半天到一天。在 mentor 指导下提出并实现「AI 识别回填 + 复用常用项」重构方案：收款人、报销单、报销明细三表建模，开发服务端与后台页面，打通企业微信审批，实现附件私有存储与按需签发临时链接。LLM 应用：接入阿里云发票 OCR 与 Qwen 构建结构化抽取管线，异步识别金额、开票单位与费用科目，一次提交可混合多份材料；通过 prompt engineering 实现提示词动态注入配置候选树，模型只在既有科目内选；识别结果只写入草稿，字段置信度低于 0.8 转人工确认，金额优先级由代码裁决。实践 OpenSpec 规格驱动开发、测试随行、数据库迁移安全审计与 PR 预检，以 AI 生成代码方式完成约 5 万行生产交付。AI 自动化 skills：财务凭证转换（企微审批数据自动转凭证，每月省约 1 个工作日）与门店排班脚本（WorkBuddy 自助生成，单店排班从半小时降到 5 分钟）。",
+    result: "Shipped and partially replaced the legacy flow — ~50–100 employees onboard, ~200 orders per month, routine submissions compressed from ~10 steps to 2.",
+    resultZh: "上线并部分替换旧流程：约 50–100 名员工使用，月均约 200 单，常规提交由约十步压缩至两步。",
+    stack: "Aliyun OCR · Qwen · Prompt Engineering · OpenSpec · Enterprise WeChat · WorkBuddy",
+  },
+  {
     title: "SEBiGAT — Rumor Detection Research",
     titleZh: "SEBiGAT 谣言检测研究",
     meta: "2025.9 – 2026.8 · AAAI-27 under review · First author",
