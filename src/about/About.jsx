@@ -22,9 +22,9 @@ const COPY = {
     email: "Email me", photoAlt: "Hongjin at his University of Nottingham graduation",
   },
   zh: {
-    projects: "项目", fitness: "健身打卡", about: "关于我", resume: "简历",
+    projects: "项目", fitness: "健身", about: "个人介绍", resume: "简历",
     intro: "你好，我是泓进，即将入读丹麦技术大学计算机科学与工程硕士项目。📖",
-    pageTitle: "关于我",
+    pageTitle: "个人介绍",
     opening: "我即将入读丹麦技术大学计算机科学与工程硕士项目。本科就读于诺丁汉大学计算机科学专业，在学习过程中逐渐对那些让软件可靠、实用的系统产生了浓厚兴趣。",
     second: "我喜欢在后端工程与机器学习之间探索：理解问题、搭建背后的系统，也把一路学到的东西记录下来。",
     now: "最近在做什么", nowText: "正在为 DTU 的新阶段做准备，也会继续探索后端系统、分布式计算和应用机器学习。",
