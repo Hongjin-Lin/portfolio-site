@@ -188,8 +188,9 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 /* ===== projects rows ===== */
 .tn-projects { margin-top: 44px; }
 .tn-projects h2 { margin: 0 0 6px; }
-.tn-proj { display: flex; flex-wrap: wrap; gap: 12px 20px; padding: 22px 0; border-top: 1px solid var(--tn-border); position: relative; }
-.tn-proj:first-of-type { border-top: 0; padding-top: 10px; }
+.tn-proj { display: flex; flex-wrap: wrap; gap: 12px 20px; padding: 20px 22px; border-radius: 14px; background: transparent; transition: background .25s ease; cursor: pointer; position: relative; }
+.tn-proj:hover, .tn-proj.open { background: rgba(40, 40, 46, .055); }
+html[data-tn-dark="1"] .tn-proj:hover, html[data-tn-dark="1"] .tn-proj.open { background: rgba(255, 255, 255, .055); }
 .tn-proj .thumb { flex: 0 0 220px; align-self: flex-start; border: 0; border-radius: 10px; overflow: hidden; }
 .tn-proj .thumb img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }
 .tn-proj .body { flex: 1; min-width: 0; }
