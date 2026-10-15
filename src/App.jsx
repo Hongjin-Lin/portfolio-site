@@ -76,12 +76,14 @@ const COPY = {
   },
 };
 
-function ProjectRow({ project, index, open, onToggle, lang, copy }) {
+function ProjectRow({ project, index, open, onToggle, lang, copy, onZoom }) {
   const localized = (key) => lang === "zh" ? project[`${key}Zh`] || project[key] : project[key];
   return (
     <article className={`tn-proj${open ? " open" : ""}`}>
       <span className="no">{String(index + 1).padStart(2, "0")}</span>
-      <div className="thumb"><img src={project.image} alt="" loading="lazy" /></div>
+      <button type="button" className="thumb" onClick={() => onZoom(project.image)} aria-label="View larger image">
+        <img src={project.image} alt="" loading="lazy" />
+      </button>
       <div className="body">
         <div className="meta">{localized("meta")}</div>
         <h3>{localized("title")}</h3>
@@ -155,10 +157,18 @@ export function App() {
   const [dark, setDark] = useState(() => localStorage.getItem("tn-dark") === "1");
   const [lang, setLang] = useState(() => localStorage.getItem("ft_lang") || "en");
   const [openProject, setOpenProject] = useState(null);
+  const [zoom, setZoom] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false);
   const [emailCopyState, setEmailCopyState] = useState("idle");
   const copy = COPY[lang];
+
+  useEffect(() => {
+    if (!zoom) return undefined;
+    const onKey = (e) => { if (e.key === "Escape") setZoom(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [zoom]);
 
   useEffect(() => {
     localStorage.setItem("tn-accent", accent);
@@ -312,11 +322,16 @@ export function App() {
           <section id="projects" className="tn-projects">
             <h2>{copy.projects}</h2>
             {PROJECTS.map((p, i) => (
-              <ProjectRow key={p.title} project={p} index={i} open={openProject === i} onToggle={() => setOpenProject((v) => (v === i ? null : i))} lang={lang} copy={copy} />
+              <ProjectRow key={p.title} project={p} index={i} open={openProject === i} onToggle={() => setOpenProject((v) => (v === i ? null : i))} lang={lang} copy={copy} onZoom={setZoom} />
             ))}
           </section>
         </div>
       </main>
+      {zoom && (
+        <div className="tn-lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image" onClick={() => setZoom(null)}>
+          <img src={zoom} alt="" />
+        </div>
+      )}
     </div>
   );
 }
