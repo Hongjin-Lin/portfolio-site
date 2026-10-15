@@ -190,8 +190,7 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 .tn-projects h2 { margin: 0 0 6px; }
 .tn-proj { display: flex; flex-wrap: wrap; gap: 12px 20px; padding: 22px 0; border-top: 1px solid var(--tn-border); position: relative; }
 .tn-proj:first-of-type { border-top: 0; padding-top: 10px; }
-.tn-proj .no { flex: 0 0 30px; font: 600 13px/1.8 "Google Sans Code Variable", ui-monospace, monospace; color: var(--tn-muted); }
-.tn-proj .thumb { flex: 0 0 148px; align-self: flex-start; border: 1.5px solid var(--tn-heading); border-radius: 8px; overflow: hidden; background: #fff; }
+.tn-proj .thumb { flex: 0 0 220px; align-self: flex-start; border: 0; border-radius: 10px; overflow: hidden; }
 .tn-proj .thumb img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }
 .tn-proj .body { flex: 1; min-width: 0; }
 .tn-proj .meta { font: 600 11px/1 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--tn-accent); margin-bottom: 7px; }
@@ -212,4 +211,4 @@ html[data-tn-dark="1"] .tn-nav a:hover { background: rgba(255, 255, 255, .06); }
 /* ===== project image lightbox ===== */
 .tn-proj .thumb { cursor: zoom-in; }
 .tn-lightbox { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 4vmin; background: rgba(20, 20, 24, .82); backdrop-filter: blur(3px); cursor: zoom-out; }
-.tn-lightbox img { max-width: min(1400px, 94vw); max-height: 88vh; border-radius: 10px; box-shadow: 0 30px 90px rgba(0, 0, 0, .5); background: #fff; }
+.tn-lightbox img { max-width: min(1400px, 94vw); max-height: 88vh; border-radius: 10px; box-shadow: 0 30px 90px rgba(0, 0, 0, .5); }

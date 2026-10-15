@@ -76,11 +76,10 @@ const COPY = {
   },
 };
 
-function ProjectRow({ project, index, open, onToggle, lang, copy, onZoom }) {
+function ProjectRow({ project, open, onToggle, lang, copy, onZoom }) {
   const localized = (key) => lang === "zh" ? project[`${key}Zh`] || project[key] : project[key];
   return (
     <article className={`tn-proj${open ? " open" : ""}`}>
-      <span className="no">{String(index + 1).padStart(2, "0")}</span>
       <button type="button" className="thumb" onClick={() => onZoom(project.image)} aria-label="View larger image">
         <img src={project.image} alt="" loading="lazy" />
       </button>
@@ -322,7 +321,7 @@ export function App() {
           <section id="projects" className="tn-projects">
             <h2>{copy.projects}</h2>
             {PROJECTS.map((p, i) => (
-              <ProjectRow key={p.title} project={p} index={i} open={openProject === i} onToggle={() => setOpenProject((v) => (v === i ? null : i))} lang={lang} copy={copy} onZoom={setZoom} />
+              <ProjectRow key={p.title} project={p} open={openProject === i} onToggle={() => setOpenProject((v) => (v === i ? null : i))} lang={lang} copy={copy} onZoom={setZoom} />
             ))}
           </section>
         </div>
