@@ -17,8 +17,6 @@ const PROJECTS = [
     image: "/assets/banana-ai.png",
     brief: "Rebuilt and simplified the company reimbursement process with AI — Aliyun invoice OCR + Qwen structured extraction, enterprise-WeChat approval flow, and ~50k lines of AI-generated production code.",
     briefZh: "利用 AI 能力重构并简化报销流程：接入阿里云发票 OCR 与 Qwen 构建结构化抽取管线，打通企业微信审批，约 5 万行 AI 生成代码生产交付。",
-    note: "* INTERNSHIP · 50–100 EMPLOYEES · ~200 ORDERS/MONTH",
-    noteZh: "* 实习 · 50–100 名员工使用 · 月均约 200 单",
     detail: "Reimbursement redesign: the legacy flow required manually filling ~10 fields per claim and cross-checking expense categories, costing employees half a day to a full day monthly. With mentor guidance, proposed and shipped an \"AI recognition autofill + frequent-item reuse\" refactor — three-table modeling for recipients, claims and claim details; server-side and admin pages; enterprise-WeChat approval integration; private attachment storage with signed temporary links. LLM: an Aliyun invoice OCR + Qwen structured-extraction pipeline — async recognition of amounts, issuers and expense categories with mixed multi-invoice submission; prompt engineering with dynamic injection of configuration candidate trees so the model only picks from existing categories; results written to drafts, fields below 0.8 confidence routed to human review, amount priorities (per-invoice, multi-ticket sum, replacement actual-pay) decided by code. Practiced OpenSpec spec-driven development, tests-alongside, safe database-migration auditing and PR pre-checks — ~50k lines of AI-generated production code. AI automation skills: finance voucher conversion (WeCom approval data auto-converted to vouchers, saving ~1 working day per month) and store scheduling scripts (per-store scheduling from 30 minutes down to 5 minutes via WorkBuddy self-service).",
     detailZh: "报销流程重构：旧流程每笔报销需手动填写约 10 个字段并自查科目，员工每月花费半天到一天。在 mentor 指导下提出并实现「AI 识别回填 + 复用常用项」重构方案：收款人、报销单、报销明细三表建模，开发服务端与后台页面，打通企业微信审批，实现附件私有存储与按需签发临时链接。LLM 应用：接入阿里云发票 OCR 与 Qwen 构建结构化抽取管线，异步识别金额、开票单位与费用科目，一次提交可混合多份材料；通过 prompt engineering 实现提示词动态注入配置候选树，模型只在既有科目内选；识别结果只写入草稿，字段置信度低于 0.8 转人工确认，金额优先级由代码裁决。实践 OpenSpec 规格驱动开发、测试随行、数据库迁移安全审计与 PR 预检，以 AI 生成代码方式完成约 5 万行生产交付。AI 自动化 skills：财务凭证转换（企微审批数据自动转凭证，每月省约 1 个工作日）与门店排班脚本（WorkBuddy 自助生成，单店排班从半小时降到 5 分钟）。",
     result: "Shipped and partially replaced the legacy flow — ~50–100 employees onboard, ~200 orders per month, routine submissions compressed from ~10 steps to 2.",
@@ -33,8 +31,6 @@ const PROJECTS = [
     image: "/assets/sebigat-architecture.png",
     brief: "A residual gated graph-attention model for rumor detection on Twitter15/16, with XLM-R-enhanced node representations and multi-Agent-rebuilt benchmarks.",
     briefZh: "针对深层图神经网络过平滑问题，引入残差门控机制与双向传播建模，结合 XLM-R 语义增强，并重建 Twitter15/16 缺失原文基准。",
-    note: "* FIRST AUTHOR · CODE OPEN-SOURCED",
-    noteZh: "* 一作 · 代码开源",
     detail: "Model design: tackled over-smoothing in deep graph neural networks with a residual gating mechanism that dynamically fuses original and aggregated node features, and modeled source-node influence and propagation-path response bidirectionally, enhanced by XLM-R semantic features. Experiment design: a modular PyTorch Geometric framework covering data processing, model training, multi-model comparison and ablations. Dataset rebuild: the official Twitter15/16 tweets lack source posts — orchestrated a multi-Agent workflow (task sharding, code leases, PR-review merges) to reconstruct the hydrated tweets and rebuild the two 4-class benchmarks; code open-sourced.",
     detailZh: "模型设计：针对深层图神经网络过平滑问题，引入残差门控机制动态融合节点原始特征与聚合特征，双向传播建模源节点影响力与传播路径响应，并以 XLM-R 语义特征增强节点表示。实验设计：基于 PyTorch Geometric 开发模块化实验框架，涵盖数据处理、模型训练、多模型对比与消融实验。数据集重建：官方 Twitter15/16 缺失原文，编排多 Agent 工作流（任务分片、代码租约、PR 评审合并）恢复水合推文，重建两个四分类基准；代码开源。",
     result: "Highest average Acc / Macro-F1 among audited methods (95.13 ± 1.30, +2.46pp over BiGCN); reported the non-significant edge over the strongest baseline honestly (p = 0.375).",
@@ -49,8 +45,6 @@ const PROJECTS = [
     image: "/assets/capitalone-ai.jpg",
     brief: "An automated performance-document analysis tool for Capital One UK: PDF conversion, text splitting, topic classification, semantic ranking and anonymization — outputting visualized engineer capability reports.",
     briefZh: "基于 HuggingFace 开源模型为英国 Capital One 总部打造自动化绩效文档分析工具：PDF 转换、文本分割、主题分类、语义排名与匿名化，输出工程师能力可视化分析报告。",
-    note: "* AI TEAM LEAD · PASSED BUSINESS ACCEPTANCE",
-    noteZh: "* AI TEAM LEAD · 通过业务方验收",
     detail: "As AI team lead, designed a modular NLP pipeline that converts PDF documents into structured analysis — document parsing, sentence splitting, topic classification, composite scoring and topic selection — outputting standardized JSON for frontend visualization. Collected Capital One engineer-annotated data and fine-tuned with LLM-generated synthetic samples, lifting classification accuracy by ~20%. A fine-tuned BERT model performs named entity recognition to automatically anonymize names, organizations and project names, protecting data privacy.",
     detailZh: "作为 AI Team Lead，拆分任务并设计模块化 NLP 流水线，将 PDF 文档转换为结构化分析结果：文档解析、句子分割、主题分类、综合评分、主题选择，输出标准化 JSON 供前端可视化展示。收集 Capital One 工程师标注数据，利用 LLM 生成合成样本微调模型，分类准确率提升约 20%。基于 BERT 微调实现命名实体识别，自动替换人名、组织名、项目名等敏感信息，保障数据隐私安全。",
     result: "The delivered system passed Capital One's business acceptance requirements.",
@@ -103,7 +97,6 @@ function ProjectRow({ project, open, onToggle, lang, copy, onZoom }) {
         <div className="meta">{localized("meta")}</div>
         <h3>{localized("title")}</h3>
         <p className="brief">{localized("brief")}</p>
-        <p className="note">{localized("note")}</p>
       </div>
       <button className="toggle" onClick={onToggle} aria-expanded={open}>{open ? copy.close : copy.details}</button>
       <div className="detail"><div className="inner"><div className="pad">
