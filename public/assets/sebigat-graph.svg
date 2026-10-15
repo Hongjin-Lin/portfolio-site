@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <rect width="320" height="200" fill="#f8f4e6"/>
+  <g stroke="#1d1d22" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <path d="M52 60 Q90 48 128 62"/>
+    <path d="M128 62 Q150 84 176 78"/>
+    <path d="M128 62 Q118 96 84 108"/>
+    <path d="M176 78 Q210 70 246 82"/>
+    <path d="M176 78 Q168 116 128 132"/>
+    <path d="M84 108 Q104 140 128 132"/>
+    <path d="M128 132 Q176 148 232 130"/>
+    <path d="M246 82 Q258 106 232 130"/>
+    <path d="M128 132 Q160 92 246 82" stroke-dasharray="5 4" stroke="#b12d6c"/>
+  </g>
+  <g stroke="#1d1d22" stroke-width="1.8">
+    <circle cx="52" cy="60" r="12" fill="#e5dcbd"/>
+    <circle cx="128" cy="62" r="14" fill="#b12d6c"/>
+    <circle cx="176" cy="78" r="10" fill="#f8f4e6"/>
+    <circle cx="84" cy="108" r="9" fill="#f8f4e6"/>
+    <circle cx="128" cy="132" r="13" fill="#e5dcbd"/>
+    <circle cx="246" cy="82" r="11" fill="#b12d6c"/>
+    <circle cx="232" cy="130" r="8" fill="#f8f4e6"/>
+  </g>
+  <g font-family="Caveat, cursive" fill="#1d1d22">
+    <text x="18" y="34" font-size="19">rumor</text>
+    <text x="238" y="42" font-size="19">source?</text>
+    <text x="252" y="168" font-size="19">verify ✓</text>
+  </g>
+  <path d="M262 30 q14 8 8 22" fill="none" stroke="#b12d6c" stroke-width="2" stroke-linecap="round"/>
+</svg>

@@ -10,49 +10,36 @@ const ACCENT_NAMES = ["Rose", "Blue", "Green", "Amber", "Violet", "Teal"];
 
 const PROJECTS = [
   {
-    title: "RAG Knowledge Assistant",
-    meta: "2026 · LLM Systems",
-    image: "/assets/rag-evaluation.png",
-    brief: "A retrieval-augmented assistant answering over private documents with citations.",
-    note: "* MODULAR INGESTION · HYBRID RETRIEVAL",
-    detail: "Modular ingestion pipeline, hybrid retrieval (BM25 + vector), and an evaluation harness with citation-level scoring.",
-    result: "Reduced hallucinations by 38% on a curated evaluation set.",
-    stack: "Python · FastAPI · PostgreSQL · pgvector · LangChain · Docker",
-    titleZh: "RAG 知识助手",
-    briefZh: "基于私有文档进行检索增强问答，并提供可追溯的引用。",
-    noteZh: "* 模块化数据接入 · 混合检索",
-    detailZh: "模块化数据处理管线、BM25 与向量混合检索，以及按引用质量评分的评测工具。",
-    resultZh: "在精选评测集中将幻觉率降低了 38%。",
+    title: "SEBiGAT — Rumor Detection Research",
+    titleZh: "SEBiGAT 谣言检测研究",
+    meta: "2025.9 – 2026.8 · AAAI-27 under review · First author",
+    metaZh: "2025.9 – 2026.8 · AAAI-27 在投 · 一作",
+    image: "/assets/sebigat-graph.svg",
+    brief: "A residual gated graph-attention model for rumor detection on Twitter15/16, with XLM-R-enhanced node representations and multi-Agent-rebuilt benchmarks.",
+    briefZh: "针对深层图神经网络过平滑问题，引入残差门控机制与双向传播建模，结合 XLM-R 语义增强，并重建 Twitter15/16 缺失原文基准。",
+    note: "* FIRST AUTHOR · CODE OPEN-SOURCED",
+    noteZh: "* 一作 · 代码开源",
+    detail: "Model design: tackled over-smoothing in deep graph neural networks with a residual gating mechanism that dynamically fuses original and aggregated node features, and modeled source-node influence and propagation-path response bidirectionally, enhanced by XLM-R semantic features. Experiment design: a modular PyTorch Geometric framework covering data processing, model training, multi-model comparison and ablations. Dataset rebuild: the official Twitter15/16 tweets lack source posts — orchestrated a multi-Agent workflow (task sharding, code leases, PR-review merges) to reconstruct the hydrated tweets and rebuild the two 4-class benchmarks; code open-sourced.",
+    detailZh: "模型设计：针对深层图神经网络过平滑问题，引入残差门控机制动态融合节点原始特征与聚合特征，双向传播建模源节点影响力与传播路径响应，并以 XLM-R 语义特征增强节点表示。实验设计：基于 PyTorch Geometric 开发模块化实验框架，涵盖数据处理、模型训练、多模型对比与消融实验。数据集重建：官方 Twitter15/16 缺失原文，编排多 Agent 工作流（任务分片、代码租约、PR 评审合并）恢复水合推文，重建两个四分类基准；代码开源。",
+    result: "Highest average Acc / Macro-F1 among audited methods (95.13 ± 1.30, +2.46pp over BiGCN); reported the non-significant edge over the strongest baseline honestly (p = 0.375).",
+    resultZh: "完成审计方法中最高平均 Acc / Macro-F1（95.13±1.30，较 BiGCN +2.46pp）；对最强基线优势未达显著（p=0.375），如实报告。",
+    stack: "PyTorch Geometric · XLM-R · Multi-Agent Workflow · Statistical Testing",
   },
   {
-    title: "Real-time Recommendation API",
-    meta: "2025 · API · ML",
-    image: "/assets/recommendation-api.png",
-    brief: "Low-latency recommendations with collaborative filtering and content signals.",
-    note: "* STREAMING UPDATES · BUILT-IN EXPERIMENTS",
-    detail: "Typed API with streaming updates and built-in experiment tooling for online learning loops.",
-    result: "Kept P99 latency at 128ms while serving 2.5k requests per second.",
-    stack: "Python · gRPC · Redis · ClickHouse · Prometheus · Kubernetes",
-    titleZh: "实时推荐 API",
-    briefZh: "结合协同过滤与内容信号，提供低延迟个性化推荐。",
-    noteZh: "* 流式更新 · 内置实验工具",
-    detailZh: "提供类型安全的 API、流式更新能力和内置实验工具，支持在线学习迭代。",
-    resultZh: "每秒处理 2,500 个请求时，P99 延迟保持在 128 毫秒。",
-  },
-  {
-    title: "Distributed Task Queue",
-    meta: "2025 · Infrastructure",
-    image: "/assets/task-queue.png",
-    brief: "Fault-tolerant queueing with delayed scheduling, retries and rate limiting.",
-    note: "* HORIZONTAL SCALE · OBSERVABLE BY DEFAULT",
-    detail: "Designed for horizontal scale — delayed scheduling, automatic retries, and rate limiting.",
-    result: "Achieved 99.95% successful completion across a three-node cluster.",
-    stack: "Go · NATS · PostgreSQL · Redis · Docker · Kubernetes",
-    titleZh: "分布式任务队列",
-    briefZh: "具备延迟调度、自动重试与限流能力的高可用任务队列。",
-    noteZh: "* 水平扩展 · 默认可观测",
-    detailZh: "支持横向扩展、延迟调度、自动重试和速率限制。",
-    resultZh: "三节点集群中的任务成功率达到 99.95%。",
+    title: "Capital One — AI Performance-Document Analysis",
+    titleZh: "Capital One 绩效文档 AI 分析",
+    meta: "2024.10 – 2025.6 · Capital One UK · AI Team Lead",
+    metaZh: "2024.10 – 2025.6 · Capital One 英国总部 · AI Team Lead",
+    image: "/assets/capitalone-ai.jpg",
+    brief: "An automated performance-document analysis tool for Capital One UK: PDF conversion, text splitting, topic classification, semantic ranking and anonymization — outputting visualized engineer capability reports.",
+    briefZh: "基于 HuggingFace 开源模型为英国 Capital One 总部打造自动化绩效文档分析工具：PDF 转换、文本分割、主题分类、语义排名与匿名化，输出工程师能力可视化分析报告。",
+    note: "* AI TEAM LEAD · PASSED BUSINESS ACCEPTANCE",
+    noteZh: "* AI TEAM LEAD · 通过业务方验收",
+    detail: "As AI team lead, designed a modular NLP pipeline that converts PDF documents into structured analysis — document parsing, sentence splitting, topic classification, composite scoring and topic selection — outputting standardized JSON for frontend visualization. Collected Capital One engineer-annotated data and fine-tuned with LLM-generated synthetic samples, lifting classification accuracy by ~20%. A fine-tuned BERT model performs named entity recognition to automatically anonymize names, organizations and project names, protecting data privacy.",
+    detailZh: "作为 AI Team Lead，拆分任务并设计模块化 NLP 流水线，将 PDF 文档转换为结构化分析结果：文档解析、句子分割、主题分类、综合评分、主题选择，输出标准化 JSON 供前端可视化展示。收集 Capital One 工程师标注数据，利用 LLM 生成合成样本微调模型，分类准确率提升约 20%。基于 BERT 微调实现命名实体识别，自动替换人名、组织名、项目名等敏感信息，保障数据隐私安全。",
+    result: "The delivered system passed Capital One's business acceptance requirements.",
+    resultZh: "最终系统满足 Capital One 业务方验收要求。",
+    stack: "HuggingFace · BERT · LLM Fine-tuning · NER · Modular NLP Pipeline",
   },
 ];
 
@@ -96,7 +83,7 @@ function ProjectRow({ project, index, open, onToggle, lang, copy }) {
       <span className="no">{String(index + 1).padStart(2, "0")}</span>
       <div className="thumb"><img src={project.image} alt="" loading="lazy" /></div>
       <div className="body">
-        <div className="meta">{project.meta}</div>
+        <div className="meta">{localized("meta")}</div>
         <h3>{localized("title")}</h3>
         <p className="brief">{localized("brief")}</p>
         <p className="note">{localized("note")}</p>
