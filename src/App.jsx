@@ -12,8 +12,8 @@ const PROJECTS = [
   {
     title: "Banana Climbing — AI Efficiency Engineer",
     titleZh: "香蕉攀岩 · AI 提效工程师",
-    meta: "2026.4 – 2026.8 · Internship · AI Efficiency Engineer",
-    metaZh: "2026.4 – 2026.8 · 实习 · AI 提效工程师",
+    meta: "2026.4 – 2026.8",
+    metaZh: "2026.4 – 2026.8",
     image: "/assets/banana-ai.png",
     brief: "Rebuilt and simplified the company reimbursement process with AI — Aliyun invoice OCR + Qwen structured extraction, enterprise-WeChat approval flow, and ~50k lines of AI-generated production code.",
     briefZh: "利用 AI 能力重构并简化报销流程：接入阿里云发票 OCR 与 Qwen 构建结构化抽取管线，打通企业微信审批，约 5 万行 AI 生成代码生产交付。",
@@ -26,8 +26,8 @@ const PROJECTS = [
   {
     title: "SEBiGAT — Rumor Detection Research",
     titleZh: "SEBiGAT 谣言检测研究",
-    meta: "2025.9 – 2026.8 · AAAI-27 under review · First author",
-    metaZh: "2025.9 – 2026.8 · AAAI-27 在投 · 一作",
+    meta: "2025.9 – 2026.8",
+    metaZh: "2025.9 – 2026.8",
     image: "/assets/sebigat-architecture.png",
     brief: "A residual gated graph-attention model for rumor detection on Twitter15/16, with XLM-R-enhanced node representations and multi-Agent-rebuilt benchmarks.",
     briefZh: "针对深层图神经网络过平滑问题，引入残差门控机制与双向传播建模，结合 XLM-R 语义增强，并重建 Twitter15/16 缺失原文基准。",
@@ -40,8 +40,8 @@ const PROJECTS = [
   {
     title: "Capital One — AI Performance-Document Analysis",
     titleZh: "Capital One 绩效文档 AI 分析",
-    meta: "2024.10 – 2025.6 · Capital One UK",
-    metaZh: "2024.10 – 2025.6 · Capital One 英国总部",
+    meta: "2024.10 – 2025.6",
+    metaZh: "2024.10 – 2025.6",
     image: "/assets/capitalone-ai.jpg",
     brief: "An automated performance-document analysis tool for Capital One UK: PDF conversion, text splitting, topic classification, semantic ranking and anonymization — outputting visualized engineer capability reports.",
     briefZh: "基于 HuggingFace 开源模型为英国 Capital One 总部打造自动化绩效文档分析工具：PDF 转换、文本分割、主题分类、语义排名与匿名化，输出工程师能力可视化分析报告。",
@@ -94,8 +94,10 @@ function ProjectRow({ project, open, onToggle, lang, copy, onZoom }) {
         <img src={project.image} alt="" loading="lazy" />
       </button>
       <div className="body">
-        <div className="meta">{localized("meta")}</div>
-        <h3>{localized("title")}</h3>
+        <div className="titlerow">
+          <h3>{localized("title")}</h3>
+          <span className="meta">{localized("meta")}</span>
+        </div>
         <p className="brief">{localized("brief")}</p>
       </div>
       <button className="toggle" onClick={onToggle} aria-expanded={open}>{open ? copy.close : copy.details}</button>
