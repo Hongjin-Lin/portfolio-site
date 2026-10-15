@@ -14,7 +14,7 @@ const PROJECTS = [
     titleZh: "SEBiGAT 谣言检测研究",
     meta: "2025.9 – 2026.8 · AAAI-27 under review · First author",
     metaZh: "2025.9 – 2026.8 · AAAI-27 在投 · 一作",
-    image: "/assets/sebigat-graph.svg",
+    image: "/assets/sebigat-architecture.png",
     brief: "A residual gated graph-attention model for rumor detection on Twitter15/16, with XLM-R-enhanced node representations and multi-Agent-rebuilt benchmarks.",
     briefZh: "针对深层图神经网络过平滑问题，引入残差门控机制与双向传播建模，结合 XLM-R 语义增强，并重建 Twitter15/16 缺失原文基准。",
     note: "* FIRST AUTHOR · CODE OPEN-SOURCED",
