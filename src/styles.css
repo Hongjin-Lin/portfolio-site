@@ -194,7 +194,8 @@ html[data-tn-dark="1"] .tn-proj:hover, html[data-tn-dark="1"] .tn-proj.open { ba
 .tn-proj .thumb { flex: 0 0 220px; align-self: flex-start; border: 0; border-radius: 10px; overflow: hidden; }
 .tn-proj .thumb img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }
 .tn-proj .body { flex: 1; min-width: 0; }
-.tn-proj .meta { font: 600 11px/1 "Google Sans Code Variable", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--tn-accent); margin-bottom: 7px; }
+.tn-proj .titlerow { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.tn-proj .meta { font: 600 11.5px/1.4 "Google Sans Code Variable", ui-monospace, monospace; letter-spacing: .04em; color: var(--tn-muted); white-space: nowrap; }
 .tn-proj h3 { font-size: 25.6px; line-height: 1.3; letter-spacing: -.005em; }
 .tn-proj .brief { font-size: 17.6px; line-height: 1.55; margin-top: 6px; }
 .tn-proj .toggle { position: absolute; right: 0; top: 26px; font: 600 11px/1 "Google Sans Code Variable", ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--tn-text); background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; opacity: .85; }
