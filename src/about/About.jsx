@@ -4,7 +4,7 @@ import { GithubLogoIcon as GithubLogo } from "@phosphor-icons/react/dist/csr/Git
 import { LinkedinLogoIcon as LinkedinLogo } from "@phosphor-icons/react/dist/csr/LinkedinLogo";
 import { MoonIcon as Moon } from "@phosphor-icons/react/dist/csr/Moon";
 import { SunIcon as Sun } from "@phosphor-icons/react/dist/csr/Sun";
-import { BrandLogo, LanguageSwitch, SidebarNavIcon } from "../App.jsx";
+import { BrandLogo, LanguageSwitch, SidebarNavIcon, SIDEBAR } from "../App.jsx";
 
 const ACCENTS = ["#b12d6c", "#2456c8", "#2e7d46", "#c26a1f", "#7a4fc9", "#1f7a78"];
 const NAMES = ["Rose", "Blue", "Green", "Amber", "Violet", "Teal"];
@@ -96,10 +96,10 @@ export function About() {
     window.setTimeout(() => setEmailCopyState("idle"), 1800);
   };
   const navLinks = (mobile = false) => <>
-    <a href="/#projects" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="projects" />{copy.projects}</a>
-    <a href="/fitness-tracker/" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="fitness" />{copy.fitness}</a>
-    <a href="/me/" aria-current="page" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="about" />{copy.about}</a>
-    <a href="/#about" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="resume" />{copy.resume}</a>
+    <a href="/#projects" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="projects" />{SIDEBAR.labels[lang].projects}</a>
+    <a href="/fitness-tracker/" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="fitness" />{SIDEBAR.labels[lang].fitness}</a>
+    <a href="/me/" aria-current="page" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="about" />{SIDEBAR.labels[lang].about}</a>
+    <a href="/#about" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="resume" />{SIDEBAR.labels[lang].resume}</a>
   </>;
 
   return <div className={`tn-shell about-shell${lang === "zh" ? " language-zh" : ""}`}>
@@ -119,7 +119,7 @@ export function About() {
         {themePicker("about-desktop-theme-picker")}
         <button className="tn-icon-button" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"} data-tooltip="Theme">{dark ? <Sun size={24} /> : <Moon size={24} />}</button>
       </div></section>
-      <section className="tn-sec"><p>{copy.intro}</p></section>
+      <section className="tn-sec"><p>{SIDEBAR[lang].intro}</p></section>
       <section className="tn-sec tn-sec--nonav"><nav className="tn-nav" aria-label={lang === "zh" ? "主导航" : "Primary"}>{navLinks()}</nav></section>
       <section className="tn-sec tn-sec--foot"><div className="tn-footer-actions">
         <div className="tn-socials" aria-label="Social links">
