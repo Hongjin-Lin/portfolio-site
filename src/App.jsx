@@ -275,10 +275,10 @@ export function App() {
           <button className="tn-menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={menuOpen ? "Close navigation" : "Open navigation"}>{menuOpen ? "×" : "☰"}</button>
         </div>
         {menuOpen && <nav className="tn-mobile-menu" aria-label="Mobile primary">
-          <a href="#projects" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="projects" />{SIDEBAR.labels[lang].projects}</a>
-          <a href="/fitness-tracker/"><SidebarNavIcon type="fitness" />{SIDEBAR.labels[lang].fitness}</a>
-          <a href="/me/" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="about" />{SIDEBAR.labels[lang].about}</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="resume" />{SIDEBAR.labels[lang].resume}</a>
+          <a href="#projects" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="projects" />{SIDEBAR[lang].labels.projects}</a>
+          <a href="/fitness-tracker/"><SidebarNavIcon type="fitness" />{SIDEBAR[lang].labels.fitness}</a>
+          <a href="/me/" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
+          <a href="#about" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
           <LanguageSwitch lang={lang} onChange={setLang} mobile />
         </nav>}
       </header>
@@ -296,10 +296,10 @@ export function App() {
         </section>
         <section className="tn-sec tn-sec--nonav">
           <nav className="tn-nav" aria-label={lang === "zh" ? "主导航" : "Primary"}>
-            <a href="#projects"><SidebarNavIcon type="projects" />{SIDEBAR.labels[lang].projects}</a>
-            <a href="/fitness-tracker/"><SidebarNavIcon type="fitness" />{SIDEBAR.labels[lang].fitness}</a>
-            <a href="/me/"><SidebarNavIcon type="about" />{SIDEBAR.labels[lang].about}</a>
-            <a href="#about"><SidebarNavIcon type="resume" />{SIDEBAR.labels[lang].resume}</a>
+            <a href="#projects"><SidebarNavIcon type="projects" />{SIDEBAR[lang].labels.projects}</a>
+            <a href="/fitness-tracker/"><SidebarNavIcon type="fitness" />{SIDEBAR[lang].labels.fitness}</a>
+            <a href="/me/"><SidebarNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
+            <a href="#about"><SidebarNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
           </nav>
         </section>
         <section className="tn-sec tn-sec--foot">
@@ -342,7 +342,7 @@ export function App() {
         </section>
         <div className="tn-lower-sections">
           <section id="projects" className="tn-projects">
-            <h2>{SIDEBAR.labels[lang].projects}</h2>
+            <h2>{SIDEBAR[lang].labels.projects}</h2>
             {PROJECTS.map((p, i) => (
               <ProjectRow key={p.title} project={p} open={openProject === i} onToggle={() => setOpenProject((v) => (v === i ? null : i))} lang={lang} copy={copy} onZoom={setZoom} />
             ))}

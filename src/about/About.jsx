@@ -96,10 +96,10 @@ export function About() {
     window.setTimeout(() => setEmailCopyState("idle"), 1800);
   };
   const navLinks = (mobile = false) => <>
-    <a href="/#projects" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="projects" />{SIDEBAR.labels[lang].projects}</a>
-    <a href="/fitness-tracker/" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="fitness" />{SIDEBAR.labels[lang].fitness}</a>
-    <a href="/me/" aria-current="page" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="about" />{SIDEBAR.labels[lang].about}</a>
-    <a href="/#about" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="resume" />{SIDEBAR.labels[lang].resume}</a>
+    <a href="/#projects" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="projects" />{SIDEBAR[lang].labels.projects}</a>
+    <a href="/fitness-tracker/" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="fitness" />{SIDEBAR[lang].labels.fitness}</a>
+    <a href="/me/" aria-current="page" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
+    <a href="/#about" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
   </>;
 
   return <div className={`tn-shell about-shell${lang === "zh" ? " language-zh" : ""}`}>
