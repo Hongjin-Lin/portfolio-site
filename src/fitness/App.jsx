@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { SIDEBAR } from "../App.jsx";
 import { GithubLogoIcon as GithubLogo } from "@phosphor-icons/react/dist/csr/GithubLogo";
 import { LinkedinLogoIcon as LinkedinLogo } from "@phosphor-icons/react/dist/csr/LinkedinLogo";
 import { EnvelopeSimpleIcon as EnvelopeSimple } from "@phosphor-icons/react/dist/csr/EnvelopeSimple";
@@ -477,10 +478,10 @@ export function App() {
           <button className="tn-menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={menuOpen ? "Close navigation" : "Open navigation"}>{menuOpen ? "×" : "☰"}</button>
         </div>
         {menuOpen && <nav className="tn-mobile-menu" aria-label="Mobile primary">
-          <a href="/#projects" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="projects" />{t.projects}</a>
-          <a href="/fitness-tracker/" aria-current="page" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="fitness" />{t.fitness}</a>
-          <a href="/me/" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="about" />{t.about}</a>
-          <a href="/#about" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="resume" />{t.resume}</a>
+          <a href="/#projects" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="projects" />{SIDEBAR[lang].labels.projects}</a>
+          <a href="/fitness-tracker/" aria-current="page" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="fitness" />{SIDEBAR[lang].labels.fitness}</a>
+          <a href="/me/" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
+          <a href="/#about" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
           <div className="tn-lang-switch tn-lang-switch--mobile" role="group" aria-label="Language">
             <button type="button" className={lang === "en" ? "active" : ""} onClick={() => setLang("en")} aria-pressed={lang === "en"}>EN</button><span aria-hidden="true">/</span><button type="button" className={lang === "zh" ? "active" : ""} onClick={() => setLang("zh")} aria-pressed={lang === "zh"}>中</button>
           </div>
@@ -496,13 +497,13 @@ export function App() {
             <button className="tn-icon-button" onClick={() => setDark(!dark)} aria-label={dark ? "Switch to light theme" : "Switch to dark theme"} data-tooltip="Theme">{dark ? <Sun size={24} /> : <Moon size={24} />}</button>
           </div>
         </section>
-        <section className="tn-sec"><p>{t.intro}</p></section>
+        <section className="tn-sec"><p>{SIDEBAR[lang].intro}</p></section>
         <section className="tn-sec tn-sec--nonav">
           <nav className="tn-nav" aria-label={lang === "zh" ? "主导航" : "Primary"}>
-            <a href="/#projects"><FitnessNavIcon type="projects" />{t.projects}</a>
-            <a href="/fitness-tracker/" aria-current="page"><FitnessNavIcon type="fitness" />{t.fitness}</a>
-            <a href="/me/"><FitnessNavIcon type="about" />{t.about}</a>
-            <a href="/#about"><FitnessNavIcon type="resume" />{t.resume}</a>
+            <a href="/#projects"><FitnessNavIcon type="projects" />{SIDEBAR[lang].labels.projects}</a>
+            <a href="/fitness-tracker/" aria-current="page"><FitnessNavIcon type="fitness" />{SIDEBAR[lang].labels.fitness}</a>
+            <a href="/me/"><FitnessNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
+            <a href="/#about"><FitnessNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
           </nav>
         </section>
         <section className="tn-sec tn-sec--foot">
