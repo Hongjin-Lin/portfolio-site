@@ -11,11 +11,11 @@ const ACCENTS = ["#b12d6c", "#2456c8", "#2e7d46", "#c26a1f", "#7a4fc9", "#1f7a78
 export const SIDEBAR = {
   en: {
     intro: "I am Hongjin, welcome to my personal website!",
-    labels: { projects: "Projects", fitness: "Fitness", about: "About me", resume: "Resume" },
+    labels: { projects: "Projects", about: "About me", resume: "Resume" },
   },
   zh: {
     intro: "你好，我是泓进，欢迎来到我的个人网站！",
-    labels: { projects: "项目", fitness: "健身", about: "个人介绍", resume: "简历" },
+    labels: { projects: "项目", about: "个人介绍", resume: "简历" },
   },
 };
 const ACCENT_NAMES = ["Rose", "Blue", "Green", "Amber", "Violet", "Teal"];
@@ -276,7 +276,6 @@ export function App() {
         </div>
         {menuOpen && <nav className="tn-mobile-menu" aria-label="Mobile primary">
           <a href="#projects" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="projects" />{SIDEBAR[lang].labels.projects}</a>
-          <a href="/fitness-tracker/"><SidebarNavIcon type="fitness" />{SIDEBAR[lang].labels.fitness}</a>
           <a href="/me/" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
           <a href="#about" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
           <LanguageSwitch lang={lang} onChange={setLang} mobile />
@@ -297,8 +296,7 @@ export function App() {
         <section className="tn-sec tn-sec--nonav">
           <nav className="tn-nav" aria-label={lang === "zh" ? "主导航" : "Primary"}>
             <a href="#projects"><SidebarNavIcon type="projects" />{SIDEBAR[lang].labels.projects}</a>
-            <a href="/fitness-tracker/"><SidebarNavIcon type="fitness" />{SIDEBAR[lang].labels.fitness}</a>
-            <a href="/me/"><SidebarNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
+              <a href="/me/"><SidebarNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
             <a href="#about"><SidebarNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
           </nav>
         </section>

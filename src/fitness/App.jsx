@@ -479,7 +479,6 @@ export function App() {
         </div>
         {menuOpen && <nav className="tn-mobile-menu" aria-label="Mobile primary">
           <a href="/#projects" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="projects" />{SIDEBAR[lang].labels.projects}</a>
-          <a href="/fitness-tracker/" aria-current="page" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="fitness" />{SIDEBAR[lang].labels.fitness}</a>
           <a href="/me/" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
           <a href="/#about" onClick={() => setMenuOpen(false)}><FitnessNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
           <div className="tn-lang-switch tn-lang-switch--mobile" role="group" aria-label="Language">
@@ -501,7 +500,6 @@ export function App() {
         <section className="tn-sec tn-sec--nonav">
           <nav className="tn-nav" aria-label={lang === "zh" ? "主导航" : "Primary"}>
             <a href="/#projects"><FitnessNavIcon type="projects" />{SIDEBAR[lang].labels.projects}</a>
-            <a href="/fitness-tracker/" aria-current="page"><FitnessNavIcon type="fitness" />{SIDEBAR[lang].labels.fitness}</a>
             <a href="/me/"><FitnessNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
             <a href="/#about"><FitnessNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
           </nav>
