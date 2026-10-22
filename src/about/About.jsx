@@ -172,7 +172,7 @@ export function About() {
           <p>{copy.contactText}</p>
           <ul className="about-contact-list">
             <li><a href={`mailto:${email}`}>hongjin1125@outlook.com</a></li>
-            <li><a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer">github.com/Hongjin-Lin <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer">{copy.githubLabel}</a></li>
           </ul>
         </section>
         <section className="about-photos">
