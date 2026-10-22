@@ -12,9 +12,12 @@ html[data-tn-dark="1"] .about-title-icon { filter: invert(1); }
 .about-section { padding-top: 28px; margin-top: 30px; border-top: 1px solid var(--tn-border); }
 .about-section h2, .about-contact h2 { margin: 0 0 12px; color: var(--tn-heading); font-size: 24px; line-height: 1.3; }
 .about-section > p, .about-contact > p { max-width: 680px; margin: 0; font-size: 16.8px; line-height: 1.7; }
-.about-contact { padding: 24px 26px; margin-top: 34px; border: 1px solid var(--tn-border); border-radius: 10px; background: color-mix(in srgb, var(--tn-accent) 5%, var(--tn-bg)); }
-.about-contact h2 { margin-bottom: 5px; }
-.about-contact > a { display: inline-flex; align-items: center; gap: 7px; margin-top: 13px; color: var(--tn-accent); font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.about-contact { margin-top: 40px; }
+.about-contact h2 { margin-bottom: 8px; }
+.about-contact-list { list-style: disc; margin: 14px 0 0; padding-left: 22px; font-size: 16.8px; }
+.about-contact-list li { margin: 0 0 8px; line-height: 1.7; }
+.about-contact-list a { color: var(--tn-accent); font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.about-contact-list a:hover { text-decoration-thickness: 2px; }
 .about-shell .tn-nav a[aria-current="page"] { color: var(--tn-accent); }
 .about-shell .tn-nav a[aria-current="page"] .tn-nav-icon { color: var(--tn-accent); }
 @media (max-width: 1019px) {

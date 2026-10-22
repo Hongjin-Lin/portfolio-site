@@ -11,8 +11,8 @@ const NAMES = ["Rose", "Blue", "Green", "Amber", "Violet", "Teal"];
 
 const COPY = {
   en: {
-    pageTitle: "Hi, I'm Hongjin!",
-    bio1: "Welcome to my website! I'm planning to share some of my thoughts, photos, and interesting projects here.",
+    pageTitle: "About me",
+    bio1: "Hi, I'm Hongjin! Welcome to my website! I'm planning to share some of my thoughts, photos, and interesting projects here.",
     bio2: "I'm currently a Computer Science student, about to join DTU (Technical University of Denmark) for my master's degree.",
     bio3: "I'm enthusiastic about using AI to help people boost their productivity — I want to understand everything from the model side to the application side and put it to work in real projects.",
     bio4: "In my free time I enjoy rock climbing, fitness, traveling, photography, and cycling. I love exploring different corners of the world and capturing the scenery I see along the way.",
@@ -23,8 +23,8 @@ const COPY = {
     photoAlt: "Hongjin at his University of Nottingham graduation",
   },
   zh: {
-    pageTitle: "你好，我是泓进！",
-    bio1: "欢迎来到我的网站！我打算在这里分享一些我的想法、照片和有趣的项目。",
+    pageTitle: "个人介绍",
+    bio1: "你好，我是泓进！欢迎来到我的网站！我打算在这里分享一些我的想法、照片和有趣的项目。",
     bio2: "我目前是一名计算机科学专业的学生，即将前往丹麦技术大学（DTU）攻读硕士学位。",
     bio3: "我对用 AI 帮助人们提升效率充满热情——我希望掌握从模型端到应用端的知识，并把它们应用到实际工作中。",
     bio4: "闲暇时我喜欢攀岩、健身、旅行、摄影和骑自行车。我喜欢探索世界上不同的角落，并记录下所见的风景。",
@@ -146,8 +146,10 @@ export function About() {
         <section className="about-contact">
           <h2>{copy.contactHeading}</h2>
           <p>{copy.contactText}</p>
-          <a href={`mailto:${email}`}>{copy.email} <span aria-hidden="true">↗</span></a>
-          <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer">{copy.githubLabel} <span aria-hidden="true">↗</span></a>
+          <ul className="about-contact-list">
+            <li><a href={`mailto:${email}`}>{copy.email}: hongjin1125@outlook.com</a></li>
+            <li><a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer">{copy.githubLabel}: github.com/Hongjin-Lin <span aria-hidden="true">↗</span></a></li>
+          </ul>
         </section>
       </article>
     </main>
