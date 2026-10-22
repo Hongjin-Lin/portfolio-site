@@ -58,6 +58,7 @@ const PHOTOS = [
   { src: "/images/photos/photo-14.jpg", title: "14" },
   { src: "/images/photos/photo-15.jpg", title: "15" },
   { src: "/images/photos/photo-16.jpg", title: "16" },
+  { src: "/images/photos/photo-17.jpg", title: "17" },
 ];
 export function About() {
   const [accent, setAccent] = useState(() => localStorage.getItem("tn-accent") || ACCENTS[0]);
