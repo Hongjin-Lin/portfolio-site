@@ -11,26 +11,28 @@ const NAMES = ["Rose", "Blue", "Green", "Amber", "Violet", "Teal"];
 
 const COPY = {
   en: {
-    projects: "Projects", fitness: "Fitness", about: "About me", resume: "Resume",
-    intro: "I am Hongjin, an incoming MSc Computer Science & Engineering student at the Technical University of Denmark 📖.",
-    pageTitle: "About me",
-    opening: "I’m an incoming MSc Computer Science & Engineering student at the Technical University of Denmark. I studied Computer Science at the University of Nottingham, where I became especially interested in the systems that make software dependable and useful.",
-    second: "I like working across backend engineering and machine learning: understanding a problem, building the pieces behind it, and writing down what I learn along the way.",
-    now: "What I’m doing now", nowText: "Getting ready for my next chapter at DTU, and continuing to explore backend systems, distributed computing, and applied machine learning.",
-    interests: "Away from the keyboard", interestsText: "I enjoy exploring cities, lifting weights, building with bricks, drinking tea, and keeping this little corner of the internet growing.",
-    sayHello: "Say hello", contact: "I’m always happy to talk about software, machine learning, or a good cup of tea.",
-    email: "Email me", photoAlt: "Hongjin at his University of Nottingham graduation",
+    pageTitle: "Hi, I'm Hongjin!",
+    bio1: "Welcome to my website! I'm planning to share some of my thoughts, photos, and interesting projects here.",
+    bio2: "I'm currently a Computer Science student, about to join DTU (Technical University of Denmark) for my master's degree.",
+    bio3: "I'm enthusiastic about using AI to help people boost their productivity — I want to understand everything from the model side to the application side and put it to work in real projects.",
+    bio4: "In my free time I enjoy rock climbing, fitness, traveling, photography, and cycling. I love exploring different corners of the world and capturing the scenery I see along the way.",
+    contactHeading: "Contact",
+    contactText: "Feel free to send me an email :)",
+    email: "Email me",
+    githubLabel: "GitHub",
+    photoAlt: "Hongjin at his University of Nottingham graduation",
   },
   zh: {
-    projects: "项目", fitness: "健身", about: "个人介绍", resume: "简历",
-    intro: "你好，我是泓进，即将入读丹麦技术大学计算机科学与工程硕士项目。📖",
-    pageTitle: "个人介绍",
-    opening: "我即将入读丹麦技术大学计算机科学与工程硕士项目。本科就读于诺丁汉大学计算机科学专业，在学习过程中逐渐对那些让软件可靠、实用的系统产生了浓厚兴趣。",
-    second: "我喜欢在后端工程与机器学习之间探索：理解问题、搭建背后的系统，也把一路学到的东西记录下来。",
-    now: "最近在做什么", nowText: "正在为 DTU 的新阶段做准备，也会继续探索后端系统、分布式计算和应用机器学习。",
-    interests: "离开键盘之后", interestsText: "我喜欢在城市里漫游、举铁、拼积木、喝茶，也喜欢慢慢打理这个小小的网络角落。",
-    sayHello: "欢迎联系我", contact: "很乐意聊聊软件、机器学习，或者一杯好茶。",
-    email: "给我发邮件", photoAlt: "泓进在诺丁汉大学毕业典礼上的照片",
+    pageTitle: "你好，我是泓进！",
+    bio1: "欢迎来到我的网站！我打算在这里分享一些我的想法、照片和有趣的项目。",
+    bio2: "我目前是一名计算机科学专业的学生，即将前往丹麦技术大学（DTU）攻读硕士学位。",
+    bio3: "我对用 AI 帮助人们提升效率充满热情——我希望掌握从模型端到应用端的知识，并把它们应用到实际工作中。",
+    bio4: "闲暇时我喜欢攀岩、健身、旅行、摄影和骑自行车。我喜欢探索世界上不同的角落，并记录下所见的风景。",
+    contactHeading: "联系方式",
+    contactText: "欢迎随时给我发邮件 :)",
+    email: "给我发邮件",
+    githubLabel: "GitHub",
+    photoAlt: "泓进在诺丁汉大学毕业典礼上的照片",
   },
 };
 
@@ -132,14 +134,21 @@ export function About() {
       <article className="about-page">
         <h1 className="about-title"><img className="about-title-icon" src="/icons/nalong-thinking.png" alt="" aria-hidden="true" />{copy.pageTitle}</h1>
         <div className="about-intro">
-          <div className="about-copy"><p>{copy.opening}</p><p>{copy.second}</p>
+          <div className="about-copy">
+            <p>{copy.bio1}</p>
+            <p>{copy.bio2}</p>
+            <p>{copy.bio3}</p>
+            <p>{copy.bio4}</p>
             <a className="about-email" href={`mailto:${email}`}><EnvelopeSimple size={19} />{email}</a>
           </div>
           <figure className="about-portrait"><img src="/images/hongjin-graduation.png" alt={copy.photoAlt} width="1024" height="1536" fetchPriority="high" /></figure>
         </div>
-        <section className="about-section about-now"><h2>{copy.now}</h2><p>{copy.nowText}</p></section>
-        <section className="about-section"><h2>{copy.interests}</h2><p>{copy.interestsText}</p></section>
-        <section className="about-contact"><h2>{copy.sayHello}</h2><p>{copy.contact}</p><a href={`mailto:${email}`}>{copy.email} <span aria-hidden="true">↗</span></a></section>
+        <section className="about-contact">
+          <h2>{copy.contactHeading}</h2>
+          <p>{copy.contactText}</p>
+          <a href={`mailto:${email}`}>{copy.email} <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer">{copy.githubLabel} <span aria-hidden="true">↗</span></a>
+        </section>
       </article>
     </main>
   </div>;
