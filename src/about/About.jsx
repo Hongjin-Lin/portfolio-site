@@ -22,7 +22,7 @@ const COPY = {
     githubLabel: "GitHub",
     photoAlt: "Hongjin at his University of Nottingham graduation",
     photosHeading: "Photography",
-    photosIntro: "A few frames from my travels — more coming soon.",
+    photosIntro: "Frames from my travels.",
   },
   zh: {
     pageTitle: "个人介绍",
@@ -36,18 +36,28 @@ const COPY = {
     githubLabel: "GitHub",
     photoAlt: "泓进在诺丁汉大学毕业典礼上的照片",
     photosHeading: "摄影作品",
-    photosIntro: "旅行途中记录的几帧风景，更多照片陆续更新。",
+    photosIntro: "旅行中记录的一些风景。",
   },
 };
 
 
 const PHOTOS = [
-  { src: "/images/photos/photo-1.png", title: "Kyoto Alley" },
-  { src: "/images/photos/photo-2.png", title: "Golden Hour" },
-  { src: "/images/photos/photo-3.png", title: "Nordic Light" },
-  { src: "/images/photos/photo-4.png", title: "Mountain Air" },
-  { src: "/images/photos/photo-5.png", title: "Evening Walk" },
-  { src: "/images/photos/photo-6.png", title: "Sea Breeze" },
+  { src: "/images/photos/photo-01.jpg", title: "01" },
+  { src: "/images/photos/photo-02.jpg", title: "02" },
+  { src: "/images/photos/photo-03.jpg", title: "03" },
+  { src: "/images/photos/photo-04.jpg", title: "04" },
+  { src: "/images/photos/photo-05.jpg", title: "05" },
+  { src: "/images/photos/photo-06.jpg", title: "06" },
+  { src: "/images/photos/photo-07.jpg", title: "07" },
+  { src: "/images/photos/photo-08.jpg", title: "08" },
+  { src: "/images/photos/photo-09.jpg", title: "09" },
+  { src: "/images/photos/photo-10.jpg", title: "10" },
+  { src: "/images/photos/photo-11.jpg", title: "11" },
+  { src: "/images/photos/photo-12.jpg", title: "12" },
+  { src: "/images/photos/photo-13.jpg", title: "13" },
+  { src: "/images/photos/photo-14.jpg", title: "14" },
+  { src: "/images/photos/photo-15.jpg", title: "15" },
+  { src: "/images/photos/photo-16.jpg", title: "16" },
 ];
 export function About() {
   const [accent, setAccent] = useState(() => localStorage.getItem("tn-accent") || ACCENTS[0]);
