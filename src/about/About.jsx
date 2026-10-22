@@ -21,6 +21,8 @@ const COPY = {
     email: "Email me",
     githubLabel: "GitHub",
     photoAlt: "Hongjin at his University of Nottingham graduation",
+    photosHeading: "Photography",
+    photosIntro: "A few frames from my travels — more coming soon.",
   },
   zh: {
     pageTitle: "个人介绍",
@@ -33,9 +35,20 @@ const COPY = {
     email: "给我发邮件",
     githubLabel: "GitHub",
     photoAlt: "泓进在诺丁汉大学毕业典礼上的照片",
+    photosHeading: "摄影作品",
+    photosIntro: "旅行途中记录的几帧风景，更多照片陆续更新。",
   },
 };
 
+
+const PHOTOS = [
+  { src: "/images/photos/photo-1.png", title: "Kyoto Alley" },
+  { src: "/images/photos/photo-2.png", title: "Golden Hour" },
+  { src: "/images/photos/photo-3.png", title: "Nordic Light" },
+  { src: "/images/photos/photo-4.png", title: "Mountain Air" },
+  { src: "/images/photos/photo-5.png", title: "Evening Walk" },
+  { src: "/images/photos/photo-6.png", title: "Sea Breeze" },
+];
 export function About() {
   const [accent, setAccent] = useState(() => localStorage.getItem("tn-accent") || ACCENTS[0]);
   const [dark, setDark] = useState(() => localStorage.getItem("tn-dark") === "1");
@@ -150,6 +163,18 @@ export function About() {
             <li><a href={`mailto:${email}`}>hongjin1125@outlook.com</a></li>
             <li><a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer">github.com/Hongjin-Lin <span aria-hidden="true">↗</span></a></li>
           </ul>
+        </section>
+        <section className="about-photos">
+          <h2>{copy.photosHeading}</h2>
+          <p className="about-photos-intro">{copy.photosIntro}</p>
+          <div className="photos-grid">
+            {PHOTOS.map((p) => (
+              <figure className="photo-card" key={p.src}>
+                <img src={p.src} alt={p.title} loading="lazy" />
+                <figcaption>{p.title}</figcaption>
+              </figure>
+            ))}
+          </div>
         </section>
       </article>
     </main>
