@@ -181,7 +181,6 @@ export function About() {
             {PHOTOS.map((p) => (
               <figure className="photo-card" key={p.src}>
                 <img src={p.src} alt={p.title} loading="lazy" />
-                <figcaption>{p.title}</figcaption>
               </figure>
             ))}
           </div>
