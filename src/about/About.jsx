@@ -147,8 +147,8 @@ export function About() {
           <h2>{copy.contactHeading}</h2>
           <p>{copy.contactText}</p>
           <ul className="about-contact-list">
-            <li><a href={`mailto:${email}`}>{copy.email}: hongjin1125@outlook.com</a></li>
-            <li><a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer">{copy.githubLabel}: github.com/Hongjin-Lin <span aria-hidden="true">↗</span></a></li>
+            <li><a href={`mailto:${email}`}>hongjin1125@outlook.com</a></li>
+            <li><a href="https://github.com/Hongjin-Lin" target="_blank" rel="noreferrer">github.com/Hongjin-Lin <span aria-hidden="true">↗</span></a></li>
           </ul>
         </section>
       </article>
