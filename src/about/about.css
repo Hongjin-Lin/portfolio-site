@@ -7,7 +7,7 @@ html[data-tn-dark="1"] .about-title-icon { filter: invert(1); }
 .about-copy { padding-top: 2px; font-size: 17.6px; line-height: 1.72; }
 .about-copy p { margin: 0 0 17px; }
 .about-email { display: inline-flex; align-items: center; gap: 8px; margin-top: 3px; color: var(--tn-accent); font-size: 15px; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-.about-portrait { margin: 0; padding: 7px; border: 1px solid var(--tn-border); border-radius: 10px; background: color-mix(in srgb, var(--tn-bg) 92%, var(--tn-accent)); box-shadow: 0 8px 24px rgb(43 36 23 / 8%); transform: rotate(1deg); }
+.about-portrait { margin: 0; padding: 7px; border: 1px solid var(--tn-border); border-radius: 10px; background: color-mix(in srgb, var(--tn-bg) 92%, var(--tn-accent)); box-shadow: 0 8px 24px rgb(43 36 23 / 8%); transform: none; }
 .about-portrait img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 3; border-radius: 5px; object-fit: cover; object-position: center 46%; }
 .about-section { padding-top: 28px; margin-top: 30px; border-top: 1px solid var(--tn-border); }
 .about-section h2, .about-contact h2 { margin: 0 0 12px; color: var(--tn-heading); font-size: 24px; line-height: 1.3; }
