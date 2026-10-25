@@ -71,12 +71,11 @@ const COPY = {
     projects: "Projects", fitness: "Fitness", about: "About me", resume: "Resume",
     introAria: "Introduction", greeting: "Hey, I'm Hongjin!",
     lead: "CS student, climber, landscape photographer.",
-    introHeading: "A brief introduction", close: "CLOSE ↑", details: "DETAILS ↓",
-    timeline: [
-      { year: "2004–2022", title: "Shenzhen, China", text: " — I grew up reading widely and staying curious about how things work." },
-      { year: "2022–2026", title: "University of Nottingham, Ningbo China", text: " — Built a strong foundation in computer science, with particular interests in software engineering and applied machine learning." },
-      { year: "2026–now", title: "Incoming MSc student in Computer Science & Engineering, Technical University of Denmark", text: " — Looking forward to deepening my knowledge of AI and machine learning, and exploring how to bring AI models into practical, real-world applications." },
-    ],
+    bio1: "Hi, I'm Hongjin! Welcome to my website! I'm planning to share some of my thoughts, photos, and interesting projects here.",
+    bio2: "I'm currently a Computer Science student, about to join DTU (Technical University of Denmark) for my master's degree.",
+    bio3: "I'm enthusiastic about using AI to help people boost their productivity — I want to understand everything from the model side to the application side and put it to work in real projects.",
+    bio4: "In my free time I enjoy rock climbing, fitness, traveling, photography, and cycling. I love exploring different corners of the world and capturing the scenery I see along the way.",
+    close: "CLOSE ↑", details: "DETAILS ↓",
     career: "Career direction", careerText: ": I aspire to become a Machine Learning Engineer or AI Engineer, applying technology to real-world problems and building useful tools that make people’s lives easier.",
     outside: "Outside tech", outsideText: ": Travelling, cycling, climbing, and landscape photography.",
     appleAlt: "Four green apples holding hands and dancing together",
@@ -86,12 +85,11 @@ const COPY = {
     projects: "项目", fitness: "健身", about: "个人介绍", resume: "简历",
     introAria: "个人介绍", greeting: "Hey, I'm Hongjin!",
     lead: "计算机专业学生、攀岩爱好者、摄影爱好者。",
-    introHeading: "时间线", close: "收起 ↑", details: "查看详情 ↓",
-    timeline: [
-      { year: "2004–2022", title: "深圳", text: " — 小时候的我对各种各样的书感兴趣，在知乎上看到" },
-      { year: "2022–2026", title: "宁波诺丁汉大学", text: " — 这四年里，我打下了扎实的计算机科学基础，并对用AI推动现实世界的变化产生兴趣。我探索了世界上很多不同的地方，也对自己想要什么变得更加清晰。" },
-      { year: "2026–现在", title: "即将入学丹麦科技大学计算机科学与工程硕士项目", text: " — 希望进一步深入学习人工智能与机器学习，并探索如何将 AI 模型应用于真实场景。" },
-    ],
+    bio1: "你好，我是泓进！欢迎来到我的网站！我打算在这里分享一些我的想法、照片和有趣的项目。",
+    bio2: "我目前是一名计算机科学专业的学生，即将前往丹麦技术大学（DTU）攻读硕士学位。",
+    bio3: "我对用 AI 帮助人们提升效率充满热情——我希望掌握从模型端到应用端的知识，并把它们应用到实际工作中。",
+    bio4: "闲暇时我喜欢攀岩、健身、旅行、摄影和骑自行车。我喜欢探索世界上不同的角落，并记录下所见的风景。",
+    close: "收起 ↑", details: "查看详情 ↓",
     career: "职业方向", careerText: "：我希望未来成为机器学习工程师或 AI 工程师，用技术解决实际问题，打造实用工具，让人们的生活更轻松。",
     outside: "工作之外", outsideText: "：旅行、骑行、攀岩和风光摄影。",
     appleAlt: "四只牵手跳舞的青苹果",
@@ -318,15 +316,12 @@ export function App() {
           <div className="tn-col" id="about">
           <h1>{copy.greeting}</h1>
           <p className="tn-lead">{copy.lead}</p>
-          <h2>{copy.introHeading}</h2>
-          <ul className="tn-timeline">
-            {copy.timeline.map((item) => (
-              <li key={item.year}>
-                <span className="tn-yr">{item.year}</span>
-                <span><b>{item.title}</b>{item.text}{item.link && <a href={item.href || "#"}>{item.link}</a>}{item.tail}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="tn-bio">
+            <p>{copy.bio1}</p>
+            <p>{copy.bio2}</p>
+            <p>{copy.bio3}</p>
+            <p>{copy.bio4}</p>
+          </div>
           <p className="tn-also"><b>{copy.career}</b>{copy.careerText}</p>
           <p className="tn-also"><b>{copy.outside}</b>{copy.outsideText}</p>
           </div>
