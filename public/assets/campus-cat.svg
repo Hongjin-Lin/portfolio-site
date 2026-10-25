@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <rect width="320" height="200" fill="#f8f4e6"/>
+  <g stroke="#1d1d22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M96 64 q6 -26 30 -26 q22 0 30 26" fill="none"/>
+    <circle cx="120" cy="86" r="34" fill="#e5dcbd"/>
+    <circle cx="152" cy="60" r="8" fill="#b12d6c"/>
+    <circle cx="102" cy="76" r="3" fill="#1d1d22"/>
+    <circle cx="138" cy="76" r="3" fill="#1d1d22"/>
+    <path d="M112 90 q8 6 16 0" fill="none" stroke-width="1.8"/>
+    <path d="M96 90 q-4 8 -12 6 M152 90 q4 8 12 6" fill="none" stroke-width="2"/>
+    <path d="M104 122 l-12 16 M144 122 l12 16 M112 124 h44" fill="none"/>
+  </g>
+  <g font-family="Caveat, cursive" fill="#1d1d22">
+    <text x="18" y="28" font-size="20">campus cat</text>
+    <text x="228" y="182" font-size="17">DINOv2 · FastAPI</text>
+  </g>
+</svg>
