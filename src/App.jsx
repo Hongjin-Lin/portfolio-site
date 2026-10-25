@@ -273,7 +273,7 @@ export function App() {
         {menuOpen && <nav className="tn-mobile-menu" aria-label="Mobile primary">
           <a href="#projects" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="projects" />{SIDEBAR[lang].labels.projects}</a>
           <a href="/me/" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}><SidebarNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
           <LanguageSwitch lang={lang} onChange={setLang} mobile />
         </nav>}
       </header>
@@ -293,7 +293,7 @@ export function App() {
           <nav className="tn-nav" aria-label={lang === "zh" ? "主导航" : "Primary"}>
             <a href="#projects"><SidebarNavIcon type="projects" />{SIDEBAR[lang].labels.projects}</a>
               <a href="/me/"><SidebarNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
-            <a href="#about"><SidebarNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
+            <a href="/resume.pdf" target="_blank" rel="noreferrer"><SidebarNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
           </nav>
         </section>
         <section className="tn-sec tn-sec--foot">

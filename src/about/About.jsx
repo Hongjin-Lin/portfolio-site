@@ -124,7 +124,7 @@ export function About() {
   const navLinks = (mobile = false) => <>
     <a href="/#projects" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="projects" />{SIDEBAR[lang].labels.projects}</a>
     <a href="/me/" aria-current="page" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="about" />{SIDEBAR[lang].labels.about}</a>
-    <a href="/#about" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
+    <a href="/resume.pdf" target="_blank" rel="noreferrer" onClick={() => mobile && setMenuOpen(false)}><SidebarNavIcon type="resume" />{SIDEBAR[lang].labels.resume}</a>
   </>;
 
   return <div className={`tn-shell about-shell${lang === "zh" ? " language-zh" : ""}`}>
