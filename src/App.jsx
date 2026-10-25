@@ -77,7 +77,6 @@ const COPY = {
     bio4: "In my free time I enjoy rock climbing, fitness, traveling, photography, and cycling. I love exploring different corners of the world and capturing the scenery I see along the way.",
     close: "CLOSE ↑", details: "DETAILS ↓",
     career: "Career direction", careerText: ": I aspire to become a Machine Learning Engineer or AI Engineer, applying technology to real-world problems and building useful tools that make people’s lives easier.",
-    outside: "Outside tech", outsideText: ": Travelling, cycling, climbing, and landscape photography.",
     appleAlt: "Four green apples holding hands and dancing together",
   },
   zh: {
@@ -91,7 +90,6 @@ const COPY = {
     bio4: "闲暇时我喜欢攀岩、健身、旅行、摄影和骑自行车。我喜欢探索世界上不同的角落，并记录下所见的风景。",
     close: "收起 ↑", details: "查看详情 ↓",
     career: "职业方向", careerText: "：我希望未来成为机器学习工程师或 AI 工程师，用技术解决实际问题，打造实用工具，让人们的生活更轻松。",
-    outside: "工作之外", outsideText: "：旅行、骑行、攀岩和风光摄影。",
     appleAlt: "四只牵手跳舞的青苹果",
   },
 };
@@ -323,7 +321,6 @@ export function App() {
             <p>{copy.bio4}</p>
           </div>
           <p className="tn-also"><b>{copy.career}</b>{copy.careerText}</p>
-          <p className="tn-also"><b>{copy.outside}</b>{copy.outsideText}</p>
           </div>
           <aside className="tn-hero-art" aria-label="Four dancing green apples">
             <span className="tn-artwork--apples">
