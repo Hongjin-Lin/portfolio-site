@@ -40,7 +40,8 @@ const PROJECTS = [
     titleZh: "校园流浪猫小程序",
     meta: "2026.3 – 2026.4 · Hackathon · Sponsor Prize",
     metaZh: "2026.3 – 2026.4 · 黑客松 · Sponsor Prize",
-    image: "/assets/campus-cat.svg",
+    image: "/assets/unnc-catrec.jpg",
+    links: [{ label: "GitHub", href: "https://github.com/Hongjin-Lin/UNNC_CatRec" }],
     brief: "An AI-driven platform for identifying and profiling campus stray cats — a fine-tuned DINOv2 feature-vector library for individual matching, a FastAPI backend, and a mini-program with four pages. Won the Sponsor Prize at a campus hackathon.",
     briefZh: "面向校园流浪猫的 AI 识别与档案平台：DINOv2 微调特征向量库做个体匹配、FastAPI 后端、小程序四页面交付。校园黑客松作品，赢得 Sponsor Prize。",
     detail: "Project description: an AI identification and profile platform for campus stray cats, integrating vision models for individual recognition, profile browsing, and location statistics. Built the retrieval base by fine-tuning DINOv2 to extract image features, normalized into a vector library for individual matching; the backend uses FastAPI to serve recognition and profile APIs, preloading the model at startup and running inference in a thread pool to avoid blocking the event loop. Delivered four mini-program pages — recognition, profiles, map, and check-in — with Chinese/English language switching, supporting profile browsing and location hotspot statistics.",
@@ -69,6 +70,8 @@ const PROJECTS = [
     meta: "2024.10 – 2025.6",
     metaZh: "2024.10 – 2025.6",
     image: "/assets/capitalone-ai.jpg",
+    links: [{ label: "Demo", href: "/assets/capitalone-demo.mp4" }],
+    video: "/assets/capitalone-demo.mp4",
     brief: "An automated performance-document analysis tool for Capital One UK: PDF conversion, text splitting, topic classification, semantic ranking and anonymization — outputting visualized engineer capability reports.",
     briefZh: " 为 Capital One 英国总部打造自动化绩效文档分析工具：PDF 解析、主题分类、语义排名与匿名化，输出工程师能力可视化报告。",
     detail: "As AI team lead, designed a modular NLP pipeline that converts PDF documents into structured analysis — document parsing, sentence splitting, topic classification, composite scoring and topic selection — outputting standardized JSON for frontend visualization. Collected Capital One engineer-annotated data and fine-tuned with LLM-generated synthetic samples, lifting classification accuracy by ~20%. A fine-tuned BERT model performs named entity recognition to automatically anonymize names, organizations and project names, protecting data privacy.",
@@ -121,12 +124,22 @@ function ProjectRow({ project, open, onToggle, lang, copy, onZoom }) {
           <span className="meta">{localized("meta")}</span>
         </div>
         <p className="brief">{localized("brief")}</p>
+        {project.links?.length > 0 && (
+          <div className="plinks">
+            {project.links.map((l) => (
+              <a key={l.href} href={l.href} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>{l.label} <span aria-hidden="true">↗</span></a>
+            ))}
+          </div>
+        )}
       </div>
       <button className="toggle" onClick={(e) => { e.stopPropagation(); onToggle(); }} aria-expanded={open}>{open ? copy.close : copy.details}</button>
       <div className="detail" onClick={(e) => e.stopPropagation()}><div className="inner"><div className="pad">
         {localized("detail").split("- ").map((seg) => seg.trim()).filter(Boolean).map((point, i) => (
           <p className="detail-point" key={i}><span className="dash" aria-hidden="true">-</span>{point}</p>
         ))}
+        {project.video && (
+          <video className="project-video" controls preload="none" poster={project.image} src={project.video} />
+        )}
       </div></div></div>
     </article>
   );

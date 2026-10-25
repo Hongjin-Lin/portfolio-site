@@ -221,3 +221,10 @@ html[data-tn-dark="1"] .tn-proj:hover, html[data-tn-dark="1"] .tn-proj.open { ba
 
 .detail-point { display: flex; gap: 10px; margin-bottom: 6px; }
 .detail-point .dash { flex: 0 0 auto; color: var(--tn-accent); font-weight: 700; }
+
+/* project links */
+.plinks { display: flex; gap: 18px; margin-top: 10px; }
+.plinks a { font: 600 11px/1 "Google Sans Code Variable", ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--tn-accent); text-decoration: underline; text-underline-offset: 4px; }
+.plinks a:hover { text-decoration-thickness: 2px; }
+/* project demo video */
+.project-video { display: block; width: 100%; max-width: 660px; margin-top: 14px; border-radius: 10px; background: #0b1c2c; }
