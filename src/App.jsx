@@ -97,8 +97,8 @@ const COPY = {
 function ProjectRow({ project, open, onToggle, lang, copy, onZoom }) {
   const localized = (key) => lang === "zh" ? project[`${key}Zh`] || project[key] : project[key];
   return (
-    <article className={`tn-proj${open ? " open" : ""}`}>
-      <button type="button" className="thumb" onClick={() => onZoom(project.image)} aria-label="View larger image">
+    <article className={`tn-proj${open ? " open" : ""}`} onClick={onToggle}>
+      <button type="button" className="thumb" onClick={(e) => { e.stopPropagation(); onZoom(project.image); }} aria-label="View larger image">
         <img src={project.image} alt="" loading="lazy" />
       </button>
       <div className="body">
@@ -108,8 +108,8 @@ function ProjectRow({ project, open, onToggle, lang, copy, onZoom }) {
         </div>
         <p className="brief">{localized("brief")}</p>
       </div>
-      <button className="toggle" onClick={onToggle} aria-expanded={open}>{open ? copy.close : copy.details}</button>
-      <div className="detail"><div className="inner"><div className="pad">
+      <button className="toggle" onClick={(e) => { e.stopPropagation(); onToggle(); }} aria-expanded={open}>{open ? copy.close : copy.details}</button>
+      <div className="detail" onClick={(e) => e.stopPropagation()}><div className="inner"><div className="pad">
         <p>{localized("detail")}</p>
         <p className="res">{localized("result")}</p>
         <div className="stack">{project.stack}</div>
