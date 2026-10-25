@@ -219,5 +219,5 @@ html[data-tn-dark="1"] .tn-proj:hover, html[data-tn-dark="1"] .tn-proj.open { ba
 .tn-bio p { margin: 0 0 15px; max-width: 620px; font-size: 17.2px; line-height: 1.72; }
 .tn-bio p:last-child { margin-bottom: 0; }
 
-.detail-point { display: flex; gap: 10px; margin-bottom: 10px; }
+.detail-point { display: flex; gap: 10px; margin-bottom: 6px; }
 .detail-point .dash { flex: 0 0 auto; color: var(--tn-accent); font-weight: 700; }
