@@ -110,9 +110,9 @@ function ProjectRow({ project, open, onToggle, lang, copy, onZoom }) {
       </div>
       <button className="toggle" onClick={(e) => { e.stopPropagation(); onToggle(); }} aria-expanded={open}>{open ? copy.close : copy.details}</button>
       <div className="detail" onClick={(e) => e.stopPropagation()}><div className="inner"><div className="pad">
-        <p>{localized("detail")}</p>
-        <p className="res">{localized("result")}</p>
-        <div className="stack">{project.stack}</div>
+        {localized("detail").split("- ").map((seg) => seg.trim()).filter(Boolean).map((point, i) => (
+          <p className="detail-point" key={i}><span className="dash" aria-hidden="true">-</span>{point}</p>
+        ))}
       </div></div></div>
     </article>
   );
