@@ -41,7 +41,11 @@ const PROJECTS = [
     meta: "2026.3 – 2026.4 · Hackathon · Sponsor Prize",
     metaZh: "2026.3 – 2026.4 · 黑客松 · Sponsor Prize",
     image: "/assets/unnc-catrec.jpg",
-    links: [{ label: "GitHub", href: "https://github.com/Hongjin-Lin/UNNC_CatRec" }],
+    links: [
+      { label: "GitHub", href: "https://github.com/Hongjin-Lin/UNNC_CatRec" },
+      { label: "Demo", href: "/assets/unnc-catrec-demo.mp4" },
+    ],
+    video: "/assets/unnc-catrec-demo.mp4",
     brief: "An AI-driven platform for identifying and profiling campus stray cats — a fine-tuned DINOv2 feature-vector library for individual matching, a FastAPI backend, and a mini-program with four pages. Won the Sponsor Prize at a campus hackathon.",
     briefZh: "面向校园流浪猫的 AI 识别与档案平台：DINOv2 微调特征向量库做个体匹配、FastAPI 后端、小程序四页面交付。校园黑客松作品，赢得 Sponsor Prize。",
     detail: "Project description: an AI identification and profile platform for campus stray cats, integrating vision models for individual recognition, profile browsing, and location statistics. Built the retrieval base by fine-tuning DINOv2 to extract image features, normalized into a vector library for individual matching; the backend uses FastAPI to serve recognition and profile APIs, preloading the model at startup and running inference in a thread pool to avoid blocking the event loop. Delivered four mini-program pages — recognition, profiles, map, and check-in — with Chinese/English language switching, supporting profile browsing and location hotspot statistics.",
